@@ -113,9 +113,10 @@
       search: false,
       logo: false,
       accountMenu: false,
-      // Fokus heißt auch: Sponsor-Segmente und Intros werden übersprungen.
-      // Das ist ein bewusster Klick des Nutzers, kein stilles Opt-in — die
-      // Auslieferungs-Defaults bleiben aus.
+      // Fokus heißt auch: Sponsor-Segmente und Intros werden markiert und
+      // übersprungen. Das ist ein bewusster Klick des Nutzers, kein stilles
+      // Opt-in — die Auslieferungs-Defaults bleiben aus.
+      sponsorMark: true,
       sponsorSkip: true,
       sponsorIntros: true
     }),

@@ -54,7 +54,7 @@ HOW YOU TUNE IT
 42 filters, each one switchable on its own, plus three presets:
 
 • Custom — your saved selection, one click away at any time
-• Focus — the header and search bar stay, sponsor segments and intros get skipped
+• Focus — the header and search bar stay, sponsor segments and intros get marked and skipped
 • Filter nothing — everything back on
 
 Put together exactly what you want gone, save it once as "Custom" — and get back

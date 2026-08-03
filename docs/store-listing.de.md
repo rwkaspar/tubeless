@@ -55,7 +55,7 @@ WIE DU ES EINSTELLST
 42 Filter, jeder einzeln schaltbar, dazu drei Presets:
 
 • Eigene — deine gespeicherte Auswahl, jederzeit mit einem Klick zurück
-• Fokus — Kopfzeile und Suchleiste bleiben, Sponsor-Segmente und Intros werden übersprungen
+• Fokus — Kopfzeile und Suchleiste bleiben, Sponsor-Segmente und Intros werden markiert und übersprungen
 • Nichts filtern — alles wieder an
 
 Stell dir zusammen, was du weghaben willst, sichere es einmal als „Eigene" — und
