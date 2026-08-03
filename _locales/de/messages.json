@@ -93,6 +93,14 @@
     "message": "Pausiert — YouTube unverändert",
     "description": "Fusszeile, wenn Tubeless pausiert ist"
   },
+  "toastSkippedIntro": {
+    "message": "Intro übersprungen",
+    "description": "Toast im Player nach automatischem Sprung über ein Intro"
+  },
+  "toastSkippedSponsor": {
+    "message": "Sponsor übersprungen",
+    "description": "Toast im Player nach automatischem Sprung über ein Sponsor-Segment"
+  },
   "groupBehavior": {
     "message": "Verhalten",
     "description": "Gruppentitel im Popup"
@@ -316,6 +324,14 @@
   "featureSkipAdsHint": {
     "message": "Klickt „Überspringen“ und spult unüberspringbare Anzeigen vor",
     "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureSponsorIntros": {
+    "message": "Auch Intros einbeziehen",
+    "description": "Filter-Bezeichnung: sponsorIntros"
+  },
+  "featureSponsorIntrosHint": {
+    "message": "Markieren/Überspringen gilt dann auch für Intro-Animationen",
+    "description": "Erklaerung zum Filter sponsorIntros"
   },
   "featureSponsorMark": {
     "message": "Sponsor-Segmente markieren",

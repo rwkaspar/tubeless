@@ -93,6 +93,14 @@
     "message": "Gepauzeerd — YouTube ongewijzigd",
     "description": "Fusszeile, wenn Tubeless pausiert ist"
   },
+  "toastSkippedIntro": {
+    "message": "Intro overgeslagen",
+    "description": "Toast im Player nach automatischem Sprung über ein Intro"
+  },
+  "toastSkippedSponsor": {
+    "message": "Sponsor overgeslagen",
+    "description": "Toast im Player nach automatischem Sprung über ein Sponsor-Segment"
+  },
   "groupBehavior": {
     "message": "Gedrag",
     "description": "Gruppentitel im Popup"
@@ -316,6 +324,14 @@
   "featureSkipAdsHint": {
     "message": "Klikt ‘Overslaan’ en spoelt niet-overslaanbare advertenties door",
     "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureSponsorIntros": {
+    "message": "Ook intro’s meenemen",
+    "description": "Filter-Bezeichnung: sponsorIntros"
+  },
+  "featureSponsorIntrosHint": {
+    "message": "Markeren/overslaan geldt dan ook voor intro-animaties",
+    "description": "Erklaerung zum Filter sponsorIntros"
   },
   "featureSponsorMark": {
     "message": "Sponsorsegmenten markeren",

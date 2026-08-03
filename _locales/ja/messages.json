@@ -93,6 +93,14 @@
     "message": "一時停止中 — YouTube はそのまま",
     "description": "Fusszeile, wenn Tubeless pausiert ist"
   },
+  "toastSkippedIntro": {
+    "message": "イントロをスキップしました",
+    "description": "Toast im Player nach automatischem Sprung über ein Intro"
+  },
+  "toastSkippedSponsor": {
+    "message": "スポンサーをスキップしました",
+    "description": "Toast im Player nach automatischem Sprung über ein Sponsor-Segment"
+  },
   "groupBehavior": {
     "message": "動作",
     "description": "Gruppentitel im Popup"
@@ -316,6 +324,14 @@
   "featureSkipAdsHint": {
     "message": "「スキップ」を押し、スキップできない広告は早送りします",
     "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureSponsorIntros": {
+    "message": "イントロも対象にする",
+    "description": "Filter-Bezeichnung: sponsorIntros"
+  },
+  "featureSponsorIntrosHint": {
+    "message": "マークとスキップがイントロにも適用されます",
+    "description": "Erklaerung zum Filter sponsorIntros"
   },
   "featureSponsorMark": {
     "message": "スポンサー区間をマーク",

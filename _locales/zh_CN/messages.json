@@ -93,6 +93,14 @@
     "message": "已暂停 — YouTube 保持原样",
     "description": "Fusszeile, wenn Tubeless pausiert ist"
   },
+  "toastSkippedIntro": {
+    "message": "已跳过片头",
+    "description": "Toast im Player nach automatischem Sprung über ein Intro"
+  },
+  "toastSkippedSponsor": {
+    "message": "已跳过赞助",
+    "description": "Toast im Player nach automatischem Sprung über ein Sponsor-Segment"
+  },
   "groupBehavior": {
     "message": "行为",
     "description": "Gruppentitel im Popup"
@@ -316,6 +324,14 @@
   "featureSkipAdsHint": {
     "message": "自动点击“跳过”，并快进无法跳过的广告",
     "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureSponsorIntros": {
+    "message": "同时包含片头",
+    "description": "Filter-Bezeichnung: sponsorIntros"
+  },
+  "featureSponsorIntrosHint": {
+    "message": "标记/跳过将同时作用于片头动画",
+    "description": "Erklaerung zum Filter sponsorIntros"
   },
   "featureSponsorMark": {
     "message": "标记赞助片段",

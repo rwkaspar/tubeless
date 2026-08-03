@@ -93,6 +93,14 @@
     "message": "En pausa: YouTube sin cambios",
     "description": "Fusszeile, wenn Tubeless pausiert ist"
   },
+  "toastSkippedIntro": {
+    "message": "Intro saltada",
+    "description": "Toast im Player nach automatischem Sprung über ein Intro"
+  },
+  "toastSkippedSponsor": {
+    "message": "Patrocinio saltado",
+    "description": "Toast im Player nach automatischem Sprung über ein Sponsor-Segment"
+  },
   "groupBehavior": {
     "message": "Comportamiento",
     "description": "Gruppentitel im Popup"
@@ -316,6 +324,14 @@
   "featureSkipAdsHint": {
     "message": "Pulsa «Saltar» y adelanta los anuncios no saltables",
     "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureSponsorIntros": {
+    "message": "Incluir también las intros",
+    "description": "Filter-Bezeichnung: sponsorIntros"
+  },
+  "featureSponsorIntrosHint": {
+    "message": "Marcar/saltar se aplica entonces también a las intros",
+    "description": "Erklaerung zum Filter sponsorIntros"
   },
   "featureSponsorMark": {
     "message": "Marcar segmentos patrocinados",

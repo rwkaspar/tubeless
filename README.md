@@ -4,7 +4,7 @@ Chrome-Extension, die YouTube auf das reduziert, weswegen du hingegangen bist:
 das Video. Kein Feed, keine Empfehlungen, keine Shorts, keine Kommentare, keine
 Endcards, kein Autoplay.
 
-41 einzeln schaltbare Filter, drei Presets, davon eines selbst belegbar.
+42 einzeln schaltbare Filter, drei Presets, davon eines selbst belegbar.
 Standardmäßig ist alles aus, was ablenkt — sichtbar bleiben nur Player, Titel,
 Kanal und Beschreibung.
 
@@ -113,7 +113,7 @@ Autoplay-Schalter, Weiter-Button, Miniplayer-Button, Ambient-Modus
 
 **Verhalten** — Autoplay dauerhaft aus, Werbung überspringen, `/shorts/…` öffnet
 als normales Video, ruhiger Platzhalter statt Feed, Sponsor-Segmente markieren
-und überspringen (SponsorBlock, opt-in)\*
+und überspringen — optional auch Intros (SponsorBlock, opt-in)\*
 
 \* standardmäßig aus, einzeln dazuschaltbar
 
@@ -151,8 +151,11 @@ MutationObserver über den halben Player und kostet praktisch nichts.
 Vom Creator ins Video eingebaute Sponsorings kann kein lokaler Code erkennen —
 sie sind Teil des Videobildes. `src/sponsor.js` nutzt deshalb die
 Community-Datenbank SponsorBlock: **Markieren** zeichnet die gemeldeten
-Abschnitte grün in die Fortschrittsleiste, **Überspringen** springt automatisch
-ans Segment-Ende. Beide Filter sind standardmäßig aus; solange keiner aktiv
+Abschnitte in die Fortschrittsleiste (Sponsor grün, Intro türkis),
+**Überspringen** springt automatisch ans Segment-Ende und blendet kurz einen
+Toast ein („Sponsor übersprungen“). **Auch Intros einbeziehen** erweitert beides
+um die Intro-Kategorie. Folgen Segmente direkt aufeinander, wird durchgekettet
+übersprungen. Beide Filter sind standardmäßig aus; solange keiner aktiv
 ist, verlässt keine einzige Anfrage den Browser (per Netzwerk-Mitschnitt im
 Test zugesichert).
 

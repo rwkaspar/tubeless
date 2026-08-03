@@ -172,7 +172,11 @@
   // --- Zusammenspiel bei Navigation ---------------------------------------
 
   function sponsorTick() {
-    window.TL_SPONSOR.tick(isEnabled('sponsorMark'), isEnabled('sponsorSkip'));
+    window.TL_SPONSOR.tick(
+      isEnabled('sponsorMark'),
+      isEnabled('sponsorSkip'),
+      isEnabled('sponsorIntros')
+    );
   }
 
   let pendingFrame = 0;

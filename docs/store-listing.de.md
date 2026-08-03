@@ -52,7 +52,7 @@ Kopfzeile und Navigation
 
 WIE DU ES EINSTELLST
 
-41 Filter, jeder einzeln schaltbar, dazu drei Presets:
+42 Filter, jeder einzeln schaltbar, dazu drei Presets:
 
 • Eigene — deine gespeicherte Auswahl, jederzeit mit einem Klick zurück
 • Fokus — wie der Standard, aber Kopfzeile und Suchleiste bleiben
@@ -89,7 +89,7 @@ OPTIONAL: SPONSOR-SEGMENTE (SPONSORBLOCK)
 Von Creators ins Video eingebaute Sponsorings kann Tubeless auf Wunsch grün in
 der Fortschrittsleiste markieren und automatisch überspringen. Beide Schalter
 sind ab Werk AUS. Erst wenn du sie aktivierst, fragt Tubeless die
-Community-Datenbank SponsorBlock ab — anonymisiert: übertragen wird nur ein
+Community-Datenbank SponsorBlock ab (optional auch für Intros) — anonymisiert: übertragen wird nur ein
 4-Zeichen-Hash-Präfix, nie die Video-ID. Ausgeschaltet heißt: keinerlei
 Anfragen.
 
@@ -120,7 +120,7 @@ Erweiterung.
 **`storage`**
 
 ```
-Speichert, welche der 41 Filter der Nutzer aktiviert hat, dazu dessen selbst
+Speichert, welche der 42 Filter der Nutzer aktiviert hat, dazu dessen selbst
 gesicherte Auswahl. Ohne diese Berechtigung
 wären die Einstellungen nach jedem Tab-Wechsel wieder weg. Es werden ausschließlich
 diese Schalterzustände gespeichert, keine Nutzungsdaten.

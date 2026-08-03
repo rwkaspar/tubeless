@@ -27,7 +27,7 @@ Tubeless erhebt, speichert und überträgt **keine personenbezogenen Daten**.
 Zwei Filter — „Sponsor-Segmente markieren“ und „Sponsor-Segmente überspringen“ —
 sind standardmäßig **ausgeschaltet**. Erst wenn du einen davon aktivierst, fragt
 Tubeless die Community-Datenbank SponsorBlock (sponsor.ajay.app) nach
-gemeldeten Sponsor-Abschnitten. Dabei werden **nicht** die Video-ID oder andere
+gemeldeten Sponsor-Abschnitten (optional auch Intros). Dabei werden **nicht** die Video-ID oder andere
 Daten übertragen, sondern nur die ersten vier Zeichen eines SHA-256-Hashes der
 Video-ID (k-Anonymität) — der Betreiber kann daraus nicht ablesen, welches
 Video du ansiehst. Es gilt die Datenschutzerklärung von SponsorBlock
@@ -62,7 +62,7 @@ Tubeless collects, stores and transmits **no personal data**.
 Two filters — “Mark sponsor segments” and “Skip sponsor segments” — are
 **off by default**. Only when you enable one of them does Tubeless query the
 community database SponsorBlock (sponsor.ajay.app) for reported sponsor
-sections. This does **not** transmit the video ID or any other data — only the
+sections (optionally intros too). This does **not** transmit the video ID or any other data — only the
 first four characters of a SHA-256 hash of the video ID (k-anonymity), from
 which the operator cannot tell which video you are watching. SponsorBlock's
 privacy policy applies (https://sponsor.ajay.app/privacy). Turn both filters
