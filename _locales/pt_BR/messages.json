@@ -317,6 +317,22 @@
     "message": "Clica em “Pular” e adianta anúncios não puláveis",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Marcar segmentos patrocinados",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Carrega dados de segmentos do SponsorBlock (anonimizado)",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Pular segmentos patrocinados",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Pula patrocínios marcados pela comunidade",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Miniaturas",
     "description": "Filter-Bezeichnung: thumbnails"

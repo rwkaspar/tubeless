@@ -317,6 +317,22 @@
     "message": "Нажимает «Пропустить» и перематывает непропускаемую рекламу",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Отмечать спонсорские сегменты",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Загружает данные сегментов из SponsorBlock (анонимно)",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Пропускать спонсорские сегменты",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Перепрыгивает спонсорские вставки, отмеченные сообществом",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Превью",
     "description": "Filter-Bezeichnung: thumbnails"

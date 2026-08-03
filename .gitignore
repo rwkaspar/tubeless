@@ -6,3 +6,11 @@
 
 # Signaturschluessel gehoert nicht ins Repo — siehe README, Abschnitt "Paketieren"
 *.pem
+
+# Profile und Artefakte der Test-Harnesse (tools/verify.py, Scratchpad-e2e)
+.e2e-*/
+.sb-*/
+.shot-*/
+.cache-check/
+.war-profile/
+*.e2e-*.png

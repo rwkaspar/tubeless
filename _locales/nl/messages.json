@@ -317,6 +317,22 @@
     "message": "Klikt ‘Overslaan’ en spoelt niet-overslaanbare advertenties door",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Sponsorsegmenten markeren",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Laadt segmentdata van SponsorBlock (geanonimiseerd)",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Sponsorsegmenten overslaan",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Slaat door de community gemarkeerde sponsoring over",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Miniaturen",
     "description": "Filter-Bezeichnung: thumbnails"

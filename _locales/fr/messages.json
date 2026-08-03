@@ -317,6 +317,22 @@
     "message": "Clique sur « Ignorer » et avance les publicités non ignorables",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Marquer les segments sponsorisés",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Charge les données de segments depuis SponsorBlock (anonymisé)",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Passer les segments sponsorisés",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Saute les sponsorings signalés par la communauté",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Miniatures",
     "description": "Filter-Bezeichnung: thumbnails"

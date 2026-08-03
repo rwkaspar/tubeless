@@ -4,7 +4,7 @@ Chrome-Extension, die YouTube auf das reduziert, weswegen du hingegangen bist:
 das Video. Kein Feed, keine Empfehlungen, keine Shorts, keine Kommentare, keine
 Endcards, kein Autoplay.
 
-39 einzeln schaltbare Filter, drei Presets, davon eines selbst belegbar.
+41 einzeln schaltbare Filter, drei Presets, davon eines selbst belegbar.
 Standardmäßig ist alles aus, was ablenkt — sichtbar bleiben nur Player, Titel,
 Kanal und Beschreibung.
 
@@ -112,7 +112,8 @@ Autoplay-Schalter, Weiter-Button, Miniplayer-Button, Ambient-Modus
 **Überall** — rote Zähler-Badges, Vorschaubilder\*, Aufrufzahlen\*, Hover-Vorschau
 
 **Verhalten** — Autoplay dauerhaft aus, Werbung überspringen, `/shorts/…` öffnet
-als normales Video, ruhiger Platzhalter statt Feed
+als normales Video, ruhiger Platzhalter statt Feed, Sponsor-Segmente markieren
+und überspringen (SponsorBlock, opt-in)\*
 
 \* standardmäßig aus, einzeln dazuschaltbar
 
@@ -124,10 +125,11 @@ diese Klassen. Damit ist alles schon versteckt, bevor YouTube den ersten Pixel
 rendert. Die letzte bekannte Einstellung liegt zusätzlich im `localStorage`, weil
 `chrome.storage` nur asynchron antwortet — sonst blitzt der Feed kurz auf.
 
-Vier Filter brauchen JavaScript statt CSS: Autoplay (setzt YouTubes eigenen
-`yt-player-autonavstate` und legt notfalls den Schalter um), das Überspringen von
-Werbung, die Shorts-Umleitung und der Platzhalter auf der leeren Startseite. Die
-laufen bei jeder SPA-Navigation neu (`yt-navigate-finish` & Co.).
+Sechs Filter brauchen JavaScript statt CSS: Autoplay (setzt YouTubes eigenen
+`yt-player-autonavstate` und legt notfalls den Schalter um), das Überspringen
+von Werbung, die Sponsor-Segmente, die Shorts-Umleitung und der Platzhalter auf
+der leeren Startseite. Die laufen bei jeder SPA-Navigation neu
+(`yt-navigate-finish` & Co.).
 
 ### Werbung
 
@@ -144,6 +146,22 @@ Werbung taucht mitten in der Wiedergabe auf, ohne Navigation und ohne Änderung 
 Intervall alle 400 ms eine Klasse am Player. Das ist ehrlicher als ein
 MutationObserver über den halben Player und kostet praktisch nichts.
 
+### Sponsor-Segmente (SponsorBlock, opt-in)
+
+Vom Creator ins Video eingebaute Sponsorings kann kein lokaler Code erkennen —
+sie sind Teil des Videobildes. `src/sponsor.js` nutzt deshalb die
+Community-Datenbank SponsorBlock: **Markieren** zeichnet die gemeldeten
+Abschnitte grün in die Fortschrittsleiste, **Überspringen** springt automatisch
+ans Segment-Ende. Beide Filter sind standardmäßig aus; solange keiner aktiv
+ist, verlässt keine einzige Anfrage den Browser (per Netzwerk-Mitschnitt im
+Test zugesichert).
+
+Abgefragt wird der k-Anonymitäts-Endpunkt: gesendet werden nur die ersten vier
+Hex-Zeichen des SHA-256 der Video-ID, gefiltert wird lokal — der Server erfährt
+nicht, welches Video läuft. Antworten werden pro Video gecacht, auch
+Fehlschläge (kein Retry-Gewitter). Die API erlaubt CORS von überall, deshalb
+braucht es keine zusätzliche Host-Berechtigung im Manifest.
+
 ### Was bewusst fehlt
 
 **Dislike-Zahlen.** YouTube hat sie 2021 aus der API genommen; die einzige Quelle
@@ -152,8 +170,9 @@ rausginge — und deren Zahlen ohnehin Schätzungen aus einer fremden Nutzerbasi
 sind. Das ist mit „nichts wird übertragen" nicht zu vereinbaren, also bleibt es
 draußen.
 
-Keine Netzwerkzugriffe, kein Tracking, keine Berechtigung außer `storage` und
-`*://*.youtube.com/*`.
+Keine Netzwerkzugriffe in der Standardeinstellung, kein Tracking, keine
+Berechtigung außer `storage` und `*://*.youtube.com/*`. Einzige Ausnahme sind
+die beiden SponsorBlock-Filter oben — opt-in, anonymisiert, abschaltbar.
 
 ## Selektoren prüfen
 

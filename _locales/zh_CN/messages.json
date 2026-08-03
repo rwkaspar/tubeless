@@ -317,6 +317,22 @@
     "message": "自动点击“跳过”，并快进无法跳过的广告",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "标记赞助片段",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "从 SponsorBlock 匿名加载片段数据",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "跳过赞助片段",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "跳过社区标记的赞助内容",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "缩略图",
     "description": "Filter-Bezeichnung: thumbnails"

@@ -317,6 +317,22 @@
     "message": "「スキップ」を押し、スキップできない広告は早送りします",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "スポンサー区間をマーク",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "SponsorBlock から区間データを匿名で取得します",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "スポンサー区間をスキップ",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "コミュニティがマークしたスポンサー部分を飛ばします",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "サムネイル",
     "description": "Filter-Bezeichnung: thumbnails"

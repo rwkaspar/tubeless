@@ -317,6 +317,22 @@
     "message": "Clicks “Skip” and fast-forwards unskippable ads",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Mark sponsor segments",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Loads segment data from SponsorBlock (anonymized)",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Skip sponsor segments",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Jumps over community-marked sponsorships",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Thumbnails",
     "description": "Filter-Bezeichnung: thumbnails"

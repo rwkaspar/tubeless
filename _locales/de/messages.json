@@ -317,6 +317,22 @@
     "message": "Klickt „Überspringen“ und spult unüberspringbare Anzeigen vor",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Sponsor-Segmente markieren",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Lädt Segmentdaten anonymisiert von SponsorBlock",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Sponsor-Segmente überspringen",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Springt über von der Community markierte Sponsorings",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Vorschaubilder",
     "description": "Filter-Bezeichnung: thumbnails"

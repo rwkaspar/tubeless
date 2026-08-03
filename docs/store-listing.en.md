@@ -51,7 +51,7 @@ Header and navigation
 
 HOW YOU TUNE IT
 
-39 filters, each one switchable on its own, plus three presets:
+41 filters, each one switchable on its own, plus three presets:
 
 • Custom — your saved selection, one click away at any time
 • Focus — like the default, but the header and search bar stay
@@ -83,6 +83,14 @@ up it gets pressed; unskippable ads are fast-forwarded. That saves you the wait
 and the clicks — it does not make YouTube ad-free, and Tubeless is no
 replacement for an ad blocker.
 
+OPTIONAL: SPONSOR SEGMENTS (SPONSORBLOCK)
+
+Sponsorships baked into the video by creators can, on request, be marked green
+in the progress bar and skipped automatically. Both switches are OFF out of the
+box. Only when you enable them does Tubeless query the SponsorBlock community
+database — anonymized: only a 4-character hash prefix is transmitted, never the
+video ID. Switched off means: no requests at all.
+
 Dislike counts are deliberately not shown. They would only be available through
 a third party that would need the video ID for every video you watch. That does
 not square with the promise above.
@@ -109,7 +117,7 @@ once YouTube allows it. That is the extension's only purpose.
 **`storage`**
 
 ```
-Stores which of the 39 filters the user has enabled, plus the selection they
+Stores which of the 41 filters the user has enabled, plus the selection they
 saved themselves. Without it the settings would be gone on every tab switch.
 Only these switch states are stored, no usage data.
 ```

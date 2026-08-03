@@ -317,6 +317,22 @@
     "message": "Preme «Salta» e manda avanti gli annunci non saltabili",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Contrassegna i segmenti sponsorizzati",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Carica i dati dei segmenti da SponsorBlock (anonimizzato)",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Salta i segmenti sponsorizzati",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Salta le sponsorizzazioni segnalate dalla community",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Anteprime",
     "description": "Filter-Bezeichnung: thumbnails"

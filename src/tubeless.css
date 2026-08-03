@@ -370,6 +370,21 @@ html.tl-hoverPreview yt-inline-player-preview-view-model {
    Tubeless-eigene UI
    ========================================================================== */
 
+/* SponsorBlock-Marker in der Fortschrittsleiste (nur wenn opt-in aktiv) */
+.tl-sponsor-markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+}
+.tl-sponsor-marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #00d400;
+  opacity: 0.7;
+}
+
 .tl-notice {
   position: fixed;
   inset: 0;

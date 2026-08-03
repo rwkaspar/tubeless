@@ -317,6 +317,22 @@
     "message": "“Atla”ya basar, atlanamayan reklamları ileri sarar",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Sponsor bölümlerini işaretle",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Bölüm verilerini SponsorBlock’tan anonim olarak yükler",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Sponsor bölümlerini atla",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Topluluğun işaretlediği sponsorlukları atlar",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Küçük resimler",
     "description": "Filter-Bezeichnung: thumbnails"

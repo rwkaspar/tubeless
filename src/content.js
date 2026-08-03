@@ -171,11 +171,16 @@
 
   // --- Zusammenspiel bei Navigation ---------------------------------------
 
+  function sponsorTick() {
+    window.TL_SPONSOR.tick(isEnabled('sponsorMark'), isEnabled('sponsorSkip'));
+  }
+
   let pendingFrame = 0;
   function applyBehaviors() {
     if (redirectShorts()) return;
     disableAutoplay();
     skipAds();
+    sponsorTick();
     updateHomeNotice();
   }
 
@@ -243,5 +248,8 @@
    * Player: eine Klassenabfrage alle 400 ms kostet nichts und greift auch,
    * wenn YouTube seine Ad-Elemente wieder umbaut.
    */
-  setInterval(skipAds, 400);
+  setInterval(() => {
+    skipAds();
+    sponsorTick();
+  }, 400);
 })();

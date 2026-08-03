@@ -317,6 +317,22 @@
     "message": "Pulsa «Saltar» y adelanta los anuncios no saltables",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Marcar segmentos patrocinados",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Carga datos de segmentos de SponsorBlock (anonimizado)",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Saltar segmentos patrocinados",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Salta los patrocinios marcados por la comunidad",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Miniaturas",
     "description": "Filter-Bezeichnung: thumbnails"

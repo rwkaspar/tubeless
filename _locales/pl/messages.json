@@ -317,6 +317,22 @@
     "message": "Klika „Pomiń” i przewija reklamy bez pominięcia",
     "description": "Erklaerung zum Filter skipAds"
   },
+  "featureSponsorMark": {
+    "message": "Zaznaczaj segmenty sponsorowane",
+    "description": "Filter-Bezeichnung: sponsorMark"
+  },
+  "featureSponsorMarkHint": {
+    "message": "Pobiera dane segmentów z SponsorBlock (anonimowo)",
+    "description": "Erklaerung zum Filter sponsorMark — muss den Drittanbieter nennen"
+  },
+  "featureSponsorSkip": {
+    "message": "Pomijaj segmenty sponsorowane",
+    "description": "Filter-Bezeichnung: sponsorSkip"
+  },
+  "featureSponsorSkipHint": {
+    "message": "Przeskakuje sponsoringi oznaczone przez społeczność",
+    "description": "Erklaerung zum Filter sponsorSkip"
+  },
   "featureThumbnails": {
     "message": "Miniatury",
     "description": "Filter-Bezeichnung: thumbnails"
