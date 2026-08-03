@@ -11,6 +11,7 @@
   <img alt="Manifest V3" src="https://img.shields.io/badge/manifest-v3-0f0f0f">
   <img alt="Chrome 105+" src="https://img.shields.io/badge/chrome-105%2B-0f0f0f">
   <img alt="12 languages" src="https://img.shields.io/badge/languages-12-0f0f0f">
+  <img alt="MIT license" src="https://img.shields.io/badge/license-MIT-0f0f0f">
 </p>
 
 <p align="center"><em>English version — <a href="README.de.md">Deutsche Fassung</a></em></p>
@@ -56,8 +57,8 @@ There is no build step — the folder *is* the extension.
 distribution; installation goes through the steps above.
 
 The package contains only what is needed at runtime: `manifest.json`,
-`_locales/`, `src/`, `popup/`, `icons/` and the README. `tools/`, `docs/` and
-`dist/` stay out.
+`_locales/`, `src/`, `popup/`, `icons/`, the README and the LICENSE.
+`tools/`, `docs/` and `dist/` stay out.
 
 Rebuild via `chrome://extensions` → **Pack extension** → this directory as the
 root, the existing key as the private key. Without the same key the extension
@@ -67,7 +68,7 @@ On the command line:
 
 ```bash
 build=$(mktemp -d /home/$USER/tubeless-build.XXXX)   # see note below
-cp -r manifest.json _locales src popup icons README.md "$build/"
+cp -r manifest.json _locales src popup icons README.md LICENSE "$build/"
 chromium --pack-extension="$build" --pack-extension-key=~/.config/tubeless/tubeless.pem
 mv "$build.crx" dist/tubeless.crx && rm -rf "$build"
 ```
