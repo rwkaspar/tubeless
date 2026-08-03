@@ -30,9 +30,16 @@
     }
   }
 
+  /*
+   * In den Cache wandert nur, was dieses Script braucht: _enabled und die
+   * Filterwerte. localStorage von youtube.com ist für jedes Seitenskript
+   * lesbar — _custom und _rate gehen YouTube nichts an.
+   */
   function writeCache(value) {
+    const slim = { _enabled: value._enabled !== false };
+    for (const f of FEATURES) slim[f.key] = value[f.key] === true;
     try {
-      localStorage.setItem(CACHE_KEY, JSON.stringify(value));
+      localStorage.setItem(CACHE_KEY, JSON.stringify(slim));
     } catch (_) {
       /* Speicher voll oder blockiert — egal, ist nur ein Cache */
     }
@@ -99,12 +106,15 @@
    * behandelt wie durchgesehene Werbung. Damit bleibt der Player im Reinen mit
    * sich selbst und es gibt keinen Streit mit YouTubes Adblock-Erkennung.
    */
+  /*
+   * Bewusst NICHT dabei: .ytp-ad-survey-answer-button. Den zu klicken würde
+   * die Umfrage nicht überspringen, sondern im Namen des Nutzers beantworten.
+   */
   const SKIP_BUTTONS = [
     '.ytp-skip-ad-button',
     '.ytp-ad-skip-button',
     '.ytp-ad-skip-button-modern',
-    '.ytp-ad-skip-button-slot button',
-    '.ytp-ad-survey-answer-button'
+    '.ytp-ad-skip-button-slot button'
   ].join(', ');
 
   function skipAds() {

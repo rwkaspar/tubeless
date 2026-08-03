@@ -1,7 +1,8 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extName__",
-  "version": "1.2.0",
+  "version": "1.2.1",
+  "minimum_chrome_version": "105",
   "default_locale": "en",
   "description": "__MSG_extDescription__",
   "permissions": [
