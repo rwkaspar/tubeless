@@ -1,253 +1,254 @@
 # Tubeless
 
-Chrome-Extension, die YouTube auf das reduziert, weswegen du hingegangen bist:
-das Video. Kein Feed, keine Empfehlungen, keine Shorts, keine Kommentare, keine
-Endcards, kein Autoplay.
+*English version — [Deutsche Fassung](README.de.md)*
 
-42 einzeln schaltbare Filter, drei Presets, davon eines selbst belegbar.
-Standardmäßig ist alles aus, was ablenkt — sichtbar bleiben nur Player, Titel,
-Kanal und Beschreibung.
+A Chrome extension that reduces YouTube to the thing you came for: the video.
+No feed, no recommendations, no Shorts, no comments, no end cards, no autoplay.
 
-Oberfläche in [zwölf Sprachen](#sprachen), gewählt nach den Spracheinstellungen
-des Browsers. Texte für den Store liegen in [`docs/`](docs/store-listing.de.md).
+42 individually switchable filters, three presets, one of them yours to define.
+By default everything distracting is gone — what remains is the player, title,
+channel and description.
 
-## Installieren
+The interface comes in [twelve languages](#languages), chosen from the
+browser's language settings. Store listing copy lives in
+[`docs/`](docs/store-listing.en.md).
 
-1. `chrome://extensions` öffnen
-2. **Entwicklermodus** oben rechts einschalten
-3. **Entpackte Erweiterung laden** → diesen Ordner auswählen
-4. YouTube neu laden
+## Installing
 
-Es gibt keinen Build-Schritt — der Ordner *ist* die Extension.
+1. Open `chrome://extensions`
+2. Enable **Developer mode** in the top right
+3. **Load unpacked** → select this folder
+4. Reload YouTube
 
-## Paketieren
+There is no build step — the folder *is* the extension.
 
-`dist/tubeless.crx` ist das signierte Paket, Extension-ID
-`inhgfhfdblpbmpohoocoaepcjhoghbij`. Aktuelle Chrome-Versionen verweigern die
-Installation von `.crx`-Dateien außerhalb des Web Store — die Datei ist zur
-Archivierung und Weitergabe da, installiert wird über den Weg oben.
+## Packaging
 
-Das Paket enthält nur, was zur Laufzeit gebraucht wird: `manifest.json`,
-`_locales/`, `src/`, `popup/`, `icons/` und die README. `tools/`, `docs/` und
-`dist/` bleiben draußen.
+`dist/tubeless.crx` is the signed package, extension ID
+`inhgfhfdblpbmpohoocoaepcjhoghbij`. Current Chrome versions refuse to install
+`.crx` files from outside the Web Store — the file exists for archiving and
+distribution; installation goes through the steps above.
 
-Neu bauen über `chrome://extensions` → **Erweiterung packen** → dieses
-Verzeichnis als Stammverzeichnis, den vorhandenen Schlüssel als Privatschlüssel.
-Ohne denselben Schlüssel ändert sich die Extension-ID.
+The package contains only what is needed at runtime: `manifest.json`,
+`_locales/`, `src/`, `popup/`, `icons/` and the README. `tools/`, `docs/` and
+`dist/` stay out.
 
-Auf der Kommandozeile:
+Rebuild via `chrome://extensions` → **Pack extension** → this directory as the
+root, the existing key as the private key. Without the same key the extension
+ID changes.
+
+On the command line:
 
 ```bash
-build=$(mktemp -d /home/$USER/tubeless-build.XXXX)   # siehe Hinweis unten
+build=$(mktemp -d /home/$USER/tubeless-build.XXXX)   # see note below
 cp -r manifest.json _locales src popup icons README.md "$build/"
 chromium --pack-extension="$build" --pack-extension-key=~/.config/tubeless/tubeless.pem
 mv "$build.crx" dist/tubeless.crx && rm -rf "$build"
 ```
 
-Läuft Chromium als Snap, kommt es weder an `~/.config` noch an `/tmp` heran —
-Schlüssel und Staging-Verzeichnis müssen dann vorübergehend an einem Pfad
-liegen, dessen erste Ebene unter `$HOME` kein Punkt-Verzeichnis ist. Die
-Fehlermeldung dazu lautet „Privater Schlüssel konnte nicht gelesen werden".
+If Chromium runs as a snap it can reach neither `~/.config` nor `/tmp` — the
+key and the staging directory must temporarily live at a path whose first
+level under `$HOME` is not a dot-directory. The error message for this reads
+"Could not read private key".
 
-Der Schlüssel liegt **nicht im Repo**, sondern unter
-`~/.config/tubeless/tubeless.pem` (Modus 600). Wer ihn hat, kann Pakete
-signieren, die Chrome als dieselbe Extension akzeptiert und als Update
-durchwinkt — deshalb steht `*.pem` in der `.gitignore`. Geht er verloren,
-bekommt die Extension beim nächsten Packen eine neue ID.
+The key is **not in the repo** — it lives at `~/.config/tubeless/tubeless.pem`
+(mode 600). Whoever holds it can sign packages that Chrome accepts as the same
+extension and waves through as an update — which is why `*.pem` is in
+`.gitignore`. If it is lost, the extension gets a new ID the next time it is
+packed.
 
-## Bedienung
+## Using it
 
-Klick aufs Tubeless-Icon in der Toolbar:
+Click the Tubeless icon in the toolbar:
 
-| Element | Wirkung |
+| Element | Effect |
 |---|---|
-| Schalter oben rechts | Pausiert Tubeless komplett (YouTube unverändert) |
-| Suchfeld | Ersatz für die ausgeblendete YouTube-Suchleiste |
-| **Eigene** | Die selbst gespeicherte Auswahl — grau, solange keine da ist |
-| **Fokus** | Wie Standard, aber Kopfzeile und Suche bleiben; Sponsor-Segmente und Intros werden markiert und übersprungen (SponsorBlock) |
-| **Nichts filtern** | Alle Filter aus |
-| **Standard** (unten) | Zurück zur Auslieferungseinstellung |
+| Switch in the top right | Pauses Tubeless entirely (YouTube untouched) |
+| Search field | Replacement for the hidden YouTube search bar |
+| **Custom** | Your saved selection — greyed out until one exists |
+| **Focus** | Like the default, but header and search stay; sponsor segments and intros get marked and skipped (SponsorBlock) |
+| **Filter nothing** | All filters off |
+| **Defaults** (bottom) | Back to the factory settings |
 
-Änderungen greifen sofort, ohne Reload, in allen offenen Tabs. Die Einstellungen
-liegen in `chrome.storage.sync`, wandern also mit dem Chrome-Profil mit.
+Changes apply immediately, without a reload, in every open tab. Settings live
+in `chrome.storage.sync`, so they travel with the Chrome profile.
 
-### Eigene Auswahl
+### Custom selection
 
-Sobald die aktuelle Auswahl von der gespeicherten abweicht, erscheint unter den
-Presets eine Schaltfläche, die sie sichert. Danach holt **Eigene** sie jederzeit
-zurück — auch nachdem zwischendurch **Fokus** oder **Nichts filtern** aktiv war.
+As soon as the current selection differs from the saved one, a button appears
+below the presets that saves it. From then on **Custom** brings it back at any
+time — even after a detour through **Focus** or **Filter nothing**.
 
-Die gespeicherte Auswahl liegt unter `_custom` und überlebt **Standard**; nur
-erneutes Speichern überschreibt sie.
+The saved selection lives under `_custom` and survives **Defaults**; only
+saving again overwrites it.
 
-### Bewertungs-Hinweis
+### Review prompt
 
-Im Popup taucht frühestens 30 Tage nach der Installation ein kleiner Block auf,
-der um eine Bewertung im Web Store bittet, danach höchstens alle 30 Tage.
-„Später" verschiebt um dieselbe Frist, „Bewerten" schaltet ihn dauerhaft ab.
+At the earliest 30 days after installation, a small block appears in the popup
+asking for a Web Store review, and at most every 30 days after that. "Later"
+postpones by the same interval, "Write a review" turns it off for good.
 
-Ob wirklich bewertet wurde, kann eine Extension nicht feststellen — Chrome gibt
-das nicht preis. Wer auf „Bewerten" klickt, gilt deshalb als erledigt.
+Whether a review was actually written is something an extension cannot find
+out — Chrome does not reveal it. Whoever clicks "Write a review" therefore
+counts as done.
 
-### Die Kopfzeile ist standardmäßig weg
+### The header is gone by default
 
-Damit ist auch das YouTube-Suchfeld weg — das ist Absicht, dort fängt der Sog
-sonst wieder an. Gesucht wird über das Feld im Popup. Wer die Kopfzeile behalten
-will, nimmt das Preset **Fokus**.
+That removes YouTube's search field too — deliberately, because that is where
+the pull starts again. You search from the field in the popup. If you would
+rather keep the header, pick the **Focus** preset.
 
-## Was gefiltert wird
+## What gets filtered
 
-**Kopfzeile & Navigation** — Kopfzeile, Suchleiste, Logo, Glocke, Erstellen-Button,
-Konto-Avatar, Sprachsuche, Seitenleiste, Mini-Seitenleiste
+**Header & navigation** — header, search bar, logo, bell, create button,
+account avatar, voice search, sidebar, mini sidebar
 
-**Startseite & Feeds** — Startseiten-Feed, Filter-Chips, Shorts (Shelfs, Grid-Items,
-Menüeinträge), Trends & Explore, Promoted-/Werbe-Einblendungen
+**Home & feeds** — home feed, filter chips, Shorts (shelves, grid items, menu
+entries), Trending & Explore, promoted/ad placements
 
-**Videoseite** — Empfohlene Videos, Kommentare, Live-Chat, Playlist-Panel, Merch/
-Tickets/Spenden, Like/Teilen/Speichern, Beschreibung\*, Kanal & Abonnieren\*, Titel\*
+**Watch page** — recommended videos, comments, live chat, playlist panel,
+merch/tickets/donations, like/share/save, description\*, channel &
+subscribe\*, title\*
 
-**Player** — Endcards & Video-Wand, Pause-Overlay, Infokarten, Heatmap,
-Autoplay-Schalter, Weiter-Button, Miniplayer-Button, Ambient-Modus
+**Player** — end cards & video wall, pause overlay, info cards, heatmap,
+autoplay toggle, next button, miniplayer button, ambient mode
 
-**Überall** — rote Zähler-Badges, Vorschaubilder\*, Aufrufzahlen\*, Hover-Vorschau
+**Everywhere** — red counter badges, thumbnails\*, view counts\*, hover preview
 
-**Verhalten** — Autoplay dauerhaft aus, Werbung überspringen, `/shorts/…` öffnet
-als normales Video, ruhiger Platzhalter statt Feed, Sponsor-Segmente markieren
-und überspringen — optional auch Intros (SponsorBlock, opt-in)\*
+**Behavior** — autoplay permanently off, ad skipping, `/shorts/…` opens as a
+regular video, calm placeholder instead of the feed, marking and skipping
+sponsor segments — optionally intros too (SponsorBlock, opt-in)\*
 
-\* standardmäßig aus, einzeln dazuschaltbar
+\* off by default, individually switchable
 
-## Wie es funktioniert
+## How it works
 
-`src/content.js` läuft bei `document_start` und setzt für jeden aktiven Filter
-eine Klasse `tl-<name>` auf `<html>`; `src/tubeless.css` hängt alle Regeln an
-diese Klassen. Damit ist alles schon versteckt, bevor YouTube den ersten Pixel
-rendert. Die letzte bekannte Einstellung liegt zusätzlich im `localStorage`, weil
-`chrome.storage` nur asynchron antwortet — sonst blitzt der Feed kurz auf.
+`src/content.js` runs at `document_start` and sets a class `tl-<name>` on
+`<html>` for every active filter; `src/tubeless.css` hangs all rules off these
+classes. That way everything is hidden before YouTube renders its first pixel.
+The last known settings are additionally kept in `localStorage`, because
+`chrome.storage` only answers asynchronously — without it the feed flashes
+briefly.
 
-Sechs Filter brauchen JavaScript statt CSS: Autoplay (setzt YouTubes eigenen
-`yt-player-autonavstate` und legt notfalls den Schalter um), das Überspringen
-von Werbung, die Sponsor-Segmente, die Shorts-Umleitung und der Platzhalter auf
-der leeren Startseite. Die laufen bei jeder SPA-Navigation neu
-(`yt-navigate-finish` & Co.).
+Seven filters need JavaScript instead of CSS: autoplay (sets YouTube's own
+`yt-player-autonavstate` and flips the visible toggle if needed), ad skipping,
+the three sponsor filters, the Shorts redirect and the placeholder on the
+empty home page. These re-run on every SPA navigation
+(`yt-navigate-finish` & co.).
 
-### Werbung
+### Ads
 
-Hier wird nichts blockiert, sondern geklickt: Sobald der „Überspringen"-Button
-auftaucht, drückt Tubeless ihn; bei unüberspringbaren Anzeigen springt es ans
-Ende des Anzeigen-Clips. YouTube behandelt das wie durchgesehene Werbung, also
-gibt es keinen Streit mit der Adblock-Erkennung — aber es macht YouTube auch
-nicht werbefrei. Unter MV3 dürfte eine Extension Requests nur über statische
-`declarativeNetRequest`-Regeln blocken, und Ads kommen aus derselben Domain und
-teils im selben Stream wie das Video; sauber trennen lässt sich das nicht.
+Nothing is blocked here — things get clicked. As soon as the "Skip" button
+shows up, Tubeless presses it; for unskippable ads it jumps to the end of the
+ad clip. YouTube treats that like an ad watched to the end, so there is no
+quarrel with the adblock detection — but it also does not make YouTube
+ad-free. Under MV3 an extension may only block requests through static
+`declarativeNetRequest` rules, and ads come from the same domain and partly in
+the same stream as the video; there is no clean way to separate them.
 
-Werbung taucht mitten in der Wiedergabe auf, ohne Navigation und ohne Änderung an
-`<body>` — davon bekommen die Navigations-Handler nichts mit. Deshalb prüft ein
-Intervall alle 400 ms eine Klasse am Player. Das ist ehrlicher als ein
-MutationObserver über den halben Player und kostet praktisch nichts.
+Ads appear mid-playback, without navigation and without any change to
+`<body>` — the navigation handlers never hear about them. That is why an
+interval checks a class on the player every 400 ms. That is more honest than a
+MutationObserver over half the player, and it costs practically nothing.
 
-### Sponsor-Segmente (SponsorBlock, opt-in)
+### Sponsor segments (SponsorBlock, opt-in)
 
-Vom Creator ins Video eingebaute Sponsorings kann kein lokaler Code erkennen —
-sie sind Teil des Videobildes. `src/sponsor.js` nutzt deshalb die
-Community-Datenbank SponsorBlock: **Markieren** zeichnet die gemeldeten
-Abschnitte in die Fortschrittsleiste (Sponsor grün, Intro türkis),
-**Überspringen** springt automatisch ans Segment-Ende und blendet kurz einen
-Toast ein („Sponsor übersprungen“). **Auch Intros einbeziehen** erweitert beides
-um die Intro-Kategorie. Folgen Segmente direkt aufeinander, wird durchgekettet
-übersprungen. Beide Filter sind standardmäßig aus; solange keiner aktiv
-ist, verlässt keine einzige Anfrage den Browser (per Netzwerk-Mitschnitt im
-Test zugesichert).
+Sponsorships baked into the video by the creator cannot be detected by any
+local code — they are part of the picture. `src/sponsor.js` therefore uses the
+SponsorBlock community database: **marking** draws the reported sections into
+the progress bar (sponsor green, intro cyan), **skipping** jumps automatically
+to the segment end and briefly shows a toast ("Sponsor skipped"). **Also
+include intros** extends both to the intro category. If segments follow each
+other back to back, the skip chains through. All three filters are off by
+default; as long as neither marking nor skipping is active, not a single
+request leaves the browser (asserted via network capture in the test).
 
-Abgefragt wird der k-Anonymitäts-Endpunkt: gesendet werden nur die ersten vier
-Hex-Zeichen des SHA-256 der Video-ID, gefiltert wird lokal — der Server erfährt
-nicht, welches Video läuft. Antworten werden pro Video gecacht, auch
-Fehlschläge (kein Retry-Gewitter). Die API erlaubt CORS von überall, deshalb
-braucht es keine zusätzliche Host-Berechtigung im Manifest.
+Queries go to the k-anonymity endpoint: only the first four hex characters of
+the SHA-256 of the video ID are sent, filtering happens locally — the server
+never learns which video is playing. Responses are cached per video, failures
+included (no retry storm). The API allows CORS from anywhere, so no additional
+host permission is needed in the manifest.
 
-### Was bewusst fehlt
+### Deliberately missing
 
-**Dislike-Zahlen.** YouTube hat sie 2021 aus der API genommen; die einzige Quelle
-wäre die Return-YouTube-Dislike-API, an die für jedes Video die Video-ID
-rausginge — und deren Zahlen ohnehin Schätzungen aus einer fremden Nutzerbasis
-sind. Das ist mit „nichts wird übertragen" nicht zu vereinbaren, also bleibt es
-draußen.
+**Dislike counts.** YouTube removed them from the API in 2021; the only source
+would be the Return-YouTube-Dislike API, which would receive the video ID for
+every video — and whose numbers are estimates from someone else's user base
+anyway. That cannot be reconciled with "nothing is transmitted", so it stays
+out.
 
-Keine Netzwerkzugriffe in der Standardeinstellung, kein Tracking, keine
-Berechtigung außer `storage` und `*://*.youtube.com/*`. Einzige Ausnahme sind
-die beiden SponsorBlock-Filter oben — opt-in, anonymisiert, abschaltbar.
+No network access in the default configuration, no tracking, no permission
+beyond `storage` and `*://*.youtube.com/*`. The only exception are the
+SponsorBlock filters above — opt-in, anonymized, switchable.
 
-## Selektoren prüfen
+## Checking selectors
 
-YouTube benennt seine Custom-Elements regelmäßig um. Dann blendet ein Selektor
-nichts mehr aus, ohne dass irgendwo ein Fehler auftaucht. Dagegen gibt es einen
-Test, der die Extension in ein headless Chromium lädt und gegen das echte
-YouTube zählt:
+YouTube renames its custom elements regularly. When that happens a selector
+silently stops hiding anything. Against that there is a test that loads the
+extension into a headless Chromium and counts against the real YouTube:
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install websocket-client
-.venv/bin/python tools/verify.py            # nur Zahlen
-.venv/bin/python tools/verify.py --shots     # zusätzlich Screenshots
+.venv/bin/python tools/verify.py            # numbers only
+.venv/bin/python tools/verify.py --shots     # plus screenshots
 ```
 
-Jedes `FAIL` ist ein Selektor in `src/tubeless.css`, der nachgezogen werden muss.
+Every `FAIL` is a selector in `src/tubeless.css` that needs updating.
 
-## Sprachen
+## Languages
 
-Deutsch, Englisch, Spanisch, Französisch, Italienisch, Japanisch,
-Niederländisch, Polnisch, Portugiesisch (BR), Russisch, Türkisch und
-vereinfachtes Chinesisch.
+German, English, Spanish, French, Italian, Japanese, Dutch, Polish,
+Portuguese (BR), Russian, Turkish and Simplified Chinese.
 
-Gewählt wird nach `navigator.languages` — also nach dem, was unter
-`chrome://settings/languages` steht. Bewusst *nicht* über `chrome.i18n`: das
-richtet sich nach Chromes Anzeigesprache, die unter Linux an der Systemlocale
-hängt und dann eine ganz andere sein kann als die, die man eingestellt hat.
-`src/i18n.js` löst deshalb selbst auf:
+The language is picked from `navigator.languages` — that is, from what is set
+under `chrome://settings/languages`. Deliberately *not* via `chrome.i18n`:
+that follows Chrome's display language, which on Linux hangs off the system
+locale and can be an entirely different one than what the user configured.
+`src/i18n.js` therefore resolves it itself:
 
-| Browser meldet | Tubeless nimmt |
+| Browser reports | Tubeless picks |
 |---|---|
-| `de-AT` | `de` — Regionalvariante fällt auf die Basissprache |
-| `pt-PT` | `pt_BR` — nur diese Region ist übersetzt |
-| `sv-SE` | `en` — nicht übersetzt, also Rückfall |
+| `de-AT` | `de` — regional variant falls back to the base language |
+| `pt-PT` | `pt_BR` — the only translated region |
+| `sv-SE` | `en` — not translated, so fallback |
 
-Im Code steht kein einziger sichtbarer Text — Beschriftungen liegen in
-`_locales/<sprache>/messages.json`: statische über `data-i18n`-Attribute in
-`popup.html`, dynamische über `TUBELESS.label()`, `.hint()`, `.groupLabel()`
-und `.t()`. Fehlt ein Schlüssel in der gewählten Sprache, greift Englisch;
-fehlt er auch dort, bleibt der Schlüsselname stehen — dann sieht man im Popup
-sofort, was zu übersetzen ist.
+There is not a single visible string in the code — labels live in
+`_locales/<language>/messages.json`: static ones via `data-i18n` attributes in
+`popup.html`, dynamic ones via `TUBELESS.label()`, `.hint()`, `.groupLabel()`
+and `.t()`. If a key is missing in the chosen language, English steps in; if
+it is missing there too, the key name stays visible — so the popup immediately
+shows what needs translating.
 
-Dieselben Dateien liest Chrome für Name und Beschreibung im Manifest. Damit das
-Content-Script sie ebenfalls lesen darf, stehen sie unter
-`web_accessible_resources`, beschränkt auf youtube.com.
+Chrome reads the same files for the name and description in the manifest. So
+that the content script may read them as well, they are listed under
+`web_accessible_resources`, restricted to youtube.com.
 
-Die Schlüssel folgen einer Konvention, damit nichts von Hand verdrahtet werden
-muss:
+The keys follow a convention so nothing needs manual wiring:
 
-| Schlüssel | wofür |
+| Key | Used for |
 |---|---|
-| `feature<Key>` | Beschriftung eines Filters, `<Key>` ist der Key aus `features.js` |
-| `feature<Key>Hint` | optionale Erklärung darunter — fehlt sie, bleibt die Zeile einzeilig |
-| `group<Id>` | Titel einer Filtergruppe |
-| `extName`, `extDescription` | Name und Kurzbeschreibung, auch fürs Manifest |
+| `feature<Key>` | Label of a filter, `<Key>` being the key from `features.js` |
+| `feature<Key>Hint` | Optional explanation below — absent means a single-line row |
+| `group<Id>` | Title of a filter group |
+| `extName`, `extDescription` | Name and short description, also for the manifest |
 
-**Eine Sprache ergänzen:** `_locales/en/messages.json` nach
-`_locales/<code>/messages.json` kopieren, die `message`-Werte übersetzen,
-`description` unangetastet lassen (das ist der Hinweis für Übersetzende, nicht
-für Nutzende) und den Code in die Liste `AVAILABLE` in `src/i18n.js` eintragen.
-Sonst ist nichts zu tun — Popup und Manifest ziehen automatisch nach.
+**Adding a language:** copy `_locales/en/messages.json` to
+`_locales/<code>/messages.json`, translate the `message` values, leave
+`description` untouched (that is the note for translators, not for users) and
+add the code to the `AVAILABLE` list in `src/i18n.js`. Nothing else to do —
+popup and manifest follow automatically.
 
-Drei Dinge, an denen man sich schneiden kann:
+Three things to cut yourself on:
 
-- Chrome schreibt Regionen mit Unterstrich (`pt_BR`, nicht `pt-BR`).
-- In `statusFiltered` müssen `$COUNT$` und `$TOTAL$` erhalten bleiben — die
-  Reihenfolge im Satz ist frei, die Zuordnung läuft über den Namen.
-- `extDescription` darf **132 Zeichen** nicht überschreiten und `extName` nicht
-  75. Übersetzungen werden gern länger als das englische Original; reißt eine
-  die Grenze, lädt Chrome die Extension in dieser Sprache gar nicht erst. Das
-  Skript unten prüft es mit.
+- Chrome writes regions with an underscore (`pt_BR`, not `pt-BR`).
+- `statusFiltered` must keep `$COUNT$` and `$TOTAL$` — their order in the
+  sentence is free, the mapping goes by name.
+- `extDescription` must not exceed **132 characters** and `extName` not 75.
+  Translations tend to run longer than the English original; if one breaks the
+  limit, Chrome refuses to load the extension in that language at all. The
+  script below checks this too.
 
-Ob eine Sprache vollständig ist:
+Checking whether a language is complete:
 
 ```bash
 python3 - <<'EOF'
@@ -261,36 +262,37 @@ for path in sorted(glob.glob('_locales/*/messages.json')):
     holes = [k for k in base if k not in cat]
     stray = [k for k in cat if k not in base]
     empty = [k for k, v in cat.items() if not v.get('message', '').strip()]
-    # Chrome lehnt das Manifest ab, wenn description länger als 132 Zeichen ist
+    # Chrome rejects the manifest if the description exceeds 132 characters
     long = [k for k in ('extName', 'extDescription')
             if len(cat.get(k, {}).get('message', '')) > (75 if k == 'extName' else 132)]
-    print(f"{lang:6} fehlt: {holes or '—'} | überzählig: {stray or '—'}"
-          f" | leer: {empty or '—'} | zu lang: {long or '—'}"
-          f" | in i18n.js: {'ja' if lang in declared else 'NEIN'}")
+    print(f"{lang:6} missing: {holes or '—'} | stray: {stray or '—'}"
+          f" | empty: {empty or '—'} | too long: {long or '—'}"
+          f" | in i18n.js: {'yes' if lang in declared else 'NO'}")
 EOF
 ```
 
-## Dateien
+## Files
 
 ```
-manifest.json          MV3-Manifest
-_locales/<sprache>/    Übersetzungen (messages.json), zwölf Sprachen
-src/i18n.js            Sprachwahl aus navigator.languages, lädt die Kataloge
-src/features.js        Feature-Tabelle (Keys, Gruppen, Defaults, Presets, i18n-Helfer)
-src/tubeless.css       alle Ausblende-Regeln, an tl-*-Klassen gehängt
-src/content.js         Klassen setzen, JS-Filter, SPA-Navigation
-popup/                 Bedienoberfläche
-dist/tubeless.crx      signiertes Paket
-docs/store-listing.*   Texte für den Chrome Web Store, je Sprache
-tools/make-icons.py    generiert icons/*.png (ohne externe Abhängigkeiten)
-tools/verify.py        Selektor-Test gegen das echte YouTube
+manifest.json          MV3 manifest
+_locales/<language>/   translations (messages.json), twelve languages
+src/i18n.js            language pick from navigator.languages, loads catalogs
+src/features.js        feature table (keys, groups, defaults, presets, i18n helpers)
+src/tubeless.css       all hiding rules, hung off tl-* classes
+src/content.js         class toggling, JS filters, SPA navigation
+src/sponsor.js         SponsorBlock: markers, skipping, toast (opt-in)
+popup/                 the UI
+dist/tubeless.crx      signed package
+docs/store-listing.*   Chrome Web Store copy, per language
+tools/make-icons.py    generates icons/*.png (no external dependencies)
+tools/verify.py        selector test against the real YouTube
 ```
 
-Einen Filter ergänzen: Eintrag in `src/features.js` anlegen, CSS-Regeln unter
-`html.tl-<key>` in `src/tubeless.css` schreiben, `feature<Key>` in **allen**
-`_locales/*/messages.json` ergänzen. Popup und Presets bauen sich selbst daraus.
+Adding a filter: create an entry in `src/features.js`, write CSS rules under
+`html.tl-<key>` in `src/tubeless.css`, add `feature<Key>` to **all**
+`_locales/*/messages.json`. Popup and presets build themselves from that.
 
-Eine Falle dabei: Presets dürfen **ausschließlich** Filterwerte enthalten. Baut
-man sie aus `DEFAULTS`, schleppen sie `_enabled`, `_custom` und `_rate` mit —
-und ein Klick auf ein Preset löscht dann die gespeicherte Auswahl und setzt den
-Bewertungs-Zähler zurück. Dafür gibt es `selectionFromDefaults()`.
+One trap: presets must contain **filter values only**. Build them from
+`DEFAULTS` and they drag `_enabled`, `_custom` and `_rate` along — and a click
+on a preset then wipes the saved selection and resets the review counter.
+`selectionFromDefaults()` exists for this.
