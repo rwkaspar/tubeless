@@ -1,0 +1,398 @@
+/*
+ * Tubeless — alle Regeln hängen an einer Klasse `tl-<feature>` auf <html>,
+ * die das Content-Script setzt. Ohne Klasse passiert nichts.
+ *
+ * Wichtig: Regeln laufen bei document_start, also bevor YouTube rendert.
+ */
+
+/* ==========================================================================
+   Kopfzeile & Navigation
+   ========================================================================== */
+
+html.tl-masthead #masthead-container,
+html.tl-masthead ytd-masthead,
+html.tl-masthead #masthead,
+html.tl-masthead ytd-mini-guide-renderer + #masthead-container {
+  display: none !important;
+}
+
+/* Der Platz, den die Kopfzeile reserviert, muss mit weg */
+html.tl-masthead ytd-app,
+html.tl-masthead ytd-page-manager {
+  --ytd-masthead-height: 0px !important;
+  --ytd-toolbar-height: 0px !important;
+}
+html.tl-masthead #page-manager.ytd-app {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+html.tl-masthead ytd-watch-flexy[fixed-panels] #panels-full-bleed-container.ytd-watch-flexy {
+  top: 0 !important;
+}
+
+html.tl-search ytd-masthead #center.ytd-masthead,
+html.tl-search ytd-searchbox,
+html.tl-search yt-searchbox,
+html.tl-search #search-form,
+html.tl-search #search-input {
+  display: none !important;
+}
+
+html.tl-logo ytd-topbar-logo-renderer,
+html.tl-logo #logo.ytd-masthead,
+html.tl-logo #country-code {
+  display: none !important;
+}
+
+html.tl-notifications ytd-notification-topbar-button-renderer,
+html.tl-notifications #notification-count,
+html.tl-notifications ytd-masthead a[href^="/feed/notification"],
+html.tl-notifications tp-yt-iron-dropdown.ytd-popup-container ytd-multi-page-menu-renderer[menu-style="multi-page-menu-style-type-notifications"] {
+  display: none !important;
+}
+
+html.tl-createButton ytd-topbar-menu-button-renderer:has(> #button[aria-label*="rstell"]),
+html.tl-createButton ytd-button-renderer#create-icon,
+html.tl-createButton ytd-masthead #buttons ytd-button-renderer:has(a[href^="/upload"]),
+html.tl-createButton ytd-masthead button[aria-label*="Create"],
+html.tl-createButton ytd-masthead button[aria-label*="rstellen"] {
+  display: none !important;
+}
+
+html.tl-accountMenu ytd-topbar-menu-button-renderer#avatar-btn,
+html.tl-accountMenu #avatar-btn,
+html.tl-accountMenu ytd-masthead #buttons ytd-topbar-menu-button-renderer:last-child {
+  display: none !important;
+}
+
+html.tl-voiceSearch #voice-search-button,
+html.tl-voiceSearch .ytSearchboxComponentVoiceSearchButton {
+  display: none !important;
+}
+
+/* Seitenleiste (Guide) */
+html.tl-sidebar #guide,
+html.tl-sidebar tp-yt-app-drawer#guide,
+html.tl-sidebar ytd-guide-renderer,
+html.tl-sidebar #guide-button,
+html.tl-sidebar ytd-masthead #guide-button,
+html.tl-sidebar #guide-content,
+html.tl-sidebar ytd-guide-section-renderer {
+  display: none !important;
+}
+
+html.tl-miniSidebar ytd-mini-guide-renderer,
+html.tl-miniSidebar #mini-guide,
+html.tl-miniSidebar ytd-app[mini-guide-visible] ytd-mini-guide-renderer {
+  display: none !important;
+}
+
+/* Freigewordenen linken Rand einsammeln */
+html.tl-sidebar.tl-miniSidebar #page-manager.ytd-app,
+html.tl-sidebar.tl-miniSidebar ytd-app[guide-persistent-and-visible] #page-manager.ytd-app,
+html.tl-sidebar.tl-miniSidebar ytd-app[mini-guide-visible] #page-manager.ytd-app {
+  margin-left: 0 !important;
+}
+
+/* ==========================================================================
+   Startseite & Feeds
+   ========================================================================== */
+
+html.tl-homeFeed ytd-browse[page-subtype="home"] #contents.ytd-rich-grid-renderer,
+html.tl-homeFeed ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
+html.tl-homeFeed ytd-browse[page-subtype="home"] #primary > ytd-rich-grid-renderer,
+html.tl-homeFeed ytd-browse[page-subtype="home"] ytd-two-column-browse-results-renderer {
+  display: none !important;
+}
+
+html.tl-filterChips ytd-feed-filter-chip-bar-renderer,
+html.tl-filterChips #chips-wrapper,
+html.tl-filterChips yt-chip-cloud-renderer,
+html.tl-filterChips ytd-browse #header.ytd-rich-grid-renderer {
+  display: none !important;
+}
+
+/* Shorts — Shelfs, Grid-Items, Menüeinträge, eigene Seite */
+html.tl-shorts ytd-rich-shelf-renderer[is-shorts],
+html.tl-shorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+html.tl-shorts ytd-reel-shelf-renderer,
+html.tl-shorts grid-shelf-view-model,
+html.tl-shorts ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model),
+html.tl-shorts ytd-rich-item-renderer:has(a[href^="/shorts/"]),
+html.tl-shorts ytd-video-renderer:has(a[href^="/shorts/"]),
+html.tl-shorts ytd-grid-video-renderer:has(a[href^="/shorts/"]),
+html.tl-shorts ytd-compact-video-renderer:has(a[href^="/shorts/"]),
+html.tl-shorts ytd-guide-entry-renderer:has(a[href="/shorts"]),
+html.tl-shorts ytd-mini-guide-entry-renderer:has(a[href="/shorts"]),
+html.tl-shorts yt-tab-shape[tab-title="Shorts"],
+html.tl-shorts tp-yt-paper-tab:has([href*="shorts"]) {
+  display: none !important;
+}
+
+html.tl-trending ytd-guide-entry-renderer:has(a[href="/feed/trending"]),
+html.tl-trending ytd-guide-entry-renderer:has(a[href="/feed/explore"]),
+html.tl-trending ytd-mini-guide-entry-renderer:has(a[href="/feed/explore"]),
+html.tl-trending ytd-browse[page-subtype="trending"] #contents,
+html.tl-trending ytd-browse[page-subtype="explore"] #contents {
+  display: none !important;
+}
+
+html.tl-searchAds ytd-promoted-video-renderer,
+html.tl-searchAds ytd-promoted-sparkles-web-renderer,
+html.tl-searchAds ytd-search-pyv-renderer,
+html.tl-searchAds ytd-ad-slot-renderer,
+html.tl-searchAds ytd-in-feed-ad-layout-renderer,
+html.tl-searchAds ytd-rich-item-renderer:has(ytd-ad-slot-renderer),
+html.tl-searchAds ytd-display-ad-renderer,
+html.tl-searchAds ytd-statement-banner-renderer,
+html.tl-searchAds ytd-brand-video-shelf-renderer,
+html.tl-searchAds ytd-carousel-ad-renderer,
+html.tl-searchAds #player-ads,
+html.tl-searchAds #masthead-ad {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Videoseite
+   ========================================================================== */
+
+html.tl-related #secondary.ytd-watch-flexy,
+html.tl-related #secondary-inner.ytd-watch-flexy,
+html.tl-related #related,
+html.tl-related ytd-watch-next-secondary-results-renderer,
+html.tl-related ytd-compact-video-renderer,
+html.tl-related #items.ytd-watch-next-secondary-results-renderer {
+  display: none !important;
+}
+
+/* Player darf den freien Platz nutzen */
+html.tl-related ytd-watch-flexy {
+  --ytd-watch-flexy-sidebar-width: 0px !important;
+  --ytd-watch-flexy-min-player-width: 0px !important;
+}
+html.tl-related ytd-watch-flexy #columns.ytd-watch-flexy {
+  max-width: var(--tl-watch-width, 1280px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+html.tl-related ytd-watch-flexy #primary.ytd-watch-flexy,
+html.tl-related ytd-watch-flexy #primary-inner.ytd-watch-flexy {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-right: 0 !important;
+}
+
+html.tl-comments #comments,
+html.tl-comments ytd-comments,
+html.tl-comments ytd-comments-entry-point-header-renderer,
+html.tl-comments #comment-teaser,
+html.tl-comments ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-comments-section"] {
+  display: none !important;
+}
+
+html.tl-liveChat #chat,
+html.tl-liveChat #chat-container,
+html.tl-liveChat ytd-live-chat-frame,
+html.tl-liveChat ytd-watch-flexy[is-two-columns_] #chat.ytd-watch-flexy,
+html.tl-liveChat #show-hide-button.ytd-live-chat-frame {
+  display: none !important;
+}
+
+html.tl-playlistPanel #playlist.ytd-watch-flexy,
+html.tl-playlistPanel ytd-playlist-panel-renderer,
+html.tl-playlistPanel ytd-playlist-panel-video-renderer {
+  display: none !important;
+}
+
+html.tl-merch ytd-merch-shelf-renderer,
+html.tl-merch ytd-ticket-shelf-renderer,
+html.tl-merch #offer-module,
+html.tl-merch ytd-donation-shelf-renderer,
+html.tl-merch #donation-shelf,
+html.tl-merch ytd-video-description-music-section-renderer,
+html.tl-merch ytd-inline-survey-renderer,
+html.tl-merch ytd-brand-video-singleton-renderer {
+  display: none !important;
+}
+
+html.tl-engagement ytd-watch-metadata #top-level-buttons-computed,
+html.tl-engagement ytd-watch-metadata #actions,
+html.tl-engagement ytd-watch-metadata #menu.ytd-watch-metadata,
+html.tl-engagement segmented-like-dislike-button-view-model,
+html.tl-engagement like-button-view-model,
+html.tl-engagement dislike-button-view-model,
+html.tl-engagement ytd-watch-metadata yt-smartimation#actions {
+  display: none !important;
+}
+
+html.tl-description #description.ytd-watch-metadata,
+html.tl-description #description-inner,
+html.tl-description ytd-text-inline-expander,
+html.tl-description #bottom-row.ytd-watch-metadata,
+html.tl-description ytd-watch-info-text {
+  display: none !important;
+}
+
+html.tl-channelInfo ytd-watch-metadata #owner,
+html.tl-channelInfo #upload-info.ytd-video-owner-renderer,
+html.tl-channelInfo ytd-video-owner-renderer,
+html.tl-channelInfo #subscribe-button,
+html.tl-channelInfo ytd-subscribe-button-renderer {
+  display: none !important;
+}
+
+html.tl-videoTitle ytd-watch-metadata #title h1,
+html.tl-videoTitle ytd-watch-metadata yt-formatted-string.ytd-watch-metadata,
+html.tl-videoTitle .ytp-chrome-top .ytp-title,
+html.tl-videoTitle .ytp-title-text {
+  visibility: hidden !important;
+}
+
+/* Wenn oben und unten nichts mehr ist: Player nicht am oberen Rand kleben lassen */
+html.tl-masthead ytd-watch-flexy #player.ytd-watch-flexy {
+  padding-top: 16px !important;
+}
+
+/* ==========================================================================
+   Player
+   ========================================================================== */
+
+html.tl-endScreen .html5-endscreen,
+html.tl-endScreen .ytp-endscreen-content,
+html.tl-endScreen .ytp-ce-element,
+html.tl-endScreen .ytp-ce-covering-overlay,
+html.tl-endScreen .ytp-ce-element-shadow,
+html.tl-endScreen .ytp-ce-covering-image,
+html.tl-endScreen .ytp-ce-expanding-image,
+html.tl-endScreen .ytp-ce-video,
+html.tl-endScreen .ytp-ce-channel,
+html.tl-endScreen .ytp-videowall-still,
+html.tl-endScreen .ytp-endscreen-previous,
+html.tl-endScreen .ytp-endscreen-next,
+html.tl-endScreen .ytp-show-tiles .ytp-pause-overlay {
+  display: none !important;
+}
+
+html.tl-pauseOverlay .ytp-pause-overlay,
+html.tl-pauseOverlay .ytp-pause-overlay-container,
+html.tl-pauseOverlay .ytp-suggestion-set,
+html.tl-pauseOverlay .ytp-scroll-min.ytp-pause-overlay,
+html.tl-pauseOverlay .ytp-expand-pause-overlay .ytp-pause-overlay {
+  display: none !important;
+}
+
+html.tl-infoCards .ytp-cards-teaser,
+html.tl-infoCards .ytp-cards-button,
+html.tl-infoCards .ytp-ce-video-info,
+html.tl-infoCards .iv-branding,
+html.tl-infoCards .annotation,
+html.tl-infoCards .ytp-iv-player-content,
+html.tl-infoCards .iv-drawer,
+html.tl-infoCards .ytp-cards-teaser-shown .ytp-cards-teaser {
+  display: none !important;
+}
+
+html.tl-heatmap .ytp-heat-map-container,
+html.tl-heatmap .ytp-heat-map-chapter,
+html.tl-heatmap .ytp-heat-map-edu,
+html.tl-heatmap ytd-macro-markers-list-renderer {
+  display: none !important;
+}
+
+html.tl-autonavToggle .ytp-autonav-toggle-button-container,
+html.tl-autonavToggle .ytp-autonav-endscreen-countdown-overlay,
+html.tl-autonavToggle .ytp-autonav-endscreen-upnext-container,
+html.tl-autonavToggle ytd-watch-flexy #autoplay,
+html.tl-autonavToggle ytd-compact-autoplay-renderer {
+  display: none !important;
+}
+
+html.tl-nextButton .ytp-next-button,
+html.tl-nextButton .ytp-prev-button {
+  display: none !important;
+}
+
+html.tl-miniplayerButton .ytp-miniplayer-button,
+html.tl-miniplayerButton ytd-miniplayer {
+  display: none !important;
+}
+
+html.tl-ambientMode #cinematics,
+html.tl-ambientMode #cinematics-container,
+html.tl-ambientMode .ytp-cinematics,
+html.tl-ambientMode ytd-watch-flexy[cinematics-enabled] #cinematics.ytd-watch-flexy {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Überall
+   ========================================================================== */
+
+html.tl-notificationBadges .yt-spec-icon-badge-shape__badge,
+html.tl-notificationBadges ytd-guide-entry-renderer #newness-dot,
+html.tl-notificationBadges .ytd-guide-entry-renderer[has-new-content] #newness-dot,
+html.tl-notificationBadges yt-icon-badge-shape {
+  display: none !important;
+}
+
+html.tl-thumbnails ytd-thumbnail img,
+html.tl-thumbnails yt-image img,
+html.tl-thumbnails ytd-playlist-thumbnail img,
+html.tl-thumbnails .yt-core-image,
+html.tl-thumbnails ytd-thumbnail .ytCoreImageHost {
+  visibility: hidden !important;
+}
+html.tl-thumbnails ytd-thumbnail,
+html.tl-thumbnails ytd-playlist-thumbnail,
+html.tl-thumbnails yt-thumbnail-view-model {
+  background: #272727 !important;
+  border-radius: 12px !important;
+}
+
+html.tl-viewCounts #metadata-line.ytd-video-meta-block,
+html.tl-viewCounts ytd-video-view-count-renderer,
+html.tl-viewCounts ytd-watch-info-text #info-container,
+html.tl-viewCounts .yt-content-metadata-view-model__metadata-row:last-child,
+html.tl-viewCounts #owner-sub-count,
+html.tl-viewCounts like-button-view-model .yt-spec-button-shape-next__button-text-content {
+  display: none !important;
+}
+
+html.tl-hoverPreview ytd-video-preview,
+html.tl-hoverPreview #video-preview,
+html.tl-hoverPreview ytd-moving-thumbnail-renderer,
+html.tl-hoverPreview #mouseover-overlay,
+html.tl-hoverPreview yt-inline-player-preview-view-model {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Tubeless-eigene UI
+   ========================================================================== */
+
+.tl-notice {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 2000;
+  pointer-events: none;
+  font-family: "YouTube Sans", Roboto, system-ui, sans-serif;
+  color: #909090;
+  text-align: center;
+  padding: 24px;
+}
+.tl-notice__title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #b8b8b8;
+  letter-spacing: -0.01em;
+}
+.tl-notice__sub {
+  font-size: 14px;
+  max-width: 34ch;
+  line-height: 1.5;
+}

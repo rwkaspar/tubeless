@@ -1,0 +1,175 @@
+/*
+ * Tubeless — Content-Script.
+ * Läuft bei document_start, also bevor YouTube irgendetwas rendert.
+ *
+ * Ablauf:
+ *   1. Klassen sofort aus dem localStorage-Cache setzen (kein Aufblitzen)
+ *   2. Echte Einstellungen aus chrome.storage nachladen und korrigieren
+ *   3. JS-Features (Autoplay, Shorts-Umleitung, Platzhalter) bei jeder
+ *      SPA-Navigation neu anwenden
+ */
+(() => {
+  'use strict';
+
+  const { FEATURES, DEFAULTS } = window.TUBELESS;
+  const CSS_KEYS = FEATURES.filter((f) => f.css !== false).map((f) => f.key);
+  const CACHE_KEY = 'tubeless:settings';
+  const root = document.documentElement;
+
+  let settings = Object.assign({}, DEFAULTS);
+
+  // --- Persistenz ---------------------------------------------------------
+
+  function readCache() {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function writeCache(value) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(value));
+    } catch (_) {
+      /* Speicher voll oder blockiert — egal, ist nur ein Cache */
+    }
+  }
+
+  // --- Anwenden -----------------------------------------------------------
+
+  function applyClasses() {
+    const on = settings._enabled !== false;
+    root.classList.toggle('tl-active', on);
+    for (const key of CSS_KEYS) {
+      root.classList.toggle('tl-' + key, on && settings[key] === true);
+    }
+  }
+
+  function isEnabled(key) {
+    return settings._enabled !== false && settings[key] === true;
+  }
+
+  // --- Feature: Shorts umleiten ------------------------------------------
+
+  function redirectShorts() {
+    if (!isEnabled('redirectShorts')) return false;
+    const match = location.pathname.match(/^\/shorts\/([\w-]+)/);
+    if (!match) return false;
+    const target = location.origin + '/watch?v=' + match[1];
+    location.replace(target);
+    return true;
+  }
+
+  // --- Feature: Autoplay aus ---------------------------------------------
+
+  function disableAutoplay() {
+    if (!isEnabled('disableAutoplay')) return;
+
+    // YouTube merkt sich den Zustand im localStorage — direkt setzen, damit
+    // schon der erste Start ohne Autoplay läuft.
+    try {
+      const existing = localStorage.getItem('yt-player-autonavstate');
+      const parsed = existing ? JSON.parse(existing) : null;
+      if (!parsed || parsed.data !== '0') {
+        localStorage.setItem(
+          'yt-player-autonavstate',
+          JSON.stringify({ data: '0', creation: 0, expiration: 4102444800000 })
+        );
+      }
+    } catch (_) {
+      /* ignorieren */
+    }
+
+    // Und zur Sicherheit den sichtbaren Schalter umlegen, falls er an ist.
+    const toggle = document.querySelector('.ytp-autonav-toggle-button');
+    if (toggle && toggle.getAttribute('aria-checked') === 'true') {
+      toggle.click();
+    }
+  }
+
+  // --- Feature: Platzhalter auf leerer Startseite -------------------------
+
+  function updateHomeNotice() {
+    const wanted =
+      isEnabled('homeNotice') &&
+      isEnabled('homeFeed') &&
+      (location.pathname === '/' || location.pathname === '/feed/explore');
+
+    const existing = document.querySelector('.tl-notice');
+    if (!wanted) {
+      if (existing) existing.remove();
+      return;
+    }
+    if (existing || !document.body) return;
+
+    const notice = document.createElement('div');
+    notice.className = 'tl-notice';
+    notice.innerHTML =
+      '<div class="tl-notice__title">Nichts zu sehen hier.</div>' +
+      '<div class="tl-notice__sub">Tubeless hat den Feed entfernt. ' +
+      'Such gezielt nach dem, weswegen du gekommen bist.</div>';
+    document.body.appendChild(notice);
+  }
+
+  // --- Zusammenspiel bei Navigation ---------------------------------------
+
+  let pendingFrame = 0;
+  function applyBehaviors() {
+    if (redirectShorts()) return;
+    disableAutoplay();
+    updateHomeNotice();
+  }
+
+  function scheduleBehaviors() {
+    if (pendingFrame) return;
+    pendingFrame = requestAnimationFrame(() => {
+      pendingFrame = 0;
+      applyBehaviors();
+    });
+  }
+
+  function apply() {
+    applyClasses();
+    applyBehaviors();
+  }
+
+  // --- Start --------------------------------------------------------------
+
+  const cached = readCache();
+  if (cached) settings = Object.assign({}, DEFAULTS, cached);
+  applyClasses();
+  redirectShorts();
+
+  chrome.storage.sync.get(DEFAULTS, (stored) => {
+    if (chrome.runtime.lastError) return;
+    settings = Object.assign({}, DEFAULTS, stored);
+    writeCache(settings);
+    apply();
+  });
+
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'sync') return;
+    for (const [key, { newValue }] of Object.entries(changes)) {
+      settings[key] = newValue;
+    }
+    writeCache(settings);
+    apply();
+  });
+
+  // YouTube ist eine SPA: eigene Navigations-Events abgreifen …
+  for (const evt of ['yt-navigate-finish', 'yt-page-data-updated', 'yt-player-updated']) {
+    document.addEventListener(evt, scheduleBehaviors, true);
+  }
+  // … und als Netz darunter der klassische History-Wechsel.
+  window.addEventListener('popstate', scheduleBehaviors);
+  document.addEventListener('DOMContentLoaded', apply);
+  window.addEventListener('load', scheduleBehaviors);
+
+  // Der Autoplay-Schalter wird oft erst spät nachgereicht.
+  const observer = new MutationObserver(() => scheduleBehaviors());
+  const startObserving = () => observer.observe(document.body, { childList: true, subtree: false });
+  if (document.body) startObserving();
+  else document.addEventListener('DOMContentLoaded', startObserving, { once: true });
+})();

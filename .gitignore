@@ -1,0 +1,5 @@
+.tltest/
+.verify-profile/
+.verify-shots/
+.venv/
+*.zip

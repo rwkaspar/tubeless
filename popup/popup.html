@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tubeless</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="head">
+      <div class="head__brand">
+        <span class="head__mark"></span>
+        <span class="head__name">Tubeless</span>
+      </div>
+      <label class="master">
+        <input type="checkbox" id="master" />
+        <span class="master__track"><span class="master__knob"></span></span>
+      </label>
+    </header>
+
+    <form class="search" id="search-form">
+      <input
+        type="search"
+        id="search-input"
+        placeholder="Auf YouTube suchen …"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button type="submit" aria-label="Suchen">↵</button>
+    </form>
+
+    <div class="presets">
+      <button type="button" data-preset="radikal">Radikal</button>
+      <button type="button" data-preset="fokus">Fokus</button>
+      <button type="button" data-preset="aus">Nichts filtern</button>
+    </div>
+
+    <main id="groups" class="groups"></main>
+
+    <footer class="foot">
+      <span id="count">–</span>
+      <button type="button" id="reset">Standard</button>
+    </footer>
+
+    <script src="../src/features.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
