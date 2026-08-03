@@ -16,6 +16,23 @@ ablenkt — sichtbar bleiben nur Player, Titel, Kanal und Beschreibung.
 
 Es gibt keinen Build-Schritt — der Ordner *ist* die Extension.
 
+## Paketieren
+
+`dist/tubeless.crx` ist das signierte Paket, Extension-ID
+`inhgfhfdblpbmpohoocoaepcjhoghbij`. Aktuelle Chrome-Versionen verweigern die
+Installation von `.crx`-Dateien außerhalb des Web Store — die Datei ist zur
+Archivierung und Weitergabe da, installiert wird über den Weg oben.
+
+Neu bauen: `chrome://extensions` → **Erweiterung packen** → dieses Verzeichnis
+als Stammverzeichnis, den vorhandenen Schlüssel als Privatschlüssel angeben.
+Ohne denselben Schlüssel ändert sich die Extension-ID.
+
+Der Schlüssel liegt **nicht im Repo**, sondern unter
+`~/.config/tubeless/tubeless.pem` (Modus 600). Wer ihn hat, kann Pakete
+signieren, die Chrome als dieselbe Extension akzeptiert und als Update
+durchwinkt — deshalb steht `*.pem` in der `.gitignore`. Geht er verloren,
+bekommt die Extension beim nächsten Packen eine neue ID.
+
 ## Bedienung
 
 Klick aufs Tubeless-Icon in der Toolbar:

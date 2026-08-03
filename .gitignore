@@ -3,3 +3,6 @@
 .verify-shots/
 .venv/
 *.zip
+
+# Signaturschluessel gehoert nicht ins Repo — siehe README, Abschnitt "Paketieren"
+*.pem
