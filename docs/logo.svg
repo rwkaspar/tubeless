@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <!-- Tubeless-Marke: dasselbe Zeichen wie icons/icon*.png, nur verlustfrei -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff4b40"/>
+      <stop offset="1" stop-color="#f52f24"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#g)"/>
+  <rect x="30" y="57" width="68" height="14" rx="7" fill="#0f0f0f"/>
+</svg>

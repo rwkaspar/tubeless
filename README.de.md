@@ -1,6 +1,21 @@
-# Tubeless
+<p align="center">
+  <img src="docs/logo.svg" width="96" alt="Tubeless-Logo">
+</p>
 
-*Deutsche Fassung — [English version](README.md)*
+<h1 align="center">Tubeless</h1>
+
+<p align="center"><em>YouTube ohne Ablenkung.</em></p>
+
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Frwkaspar%2Ftubeless%2Fmain%2Fmanifest.json&query=%24.version&label=version&color=ff3b30">
+  <img alt="Manifest V3" src="https://img.shields.io/badge/manifest-v3-0f0f0f">
+  <img alt="Chrome 105+" src="https://img.shields.io/badge/chrome-105%2B-0f0f0f">
+  <img alt="12 Sprachen" src="https://img.shields.io/badge/sprachen-12-0f0f0f">
+</p>
+
+<p align="center"><em>Deutsche Fassung — <a href="README.md">English version</a></em></p>
+
+---
 
 Chrome-Extension, die YouTube auf das reduziert, weswegen du hingegangen bist:
 das Video. Kein Feed, keine Empfehlungen, keine Shorts, keine Kommentare, keine
@@ -12,6 +27,17 @@ Kanal und Beschreibung.
 
 Oberfläche in [zwölf Sprachen](#sprachen), gewählt nach den Spracheinstellungen
 des Browsers. Texte für den Store liegen in [`docs/`](docs/store-listing.de.md).
+
+<table>
+  <tr>
+    <td width="60%"><img src="docs/screenshots/1-watch-clean.png" alt="Videoseite: nur Video, Titel und Kanal — sonst nichts"></td>
+    <td width="40%"><img src="docs/screenshots/4-popup.png" alt="Das Popup: Presets und 42 einzelne Filter"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Die Videoseite: das Video, sonst nichts.</sub></td>
+    <td align="center"><sub>Das Popup: Presets, Suche, 42 Filter.</sub></td>
+  </tr>
+</table>
 
 ## Installieren
 
@@ -285,6 +311,7 @@ src/sponsor.js         SponsorBlock: Marker, Überspringen, Toast (opt-in)
 popup/                 Bedienoberfläche
 dist/tubeless.crx      signiertes Paket
 docs/store-listing.*   Texte für den Chrome Web Store, je Sprache
+docs/logo.svg          die Marke, gleiche Form wie icons/*.png
 tools/make-icons.py    generiert icons/*.png (ohne externe Abhängigkeiten)
 tools/verify.py        Selektor-Test gegen das echte YouTube
 ```
