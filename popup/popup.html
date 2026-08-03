@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
   <head>
     <meta charset="utf-8" />
     <title>Tubeless</title>
@@ -12,7 +12,7 @@
         <span class="head__name">Tubeless</span>
       </div>
       <label class="master">
-        <input type="checkbox" id="master" />
+        <input type="checkbox" id="master" data-i18n-aria-label="masterLabel" />
         <span class="master__track"><span class="master__knob"></span></span>
       </label>
     </header>
@@ -21,24 +21,24 @@
       <input
         type="search"
         id="search-input"
-        placeholder="Auf YouTube suchen …"
+        data-i18n-placeholder="searchPlaceholder"
         autocomplete="off"
         spellcheck="false"
       />
-      <button type="submit" aria-label="Suchen">↵</button>
+      <button type="submit" data-i18n-aria-label="searchSubmit">↵</button>
     </form>
 
     <div class="presets">
-      <button type="button" data-preset="radikal">Radikal</button>
-      <button type="button" data-preset="fokus">Fokus</button>
-      <button type="button" data-preset="aus">Nichts filtern</button>
+      <button type="button" data-preset="radikal" data-i18n="presetRadical"></button>
+      <button type="button" data-preset="fokus" data-i18n="presetFocus"></button>
+      <button type="button" data-preset="aus" data-i18n="presetNone"></button>
     </div>
 
     <main id="groups" class="groups"></main>
 
     <footer class="foot">
       <span id="count">–</span>
-      <button type="button" id="reset">Standard</button>
+      <button type="button" id="reset" data-i18n="footerReset"></button>
     </footer>
 
     <script src="../src/features.js"></script>

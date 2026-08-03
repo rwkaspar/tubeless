@@ -11,7 +11,7 @@
 (() => {
   'use strict';
 
-  const { FEATURES, DEFAULTS } = window.TUBELESS;
+  const { FEATURES, DEFAULTS, t } = window.TUBELESS;
   const CSS_KEYS = FEATURES.filter((f) => f.css !== false).map((f) => f.key);
   const CACHE_KEY = 'tubeless:settings';
   const root = document.documentElement;
@@ -106,10 +106,15 @@
 
     const notice = document.createElement('div');
     notice.className = 'tl-notice';
-    notice.innerHTML =
-      '<div class="tl-notice__title">Nichts zu sehen hier.</div>' +
-      '<div class="tl-notice__sub">Tubeless hat den Feed entfernt. ' +
-      'Such gezielt nach dem, weswegen du gekommen bist.</div>';
+    for (const [cls, message] of [
+      ['tl-notice__title', 'noticeTitle'],
+      ['tl-notice__sub', 'noticeSub']
+    ]) {
+      const line = document.createElement('div');
+      line.className = cls;
+      line.textContent = t(message);
+      notice.appendChild(line);
+    }
     document.body.appendChild(notice);
   }
 

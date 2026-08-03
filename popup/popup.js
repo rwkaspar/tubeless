@@ -1,9 +1,13 @@
 /* Tubeless — Popup: Presets, Einzelschalter und eine kleine Suche als
-   Ersatz für die ausgeblendete YouTube-Kopfzeile. */
+   Ersatz für die ausgeblendete YouTube-Kopfzeile.
+
+   Alle Texte kommen aus _locales/<sprache>/messages.json — statische über
+   data-i18n-Attribute im HTML, dynamische über TUBELESS.t()/label()/hint(). */
 (() => {
   'use strict';
 
-  const { GROUPS, FEATURES, DEFAULTS, PRESETS } = window.TUBELESS;
+  const { GROUPS, FEATURES, DEFAULTS, PRESETS, t, label, hint, groupLabel } =
+    window.TUBELESS;
 
   const els = {
     master: document.getElementById('master'),
@@ -17,6 +21,18 @@
   let settings = Object.assign({}, DEFAULTS);
   const inputs = new Map();
 
+  // --- Statische Texte übersetzen -----------------------------------------
+
+  for (const [attribute, apply] of [
+    ['data-i18n', (el, text) => (el.textContent = text)],
+    ['data-i18n-placeholder', (el, text) => (el.placeholder = text)],
+    ['data-i18n-aria-label', (el, text) => el.setAttribute('aria-label', text)]
+  ]) {
+    for (const el of document.querySelectorAll('[' + attribute + ']')) {
+      apply(el, t(el.getAttribute(attribute)));
+    }
+  }
+
   // --- Aufbau -------------------------------------------------------------
 
   for (const group of GROUPS) {
@@ -28,7 +44,7 @@
 
     const title = document.createElement('h2');
     title.className = 'group__title';
-    title.textContent = group.label;
+    title.textContent = groupLabel(group.id);
     section.appendChild(title);
 
     for (const feature of features) {
@@ -46,16 +62,17 @@
       const text = document.createElement('span');
       text.className = 'row__text';
 
-      const label = document.createElement('span');
-      label.className = 'row__label';
-      label.textContent = feature.label;
-      text.appendChild(label);
+      const name = document.createElement('span');
+      name.className = 'row__label';
+      name.textContent = label(feature.key);
+      text.appendChild(name);
 
-      if (feature.hint) {
-        const hint = document.createElement('span');
-        hint.className = 'row__hint';
-        hint.textContent = feature.hint;
-        text.appendChild(hint);
+      const explanation = hint(feature.key);
+      if (explanation) {
+        const el = document.createElement('span');
+        el.className = 'row__hint';
+        el.textContent = explanation;
+        text.appendChild(el);
       }
 
       row.append(input, text);
@@ -80,8 +97,8 @@
     }
 
     els.count.textContent = on
-      ? `${hidden} von ${FEATURES.length} Ablenkungen gefiltert`
-      : 'Pausiert — YouTube unverändert';
+      ? t('statusFiltered', [String(hidden), String(FEATURES.length)])
+      : t('statusPaused');
 
     for (const button of document.querySelectorAll('.presets button')) {
       const preset = PRESETS[button.dataset.preset];
@@ -95,7 +112,7 @@
 
   function save(patch) {
     Object.assign(settings, patch);
-    chrome.storage.sync.set(patch, render);
+    chrome.storage.sync.set(patch);
     render();
   }
 
