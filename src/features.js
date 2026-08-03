@@ -71,48 +71,91 @@
 
     // --- Verhalten (JS) ----------------------------------------------------
     { key: 'disableAutoplay', group: 'behavior', default: true, css: false },
+    { key: 'skipAds', group: 'behavior', default: true, css: false },
     { key: 'redirectShorts', group: 'behavior', default: true, css: false },
     { key: 'homeNotice', group: 'behavior', default: true, css: false }
   ];
 
-  const DEFAULTS = { _enabled: true };
+  /** Storage-Key, unter dem die selbst gespeicherte Auswahl liegt. */
+  const CUSTOM_KEY = '_custom';
+  /** Storage-Key des Bewertungs-Hinweises (siehe popup.js). */
+  const RATE_KEY = '_rate';
+  /**
+   * Was „Standard“ nicht anfassen darf. Beides sind Gedächtnis, keine
+   * Einstellung: die eigene Auswahl soll einen Reset überleben, und der
+   * Bewertungs-Zähler darf sich nicht durch einen Klick auf „Standard“
+   * zurücksetzen lassen — sonst fragt die Extension wieder von vorn.
+   */
+  const KEEP_ON_RESET = [CUSTOM_KEY, RATE_KEY];
+
+  const DEFAULTS = { _enabled: true, [CUSTOM_KEY]: null, [RATE_KEY]: null };
   for (const f of FEATURES) DEFAULTS[f.key] = f.default;
 
+  /*
+   * Presets enthalten ausschließlich Filterwerte — niemals _enabled, _custom
+   * oder _rate. Würden sie aus DEFAULTS gebaut, schleppten sie diese Schlüssel
+   * mit und ein Klick auf ein Preset würde die gespeicherte Auswahl und den
+   * Bewertungs-Zähler überschreiben.
+   */
+  function selectionFromDefaults(overrides) {
+    const selection = {};
+    for (const f of FEATURES) selection[f.key] = f.default;
+    return Object.assign(selection, overrides);
+  }
+
   const PRESETS = {
-    radikal: (() => {
-      const p = { _enabled: true };
-      for (const f of FEATURES) p[f.key] = true;
-      return p;
-    })(),
-    fokus: Object.assign({}, DEFAULTS, {
+    fokus: selectionFromDefaults({
       masthead: false,
       search: false,
       logo: false,
       accountMenu: false
     }),
     aus: (() => {
-      const p = { _enabled: true };
+      const p = {};
       for (const f of FEATURES) p[f.key] = false;
       return p;
     })()
   };
 
-  /** Uebersetzung nachschlagen; fehlt sie, bleibt der Schluessel sichtbar. */
-  function t(name, substitutions) {
-    const message = chrome.i18n.getMessage(name, substitutions);
-    return message || name;
+  /** Nur die Filterwerte — ohne _enabled, _custom und sonstige Metaschlüssel. */
+  function selectionOf(settings) {
+    const selection = {};
+    for (const f of FEATURES) selection[f.key] = settings[f.key] === true;
+    return selection;
   }
 
+  /** Stimmen zwei Auswahlen in allen Filtern überein? */
+  function sameSelection(a, b) {
+    if (!a || !b) return false;
+    return FEATURES.every((f) => (a[f.key] === true) === (b[f.key] === true));
+  }
+
+  const { t, ready } = root.TL_I18N;
   const upper = (key) => key[0].toUpperCase() + key.slice(1);
 
   /** Beschriftung eines Filters in der Browsersprache. */
   const label = (key) => t('feature' + upper(key));
 
   /** Erklaerung eines Filters — leerer String, wenn keine hinterlegt ist. */
-  const hint = (key) => chrome.i18n.getMessage('feature' + upper(key) + 'Hint');
+  const hint = (key) => {
+    const name = 'feature' + upper(key) + 'Hint';
+    const message = t(name);
+    return message === name ? '' : message;
+  };
 
   /** Titel einer Gruppe in der Browsersprache. */
   const groupLabel = (id) => t('group' + upper(id));
 
-  root.TUBELESS = { GROUPS, FEATURES, DEFAULTS, PRESETS, t, label, hint, groupLabel };
+  /** DEFAULTS ohne die Schlüssel, die ein Reset stehen lassen muss. */
+  function resetPatch() {
+    const patch = Object.assign({}, DEFAULTS);
+    for (const key of KEEP_ON_RESET) delete patch[key];
+    return patch;
+  }
+
+  root.TUBELESS = {
+    GROUPS, FEATURES, DEFAULTS, PRESETS, CUSTOM_KEY, RATE_KEY,
+    selectionOf, sameSelection, resetPatch,
+    t, ready, label, hint, groupLabel
+  };
 })(typeof window !== 'undefined' ? window : globalThis);

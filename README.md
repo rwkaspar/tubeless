@@ -4,12 +4,12 @@ Chrome-Extension, die YouTube auf das reduziert, weswegen du hingegangen bist:
 das Video. Kein Feed, keine Empfehlungen, keine Shorts, keine Kommentare, keine
 Endcards, kein Autoplay.
 
-38 einzeln schaltbare Filter, drei Presets. Standardmäßig ist alles aus, was
-ablenkt — sichtbar bleiben nur Player, Titel, Kanal und Beschreibung.
+39 einzeln schaltbare Filter, drei Presets, davon eines selbst belegbar.
+Standardmäßig ist alles aus, was ablenkt — sichtbar bleiben nur Player, Titel,
+Kanal und Beschreibung.
 
-Oberfläche auf Deutsch und Englisch, [weitere Sprachen](#sprachen) sind ein
-Ordner Arbeit. Texte für den Store liegen in
-[`docs/`](docs/store-listing.de.md).
+Oberfläche in [zwölf Sprachen](#sprachen), gewählt nach den Spracheinstellungen
+des Browsers. Texte für den Store liegen in [`docs/`](docs/store-listing.de.md).
 
 ## Installieren
 
@@ -63,13 +63,31 @@ Klick aufs Tubeless-Icon in der Toolbar:
 |---|---|
 | Schalter oben rechts | Pausiert Tubeless komplett (YouTube unverändert) |
 | Suchfeld | Ersatz für die ausgeblendete YouTube-Suchleiste |
-| **Radikal** | Wirklich alles weg — auch Titel, Beschreibung, Kanal, Thumbnails |
+| **Eigene** | Die selbst gespeicherte Auswahl — grau, solange keine da ist |
 | **Fokus** | Wie Standard, aber Kopfzeile und Suche bleiben |
 | **Nichts filtern** | Alle Filter aus |
 | **Standard** (unten) | Zurück zur Auslieferungseinstellung |
 
 Änderungen greifen sofort, ohne Reload, in allen offenen Tabs. Die Einstellungen
 liegen in `chrome.storage.sync`, wandern also mit dem Chrome-Profil mit.
+
+### Eigene Auswahl
+
+Sobald die aktuelle Auswahl von der gespeicherten abweicht, erscheint unter den
+Presets eine Schaltfläche, die sie sichert. Danach holt **Eigene** sie jederzeit
+zurück — auch nachdem zwischendurch **Fokus** oder **Nichts filtern** aktiv war.
+
+Die gespeicherte Auswahl liegt unter `_custom` und überlebt **Standard**; nur
+erneutes Speichern überschreibt sie.
+
+### Bewertungs-Hinweis
+
+Im Popup taucht frühestens 30 Tage nach der Installation ein kleiner Block auf,
+der um eine Bewertung im Web Store bittet, danach höchstens alle 30 Tage.
+„Später" verschiebt um dieselbe Frist, „Bewerten" schaltet ihn dauerhaft ab.
+
+Ob wirklich bewertet wurde, kann eine Extension nicht feststellen — Chrome gibt
+das nicht preis. Wer auf „Bewerten" klickt, gilt deshalb als erledigt.
 
 ### Die Kopfzeile ist standardmäßig weg
 
@@ -93,10 +111,10 @@ Autoplay-Schalter, Weiter-Button, Miniplayer-Button, Ambient-Modus
 
 **Überall** — rote Zähler-Badges, Vorschaubilder\*, Aufrufzahlen\*, Hover-Vorschau
 
-**Verhalten** — Autoplay dauerhaft aus, `/shorts/…` öffnet als normales Video,
-ruhiger Platzhalter statt Feed
+**Verhalten** — Autoplay dauerhaft aus, Werbung überspringen, `/shorts/…` öffnet
+als normales Video, ruhiger Platzhalter statt Feed
 
-\* standardmäßig aus, per Klick oder Preset **Radikal** dazuschaltbar
+\* standardmäßig aus, einzeln dazuschaltbar
 
 ## Wie es funktioniert
 
@@ -106,10 +124,33 @@ diese Klassen. Damit ist alles schon versteckt, bevor YouTube den ersten Pixel
 rendert. Die letzte bekannte Einstellung liegt zusätzlich im `localStorage`, weil
 `chrome.storage` nur asynchron antwortet — sonst blitzt der Feed kurz auf.
 
-Drei Filter brauchen JavaScript statt CSS: Autoplay (setzt YouTubes eigenen
-`yt-player-autonavstate` und legt notfalls den Schalter um), die Shorts-Umleitung
-und der Platzhalter auf der leeren Startseite. Die laufen bei jeder
-SPA-Navigation neu (`yt-navigate-finish` & Co.).
+Vier Filter brauchen JavaScript statt CSS: Autoplay (setzt YouTubes eigenen
+`yt-player-autonavstate` und legt notfalls den Schalter um), das Überspringen von
+Werbung, die Shorts-Umleitung und der Platzhalter auf der leeren Startseite. Die
+laufen bei jeder SPA-Navigation neu (`yt-navigate-finish` & Co.).
+
+### Werbung
+
+Hier wird nichts blockiert, sondern geklickt: Sobald der „Überspringen"-Button
+auftaucht, drückt Tubeless ihn; bei unüberspringbaren Anzeigen springt es ans
+Ende des Anzeigen-Clips. YouTube behandelt das wie durchgesehene Werbung, also
+gibt es keinen Streit mit der Adblock-Erkennung — aber es macht YouTube auch
+nicht werbefrei. Unter MV3 dürfte eine Extension Requests nur über statische
+`declarativeNetRequest`-Regeln blocken, und Ads kommen aus derselben Domain und
+teils im selben Stream wie das Video; sauber trennen lässt sich das nicht.
+
+Werbung taucht mitten in der Wiedergabe auf, ohne Navigation und ohne Änderung an
+`<body>` — davon bekommen die Navigations-Handler nichts mit. Deshalb prüft ein
+Intervall alle 400 ms eine Klasse am Player. Das ist ehrlicher als ein
+MutationObserver über den halben Player und kostet praktisch nichts.
+
+### Was bewusst fehlt
+
+**Dislike-Zahlen.** YouTube hat sie 2021 aus der API genommen; die einzige Quelle
+wäre die Return-YouTube-Dislike-API, an die für jedes Video die Video-ID
+rausginge — und deren Zahlen ohnehin Schätzungen aus einer fremden Nutzerbasis
+sind. Das ist mit „nichts wird übertragen" nicht zu vereinbaren, also bleibt es
+draußen.
 
 Keine Netzwerkzugriffe, kein Tracking, keine Berechtigung außer `storage` und
 `*://*.youtube.com/*`.
@@ -131,13 +172,32 @@ Jedes `FAIL` ist ein Selektor in `src/tubeless.css`, der nachgezogen werden muss
 
 ## Sprachen
 
-Deutsch und Englisch. Chrome wählt anhand der Browsersprache, Englisch ist der
-Rückfall für alles andere (`"default_locale": "en"`).
+Deutsch, Englisch, Spanisch, Französisch, Italienisch, Japanisch,
+Niederländisch, Polnisch, Portugiesisch (BR), Russisch, Türkisch und
+vereinfachtes Chinesisch.
+
+Gewählt wird nach `navigator.languages` — also nach dem, was unter
+`chrome://settings/languages` steht. Bewusst *nicht* über `chrome.i18n`: das
+richtet sich nach Chromes Anzeigesprache, die unter Linux an der Systemlocale
+hängt und dann eine ganz andere sein kann als die, die man eingestellt hat.
+`src/i18n.js` löst deshalb selbst auf:
+
+| Browser meldet | Tubeless nimmt |
+|---|---|
+| `de-AT` | `de` — Regionalvariante fällt auf die Basissprache |
+| `pt-PT` | `pt_BR` — nur diese Region ist übersetzt |
+| `sv-SE` | `en` — nicht übersetzt, also Rückfall |
 
 Im Code steht kein einziger sichtbarer Text — Beschriftungen liegen in
-`_locales/<sprache>/messages.json` und werden über `chrome.i18n` aufgelöst:
-statische über `data-i18n`-Attribute in `popup.html`, dynamische über
-`TUBELESS.label()`, `.hint()`, `.groupLabel()` und `.t()`.
+`_locales/<sprache>/messages.json`: statische über `data-i18n`-Attribute in
+`popup.html`, dynamische über `TUBELESS.label()`, `.hint()`, `.groupLabel()`
+und `.t()`. Fehlt ein Schlüssel in der gewählten Sprache, greift Englisch;
+fehlt er auch dort, bleibt der Schlüsselname stehen — dann sieht man im Popup
+sofort, was zu übersetzen ist.
+
+Dieselben Dateien liest Chrome für Name und Beschreibung im Manifest. Damit das
+Content-Script sie ebenfalls lesen darf, stehen sie unter
+`web_accessible_resources`, beschränkt auf youtube.com.
 
 Die Schlüssel folgen einer Konvention, damit nichts von Hand verdrahtet werden
 muss:
@@ -152,20 +212,39 @@ muss:
 **Eine Sprache ergänzen:** `_locales/en/messages.json` nach
 `_locales/<code>/messages.json` kopieren, die `message`-Werte übersetzen,
 `description` unangetastet lassen (das ist der Hinweis für Übersetzende, nicht
-für Nutzende). Sonst ist nichts zu tun — Popup und Manifest ziehen automatisch
-nach. Fehlt ein Schlüssel, fällt Chrome auf Englisch zurück.
+für Nutzende) und den Code in die Liste `AVAILABLE` in `src/i18n.js` eintragen.
+Sonst ist nichts zu tun — Popup und Manifest ziehen automatisch nach.
+
+Drei Dinge, an denen man sich schneiden kann:
+
+- Chrome schreibt Regionen mit Unterstrich (`pt_BR`, nicht `pt-BR`).
+- In `statusFiltered` müssen `$COUNT$` und `$TOTAL$` erhalten bleiben — die
+  Reihenfolge im Satz ist frei, die Zuordnung läuft über den Namen.
+- `extDescription` darf **132 Zeichen** nicht überschreiten und `extName` nicht
+  75. Übersetzungen werden gern länger als das englische Original; reißt eine
+  die Grenze, lädt Chrome die Extension in dieser Sprache gar nicht erst. Das
+  Skript unten prüft es mit.
 
 Ob eine Sprache vollständig ist:
 
 ```bash
 python3 - <<'EOF'
-import json, glob, os
-base = set(json.load(open('_locales/en/messages.json')))
+import json, glob, os, re
+base = json.load(open('_locales/en/messages.json'))
+declared = re.findall(r"'([\w]+)'", re.search(
+    r'const AVAILABLE = \[(.*?)\]', open('src/i18n.js').read(), re.S).group(1))
 for path in sorted(glob.glob('_locales/*/messages.json')):
-    keys = set(json.load(open(path)))
-    print(os.path.basename(os.path.dirname(path)),
-          'fehlt:', sorted(base - keys) or '—',
-          '| überzählig:', sorted(keys - base) or '—')
+    lang = os.path.basename(os.path.dirname(path))
+    cat = json.load(open(path))
+    holes = [k for k in base if k not in cat]
+    stray = [k for k in cat if k not in base]
+    empty = [k for k, v in cat.items() if not v.get('message', '').strip()]
+    # Chrome lehnt das Manifest ab, wenn description länger als 132 Zeichen ist
+    long = [k for k in ('extName', 'extDescription')
+            if len(cat.get(k, {}).get('message', '')) > (75 if k == 'extName' else 132)]
+    print(f"{lang:6} fehlt: {holes or '—'} | überzählig: {stray or '—'}"
+          f" | leer: {empty or '—'} | zu lang: {long or '—'}"
+          f" | in i18n.js: {'ja' if lang in declared else 'NEIN'}")
 EOF
 ```
 
@@ -173,7 +252,8 @@ EOF
 
 ```
 manifest.json          MV3-Manifest
-_locales/de|en/        Übersetzungen (messages.json)
+_locales/<sprache>/    Übersetzungen (messages.json), zwölf Sprachen
+src/i18n.js            Sprachwahl aus navigator.languages, lädt die Kataloge
 src/features.js        Feature-Tabelle (Keys, Gruppen, Defaults, Presets, i18n-Helfer)
 src/tubeless.css       alle Ausblende-Regeln, an tl-*-Klassen gehängt
 src/content.js         Klassen setzen, JS-Filter, SPA-Navigation
@@ -187,3 +267,8 @@ tools/verify.py        Selektor-Test gegen das echte YouTube
 Einen Filter ergänzen: Eintrag in `src/features.js` anlegen, CSS-Regeln unter
 `html.tl-<key>` in `src/tubeless.css` schreiben, `feature<Key>` in **allen**
 `_locales/*/messages.json` ergänzen. Popup und Presets bauen sich selbst daraus.
+
+Eine Falle dabei: Presets dürfen **ausschließlich** Filterwerte enthalten. Baut
+man sie aus `DEFAULTS`, schleppen sie `_enabled`, `_custom` und `_rate` mit —
+und ein Klick auf ein Preset löscht dann die gespeicherte Auswahl und setzt den
+Bewertungs-Zähler zurück. Dafür gibt es `selectionFromDefaults()`.

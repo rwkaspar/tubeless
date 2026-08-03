@@ -1,0 +1,344 @@
+{
+  "actionTitle": {
+    "message": "Tubeless",
+    "description": "Tooltip des Toolbar-Icons"
+  },
+  "colophonBy": {
+    "message": "Projekt:",
+    "description": "Prefix vor dem Herausgeber-Link im Popup-Footer"
+  },
+  "customSave": {
+    "message": "Zapisz jako „Własne”",
+    "description": "Button unter den Presets"
+  },
+  "customUpdate": {
+    "message": "Zaktualizuj „Własne”",
+    "description": "Derselbe Button, wenn bereits etwas gespeichert ist"
+  },
+  "extDescription": {
+    "message": "Usuwa z YouTube wszystkie rozpraszacze: feed, panel boczny, Shorts, propozycje, komentarze, plansze końcowe i autoodtwarzanie.",
+    "description": "Kurzbeschreibung, max. 132 Zeichen"
+  },
+  "extName": {
+    "message": "Tubeless — YouTube bez hałasu",
+    "description": "Name der Extension"
+  },
+  "footerReset": {
+    "message": "Domyślne",
+    "description": "Setzt auf die Auslieferungseinstellung zurueck"
+  },
+  "masterLabel": {
+    "message": "Wstrzymaj Tubeless",
+    "description": "Beschriftung des grossen Schalters (Screenreader)"
+  },
+  "noticeSub": {
+    "message": "Tubeless usunął feed. Poszukaj tego, po co tu przyszedłeś.",
+    "description": "Text unter der Ueberschrift"
+  },
+  "noticeTitle": {
+    "message": "Nie ma tu nic do oglądania.",
+    "description": "Ueberschrift des Platzhalters auf der leeren Startseite"
+  },
+  "presetCustom": {
+    "message": "Własne",
+    "description": "Preset: die selbst gespeicherte Auswahl"
+  },
+  "presetCustomEmpty": {
+    "message": "Nie zapisano jeszcze własnego wyboru",
+    "description": "Tooltip, solange nichts gespeichert ist"
+  },
+  "presetFocus": {
+    "message": "Skupienie",
+    "description": "Preset: Kopfzeile und Suche bleiben"
+  },
+  "presetNone": {
+    "message": "Nie filtruj niczego",
+    "description": "Preset: alle Filter aus"
+  },
+  "rateAction": {
+    "message": "Oceń",
+    "description": "Button: oeffnet die Store-Seite"
+  },
+  "rateLater": {
+    "message": "Później",
+    "description": "Button: verschiebt den Hinweis um 30 Tage"
+  },
+  "rateText": {
+    "message": "Tubeless się przydaje? Krótka opinia w Web Store pomoże innym go znaleźć.",
+    "description": "Text im Bewertungs-Hinweis"
+  },
+  "searchPlaceholder": {
+    "message": "Szukaj w YouTube …",
+    "description": "Platzhalter im Suchfeld des Popups"
+  },
+  "searchSubmit": {
+    "message": "Szukaj",
+    "description": "Beschriftung des Such-Buttons (Screenreader)"
+  },
+  "statusFiltered": {
+    "message": "Odfiltrowano $COUNT$ z $TOTAL$ rozpraszaczy",
+    "description": "Zaehler in der Fusszeile des Popups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "33"
+      },
+      "total": {
+        "content": "$2",
+        "example": "38"
+      }
+    }
+  },
+  "statusPaused": {
+    "message": "Wstrzymane — YouTube bez zmian",
+    "description": "Fusszeile, wenn Tubeless pausiert ist"
+  },
+  "groupBehavior": {
+    "message": "Zachowanie",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupChrome": {
+    "message": "Nagłówek i nawigacja",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupFeeds": {
+    "message": "Strona główna i feedy",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupGlobal": {
+    "message": "Wszędzie",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupPlayer": {
+    "message": "Odtwarzacz",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupWatch": {
+    "message": "Strona filmu",
+    "description": "Gruppentitel im Popup"
+  },
+  "featureAccountMenu": {
+    "message": "Awatar konta",
+    "description": "Filter-Bezeichnung: accountMenu"
+  },
+  "featureAmbientMode": {
+    "message": "Tryb ambient",
+    "description": "Filter-Bezeichnung: ambientMode"
+  },
+  "featureAmbientModeHint": {
+    "message": "Kolorowa poświata za odtwarzaczem",
+    "description": "Erklaerung zum Filter ambientMode"
+  },
+  "featureAutonavToggle": {
+    "message": "Przełącznik autoodtwarzania",
+    "description": "Filter-Bezeichnung: autonavToggle"
+  },
+  "featureChannelInfo": {
+    "message": "Kanał i subskrypcja",
+    "description": "Filter-Bezeichnung: channelInfo"
+  },
+  "featureComments": {
+    "message": "Komentarze",
+    "description": "Filter-Bezeichnung: comments"
+  },
+  "featureCreateButton": {
+    "message": "Przycisk Utwórz",
+    "description": "Filter-Bezeichnung: createButton"
+  },
+  "featureDescription": {
+    "message": "Opis filmu",
+    "description": "Filter-Bezeichnung: description"
+  },
+  "featureDisableAutoplay": {
+    "message": "Wyłącz autoodtwarzanie",
+    "description": "Filter-Bezeichnung: disableAutoplay"
+  },
+  "featureDisableAutoplayHint": {
+    "message": "Trzyma „Autoodtwarzanie” trwale wyłączone",
+    "description": "Erklaerung zum Filter disableAutoplay"
+  },
+  "featureEndScreen": {
+    "message": "Plansze końcowe i ściana filmów",
+    "description": "Filter-Bezeichnung: endScreen"
+  },
+  "featureEndScreenHint": {
+    "message": "Kafelki na końcu filmu",
+    "description": "Erklaerung zum Filter endScreen"
+  },
+  "featureEngagement": {
+    "message": "Lubię to / udostępnij / zapisz",
+    "description": "Filter-Bezeichnung: engagement"
+  },
+  "featureFilterChips": {
+    "message": "Chipy filtrów",
+    "description": "Filter-Bezeichnung: filterChips"
+  },
+  "featureFilterChipsHint": {
+    "message": "Pasek „Wszystko / Gry / Muzyka …”",
+    "description": "Erklaerung zum Filter filterChips"
+  },
+  "featureHeatmap": {
+    "message": "Mapa ciepła („Najczęściej odtwarzane”)",
+    "description": "Filter-Bezeichnung: heatmap"
+  },
+  "featureHomeFeed": {
+    "message": "Feed strony głównej",
+    "description": "Filter-Bezeichnung: homeFeed"
+  },
+  "featureHomeFeedHint": {
+    "message": "Siatka propozycji na youtube.com",
+    "description": "Erklaerung zum Filter homeFeed"
+  },
+  "featureHomeNotice": {
+    "message": "Komunikat na pustej stronie głównej",
+    "description": "Filter-Bezeichnung: homeNotice"
+  },
+  "featureHomeNoticeHint": {
+    "message": "Pokazuje spokojny placeholder zamiast feedu",
+    "description": "Erklaerung zum Filter homeNotice"
+  },
+  "featureHoverPreview": {
+    "message": "Podgląd po najechaniu",
+    "description": "Filter-Bezeichnung: hoverPreview"
+  },
+  "featureHoverPreviewHint": {
+    "message": "Film odtwarza się po najechaniu myszą",
+    "description": "Erklaerung zum Filter hoverPreview"
+  },
+  "featureInfoCards": {
+    "message": "Karty informacyjne i adnotacje",
+    "description": "Filter-Bezeichnung: infoCards"
+  },
+  "featureLiveChat": {
+    "message": "Czat na żywo",
+    "description": "Filter-Bezeichnung: liveChat"
+  },
+  "featureLogo": {
+    "message": "Logo YouTube",
+    "description": "Filter-Bezeichnung: logo"
+  },
+  "featureMasthead": {
+    "message": "Cały nagłówek",
+    "description": "Filter-Bezeichnung: masthead"
+  },
+  "featureMastheadHint": {
+    "message": "Cały górny pasek razem z wyszukiwarką",
+    "description": "Erklaerung zum Filter masthead"
+  },
+  "featureMerch": {
+    "message": "Gadżety, bilety, wpłaty",
+    "description": "Filter-Bezeichnung: merch"
+  },
+  "featureMiniSidebar": {
+    "message": "Mini panel boczny",
+    "description": "Filter-Bezeichnung: miniSidebar"
+  },
+  "featureMiniSidebarHint": {
+    "message": "Wąski pasek ikon po lewej",
+    "description": "Erklaerung zum Filter miniSidebar"
+  },
+  "featureMiniplayerButton": {
+    "message": "Przycisk miniodtwarzacza",
+    "description": "Filter-Bezeichnung: miniplayerButton"
+  },
+  "featureNextButton": {
+    "message": "Przycisk Dalej",
+    "description": "Filter-Bezeichnung: nextButton"
+  },
+  "featureNotificationBadges": {
+    "message": "Czerwone liczniki",
+    "description": "Filter-Bezeichnung: notificationBadges"
+  },
+  "featureNotifications": {
+    "message": "Dzwonek / powiadomienia",
+    "description": "Filter-Bezeichnung: notifications"
+  },
+  "featurePauseOverlay": {
+    "message": "Nakładka pauzy",
+    "description": "Filter-Bezeichnung: pauseOverlay"
+  },
+  "featurePauseOverlayHint": {
+    "message": "„Więcej filmów” po zatrzymaniu",
+    "description": "Erklaerung zum Filter pauseOverlay"
+  },
+  "featurePlaylistPanel": {
+    "message": "Panel playlisty",
+    "description": "Filter-Bezeichnung: playlistPanel"
+  },
+  "featureRedirectShorts": {
+    "message": "Przekierowuj Shorts",
+    "description": "Filter-Bezeichnung: redirectShorts"
+  },
+  "featureRedirectShortsHint": {
+    "message": "/shorts/… otwiera się jak zwykły film",
+    "description": "Erklaerung zum Filter redirectShorts"
+  },
+  "featureRelated": {
+    "message": "Proponowane filmy",
+    "description": "Filter-Bezeichnung: related"
+  },
+  "featureRelatedHint": {
+    "message": "Prawa kolumna / „Następny”",
+    "description": "Erklaerung zum Filter related"
+  },
+  "featureSearch": {
+    "message": "Pasek wyszukiwania",
+    "description": "Filter-Bezeichnung: search"
+  },
+  "featureSearchAds": {
+    "message": "Promowane / reklamy",
+    "description": "Filter-Bezeichnung: searchAds"
+  },
+  "featureSearchHint": {
+    "message": "Pole wyszukiwania w nagłówku",
+    "description": "Erklaerung zum Filter search"
+  },
+  "featureShorts": {
+    "message": "Shorts",
+    "description": "Filter-Bezeichnung: shorts"
+  },
+  "featureShortsHint": {
+    "message": "Półki, kafelki, pozycja w menu",
+    "description": "Erklaerung zum Filter shorts"
+  },
+  "featureSidebar": {
+    "message": "Panel boczny",
+    "description": "Filter-Bezeichnung: sidebar"
+  },
+  "featureSidebarHint": {
+    "message": "Menu z subskrypcjami, historią i eksploracją",
+    "description": "Erklaerung zum Filter sidebar"
+  },
+  "featureSkipAds": {
+    "message": "Pomijaj reklamy",
+    "description": "Filter-Bezeichnung: skipAds"
+  },
+  "featureSkipAdsHint": {
+    "message": "Klika „Pomiń” i przewija reklamy bez pominięcia",
+    "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureThumbnails": {
+    "message": "Miniatury",
+    "description": "Filter-Bezeichnung: thumbnails"
+  },
+  "featureThumbnailsHint": {
+    "message": "Miniatury stają się szare",
+    "description": "Erklaerung zum Filter thumbnails"
+  },
+  "featureTrending": {
+    "message": "Na czasie i Eksploruj",
+    "description": "Filter-Bezeichnung: trending"
+  },
+  "featureVideoTitle": {
+    "message": "Tytuł filmu",
+    "description": "Filter-Bezeichnung: videoTitle"
+  },
+  "featureViewCounts": {
+    "message": "Wyświetlenia i liczby",
+    "description": "Filter-Bezeichnung: viewCounts"
+  },
+  "featureVoiceSearch": {
+    "message": "Wyszukiwanie głosowe",
+    "description": "Filter-Bezeichnung: voiceSearch"
+  }
+}

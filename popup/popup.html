@@ -29,10 +29,20 @@
     </form>
 
     <div class="presets">
-      <button type="button" data-preset="radikal" data-i18n="presetRadical"></button>
+      <button type="button" data-preset="custom" data-i18n="presetCustom"></button>
       <button type="button" data-preset="fokus" data-i18n="presetFocus"></button>
       <button type="button" data-preset="aus" data-i18n="presetNone"></button>
     </div>
+
+    <button type="button" id="custom-save" class="custom-save" hidden></button>
+
+    <section id="rate" class="rate" hidden>
+      <p class="rate__text" data-i18n="rateText"></p>
+      <div class="rate__actions">
+        <button type="button" id="rate-yes" data-i18n="rateAction"></button>
+        <button type="button" id="rate-later" data-i18n="rateLater"></button>
+      </div>
+    </section>
 
     <main id="groups" class="groups"></main>
 
@@ -41,6 +51,16 @@
       <button type="button" id="reset" data-i18n="footerReset"></button>
     </footer>
 
+    <aside class="colophon">
+      <span data-i18n="colophonBy"></span>
+      <a href="https://neotactiq.ai" target="_blank" rel="noopener noreferrer">NeoTactIQ</a>
+      <span class="colophon__sep" aria-hidden="true">·</span>
+      <a href="https://ko-fi.com/neotactiq" target="_blank" rel="noopener noreferrer">Ko-fi</a>
+      <span class="colophon__sep" aria-hidden="true">·</span>
+      <a href="https://www.patreon.com/c/neotactiq" target="_blank" rel="noopener noreferrer">Patreon</a>
+    </aside>
+
+    <script src="../src/i18n.js"></script>
     <script src="../src/features.js"></script>
     <script src="popup.js"></script>
   </body>

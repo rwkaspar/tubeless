@@ -45,17 +45,21 @@ Player
 • Das „Weitere Videos"-Overlay beim Pausieren
 • Infokarten, Heatmap, Weiter-Button, Miniplayer
 • Autoplay — dauerhaft aus, nicht nur für diese Sitzung
+• Werbung wird übersprungen, sobald sie sich überspringen lässt
 
 Kopfzeile und Navigation
 • Die gesamte obere Leiste, die Seitenleiste, die Glocke, den Zähler-Badge
 
 WIE DU ES EINSTELLST
 
-38 Filter, jeder einzeln schaltbar, dazu drei Presets:
+39 Filter, jeder einzeln schaltbar, dazu drei Presets:
 
-• Radikal — wirklich alles, bis hin zu Titel, Beschreibung und Vorschaubildern
+• Eigene — deine gespeicherte Auswahl, jederzeit mit einem Klick zurück
 • Fokus — wie der Standard, aber Kopfzeile und Suchleiste bleiben
 • Nichts filtern — alles wieder an
+
+Stell dir zusammen, was du weghaben willst, sichere es einmal als „Eigene" — und
+komm nach jedem Ausflug in die anderen Presets mit einem Klick dorthin zurück.
 
 Ein Schalter oben im Popup pausiert Tubeless komplett, wenn du doch mal stöbern
 willst. Änderungen greifen sofort, ohne Neuladen, in allen offenen Tabs.
@@ -73,10 +77,20 @@ WORAUF DU DICH VERLASSEN KANNST
 • Deine Einstellungen liegen in deinem Chrome-Profil und wandern per Sync mit.
 • Der Quelltext ist offen und lesbar: github.com/rwkaspar/tubeless
 
-Tubeless blockiert keine Werbung im Video und ist kein Ersatz für einen
-Adblocker. Es räumt die Oberfläche auf.
+ZUR WERBUNG, EHRLICH GESAGT
 
-Deutsch und Englisch, weitere Sprachen können ergänzt werden.
+Tubeless überspringt Werbung, es blockiert sie nicht. Sobald der
+„Überspringen"-Button erscheint, wird er gedrückt; unüberspringbare Anzeigen
+werden vorgespult. Das erspart dir das Warten und die Klicks — werbefrei ist
+YouTube damit nicht, und ein Ersatz für einen Adblocker ist Tubeless nicht.
+
+Dislike-Zahlen zeigt Tubeless bewusst nicht an. Die wären nur über einen
+Drittanbieter zu bekommen, an den für jedes Video die Video-ID gehen müsste. Das
+verträgt sich nicht mit dem Versprechen oben.
+
+Zwölf Sprachen: Deutsch, Englisch, Spanisch, Französisch, Italienisch,
+Japanisch, Niederländisch, Polnisch, Portugiesisch, Russisch, Türkisch und
+Chinesisch. Die Sprache richtet sich nach deinen Browser-Einstellungen.
 ```
 
 ## Kategorie
@@ -87,8 +101,9 @@ Produktivität
 
 ```
 Tubeless blendet ablenkende Oberflächenelemente auf youtube.com aus — Feed,
-Empfehlungen, Kommentare, Shorts, Endcards — und schaltet Autoplay ab. Das ist
-der einzige Zweck der Erweiterung.
+Empfehlungen, Kommentare, Shorts, Endcards — schaltet Autoplay ab und
+überspringt Anzeigen, sobald YouTube das zulässt. Das ist der einzige Zweck der
+Erweiterung.
 ```
 
 ## Begründung der Berechtigungen
@@ -96,7 +111,8 @@ der einzige Zweck der Erweiterung.
 **`storage`**
 
 ```
-Speichert, welche der 38 Filter der Nutzer aktiviert hat. Ohne diese Berechtigung
+Speichert, welche der 39 Filter der Nutzer aktiviert hat, dazu dessen selbst
+gesicherte Auswahl. Ohne diese Berechtigung
 wären die Einstellungen nach jedem Tab-Wechsel wieder weg. Es werden ausschließlich
 diese Schalterzustände gespeichert, keine Nutzungsdaten.
 ```
@@ -105,11 +121,19 @@ diese Schalterzustände gespeichert, keine Nutzungsdaten.
 
 ```
 Die Erweiterung muss auf YouTube-Seiten CSS-Klassen setzen, um Elemente
-auszublenden, Autoplay abzuschalten und /shorts/-URLs auf den normalen Player
-umzuleiten. Sie greift auf keine andere Domain zu.
+auszublenden, Autoplay abzuschalten, den „Überspringen"-Button für Anzeigen zu
+betätigen und /shorts/-URLs auf den normalen Player umzuleiten. Sie greift auf
+keine andere Domain zu.
 ```
 
 ## Datennutzung
 
 Keine Erhebung, keine Weitergabe, keine Verkäufe. Alle drei Erklärungen im
 Web-Store-Formular können verneint werden.
+
+## Autor & Unterstützung
+
+Ein Projekt von [NeoTactIQ](https://neotactiq.ai).
+
+- Ko-fi: <https://ko-fi.com/neotactiq>
+- Patreon: <https://www.patreon.com/c/neotactiq>

@@ -1,0 +1,344 @@
+{
+  "actionTitle": {
+    "message": "Tubeless",
+    "description": "Tooltip des Toolbar-Icons"
+  },
+  "colophonBy": {
+    "message": "Un projet de",
+    "description": "Prefix vor dem Herausgeber-Link im Popup-Footer"
+  },
+  "customSave": {
+    "message": "Enregistrer comme « Perso »",
+    "description": "Button unter den Presets"
+  },
+  "customUpdate": {
+    "message": "Mettre à jour « Perso »",
+    "description": "Derselbe Button, wenn bereits etwas gespeichert ist"
+  },
+  "extDescription": {
+    "message": "Supprime les distractions de YouTube : fil, barre latérale, Shorts, recommandations, commentaires et lecture automatique.",
+    "description": "Kurzbeschreibung, max. 132 Zeichen"
+  },
+  "extName": {
+    "message": "Tubeless — YouTube sans le bruit",
+    "description": "Name der Extension"
+  },
+  "footerReset": {
+    "message": "Par défaut",
+    "description": "Setzt auf die Auslieferungseinstellung zurueck"
+  },
+  "masterLabel": {
+    "message": "Mettre Tubeless en pause",
+    "description": "Beschriftung des grossen Schalters (Screenreader)"
+  },
+  "noticeSub": {
+    "message": "Tubeless a retiré le fil. Cherche ce pour quoi tu es venu.",
+    "description": "Text unter der Ueberschrift"
+  },
+  "noticeTitle": {
+    "message": "Rien à voir ici.",
+    "description": "Ueberschrift des Platzhalters auf der leeren Startseite"
+  },
+  "presetCustom": {
+    "message": "Perso",
+    "description": "Preset: die selbst gespeicherte Auswahl"
+  },
+  "presetCustomEmpty": {
+    "message": "Aucune sélection personnelle enregistrée",
+    "description": "Tooltip, solange nichts gespeichert ist"
+  },
+  "presetFocus": {
+    "message": "Focus",
+    "description": "Preset: Kopfzeile und Suche bleiben"
+  },
+  "presetNone": {
+    "message": "Ne rien filtrer",
+    "description": "Preset: alle Filter aus"
+  },
+  "rateAction": {
+    "message": "Laisser un avis",
+    "description": "Button: oeffnet die Store-Seite"
+  },
+  "rateLater": {
+    "message": "Plus tard",
+    "description": "Button: verschiebt den Hinweis um 30 Tage"
+  },
+  "rateText": {
+    "message": "Tubeless te sert ? Un court avis sur le Web Store aide les autres à le trouver.",
+    "description": "Text im Bewertungs-Hinweis"
+  },
+  "searchPlaceholder": {
+    "message": "Rechercher sur YouTube …",
+    "description": "Platzhalter im Suchfeld des Popups"
+  },
+  "searchSubmit": {
+    "message": "Rechercher",
+    "description": "Beschriftung des Such-Buttons (Screenreader)"
+  },
+  "statusFiltered": {
+    "message": "$COUNT$ distractions filtrées sur $TOTAL$",
+    "description": "Zaehler in der Fusszeile des Popups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "33"
+      },
+      "total": {
+        "content": "$2",
+        "example": "38"
+      }
+    }
+  },
+  "statusPaused": {
+    "message": "En pause — YouTube intact",
+    "description": "Fusszeile, wenn Tubeless pausiert ist"
+  },
+  "groupBehavior": {
+    "message": "Comportement",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupChrome": {
+    "message": "En-tête et navigation",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupFeeds": {
+    "message": "Accueil et fils",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupGlobal": {
+    "message": "Partout",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupPlayer": {
+    "message": "Lecteur",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupWatch": {
+    "message": "Page de la vidéo",
+    "description": "Gruppentitel im Popup"
+  },
+  "featureAccountMenu": {
+    "message": "Avatar du compte",
+    "description": "Filter-Bezeichnung: accountMenu"
+  },
+  "featureAmbientMode": {
+    "message": "Mode ambiant",
+    "description": "Filter-Bezeichnung: ambientMode"
+  },
+  "featureAmbientModeHint": {
+    "message": "Halo coloré derrière le lecteur",
+    "description": "Erklaerung zum Filter ambientMode"
+  },
+  "featureAutonavToggle": {
+    "message": "Bouton de lecture automatique",
+    "description": "Filter-Bezeichnung: autonavToggle"
+  },
+  "featureChannelInfo": {
+    "message": "Chaîne et abonnement",
+    "description": "Filter-Bezeichnung: channelInfo"
+  },
+  "featureComments": {
+    "message": "Commentaires",
+    "description": "Filter-Bezeichnung: comments"
+  },
+  "featureCreateButton": {
+    "message": "Bouton Créer",
+    "description": "Filter-Bezeichnung: createButton"
+  },
+  "featureDescription": {
+    "message": "Description de la vidéo",
+    "description": "Filter-Bezeichnung: description"
+  },
+  "featureDisableAutoplay": {
+    "message": "Couper la lecture automatique",
+    "description": "Filter-Bezeichnung: disableAutoplay"
+  },
+  "featureDisableAutoplayHint": {
+    "message": "Garde « Lecture automatique » désactivée en permanence",
+    "description": "Erklaerung zum Filter disableAutoplay"
+  },
+  "featureEndScreen": {
+    "message": "Cartes de fin et mur de vidéos",
+    "description": "Filter-Bezeichnung: endScreen"
+  },
+  "featureEndScreenHint": {
+    "message": "Vignettes à la fin de la vidéo",
+    "description": "Erklaerung zum Filter endScreen"
+  },
+  "featureEngagement": {
+    "message": "J'aime / partager / enregistrer",
+    "description": "Filter-Bezeichnung: engagement"
+  },
+  "featureFilterChips": {
+    "message": "Puces de filtre",
+    "description": "Filter-Bezeichnung: filterChips"
+  },
+  "featureFilterChipsHint": {
+    "message": "La barre « Tout / Jeux / Musique … »",
+    "description": "Erklaerung zum Filter filterChips"
+  },
+  "featureHeatmap": {
+    "message": "Carte de chaleur (« Le plus revu »)",
+    "description": "Filter-Bezeichnung: heatmap"
+  },
+  "featureHomeFeed": {
+    "message": "Fil d'accueil",
+    "description": "Filter-Bezeichnung: homeFeed"
+  },
+  "featureHomeFeedHint": {
+    "message": "Grille de recommandations sur youtube.com",
+    "description": "Erklaerung zum Filter homeFeed"
+  },
+  "featureHomeNotice": {
+    "message": "Message sur l'accueil vide",
+    "description": "Filter-Bezeichnung: homeNotice"
+  },
+  "featureHomeNoticeHint": {
+    "message": "Affiche un espace calme à la place du fil",
+    "description": "Erklaerung zum Filter homeNotice"
+  },
+  "featureHoverPreview": {
+    "message": "Aperçu au survol",
+    "description": "Filter-Bezeichnung: hoverPreview"
+  },
+  "featureHoverPreviewHint": {
+    "message": "Lecture automatique au passage de la souris",
+    "description": "Erklaerung zum Filter hoverPreview"
+  },
+  "featureInfoCards": {
+    "message": "Fiches info et annotations",
+    "description": "Filter-Bezeichnung: infoCards"
+  },
+  "featureLiveChat": {
+    "message": "Chat en direct",
+    "description": "Filter-Bezeichnung: liveChat"
+  },
+  "featureLogo": {
+    "message": "Logo YouTube",
+    "description": "Filter-Bezeichnung: logo"
+  },
+  "featureMasthead": {
+    "message": "En-tête complet",
+    "description": "Filter-Bezeichnung: masthead"
+  },
+  "featureMastheadHint": {
+    "message": "Toute la barre du haut, recherche comprise",
+    "description": "Erklaerung zum Filter masthead"
+  },
+  "featureMerch": {
+    "message": "Produits dérivés, billets, dons",
+    "description": "Filter-Bezeichnung: merch"
+  },
+  "featureMiniSidebar": {
+    "message": "Mini barre latérale",
+    "description": "Filter-Bezeichnung: miniSidebar"
+  },
+  "featureMiniSidebarHint": {
+    "message": "La bande d'icônes étroite à gauche",
+    "description": "Erklaerung zum Filter miniSidebar"
+  },
+  "featureMiniplayerButton": {
+    "message": "Bouton mini-lecteur",
+    "description": "Filter-Bezeichnung: miniplayerButton"
+  },
+  "featureNextButton": {
+    "message": "Bouton suivant",
+    "description": "Filter-Bezeichnung: nextButton"
+  },
+  "featureNotificationBadges": {
+    "message": "Pastilles rouges",
+    "description": "Filter-Bezeichnung: notificationBadges"
+  },
+  "featureNotifications": {
+    "message": "Cloche / notifications",
+    "description": "Filter-Bezeichnung: notifications"
+  },
+  "featurePauseOverlay": {
+    "message": "Surcouche de pause",
+    "description": "Filter-Bezeichnung: pauseOverlay"
+  },
+  "featurePauseOverlayHint": {
+    "message": "« Plus de vidéos » à la pause",
+    "description": "Erklaerung zum Filter pauseOverlay"
+  },
+  "featurePlaylistPanel": {
+    "message": "Panneau de playlist",
+    "description": "Filter-Bezeichnung: playlistPanel"
+  },
+  "featureRedirectShorts": {
+    "message": "Rediriger les Shorts",
+    "description": "Filter-Bezeichnung: redirectShorts"
+  },
+  "featureRedirectShortsHint": {
+    "message": "/shorts/… s'ouvre comme une vidéo normale",
+    "description": "Erklaerung zum Filter redirectShorts"
+  },
+  "featureRelated": {
+    "message": "Vidéos recommandées",
+    "description": "Filter-Bezeichnung: related"
+  },
+  "featureRelatedHint": {
+    "message": "Colonne de droite / « À suivre »",
+    "description": "Erklaerung zum Filter related"
+  },
+  "featureSearch": {
+    "message": "Barre de recherche",
+    "description": "Filter-Bezeichnung: search"
+  },
+  "featureSearchAds": {
+    "message": "Contenus sponsorisés / publicités",
+    "description": "Filter-Bezeichnung: searchAds"
+  },
+  "featureSearchHint": {
+    "message": "Champ de recherche dans l'en-tête",
+    "description": "Erklaerung zum Filter search"
+  },
+  "featureShorts": {
+    "message": "Shorts",
+    "description": "Filter-Bezeichnung: shorts"
+  },
+  "featureShortsHint": {
+    "message": "Rayons, vignettes, entrée de menu",
+    "description": "Erklaerung zum Filter shorts"
+  },
+  "featureSidebar": {
+    "message": "Barre latérale",
+    "description": "Filter-Bezeichnung: sidebar"
+  },
+  "featureSidebarHint": {
+    "message": "Guide avec abonnements, historique, explorer",
+    "description": "Erklaerung zum Filter sidebar"
+  },
+  "featureSkipAds": {
+    "message": "Passer les publicités",
+    "description": "Filter-Bezeichnung: skipAds"
+  },
+  "featureSkipAdsHint": {
+    "message": "Clique sur « Ignorer » et avance les publicités non ignorables",
+    "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureThumbnails": {
+    "message": "Miniatures",
+    "description": "Filter-Bezeichnung: thumbnails"
+  },
+  "featureThumbnailsHint": {
+    "message": "Les miniatures deviennent grises",
+    "description": "Erklaerung zum Filter thumbnails"
+  },
+  "featureTrending": {
+    "message": "Tendances et Explorer",
+    "description": "Filter-Bezeichnung: trending"
+  },
+  "featureVideoTitle": {
+    "message": "Titre de la vidéo",
+    "description": "Filter-Bezeichnung: videoTitle"
+  },
+  "featureViewCounts": {
+    "message": "Vues et chiffres",
+    "description": "Filter-Bezeichnung: viewCounts"
+  },
+  "featureVoiceSearch": {
+    "message": "Recherche vocale",
+    "description": "Filter-Bezeichnung: voiceSearch"
+  }
+}

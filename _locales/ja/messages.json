@@ -1,0 +1,344 @@
+{
+  "actionTitle": {
+    "message": "Tubeless",
+    "description": "Tooltip des Toolbar-Icons"
+  },
+  "colophonBy": {
+    "message": "制作:",
+    "description": "Prefix vor dem Herausgeber-Link im Popup-Footer"
+  },
+  "customSave": {
+    "message": "「カスタム」として保存",
+    "description": "Button unter den Presets"
+  },
+  "customUpdate": {
+    "message": "「カスタム」を更新",
+    "description": "Derselbe Button, wenn bereits etwas gespeichert ist"
+  },
+  "extDescription": {
+    "message": "YouTube から気を散らす要素をすべて取り除きます: フィード、サイドバー、ショート、関連動画、コメント、終了画面、自動再生。",
+    "description": "Kurzbeschreibung, max. 132 Zeichen"
+  },
+  "extName": {
+    "message": "Tubeless — 雑音のない YouTube",
+    "description": "Name der Extension"
+  },
+  "footerReset": {
+    "message": "既定値",
+    "description": "Setzt auf die Auslieferungseinstellung zurueck"
+  },
+  "masterLabel": {
+    "message": "Tubeless を一時停止",
+    "description": "Beschriftung des grossen Schalters (Screenreader)"
+  },
+  "noticeSub": {
+    "message": "Tubeless がフィードを取り除きました。本来の目的を検索してください。",
+    "description": "Text unter der Ueberschrift"
+  },
+  "noticeTitle": {
+    "message": "ここには何もありません。",
+    "description": "Ueberschrift des Platzhalters auf der leeren Startseite"
+  },
+  "presetCustom": {
+    "message": "カスタム",
+    "description": "Preset: die selbst gespeicherte Auswahl"
+  },
+  "presetCustomEmpty": {
+    "message": "カスタムの選択はまだ保存されていません",
+    "description": "Tooltip, solange nichts gespeichert ist"
+  },
+  "presetFocus": {
+    "message": "フォーカス",
+    "description": "Preset: Kopfzeile und Suche bleiben"
+  },
+  "presetNone": {
+    "message": "何もフィルタしない",
+    "description": "Preset: alle Filter aus"
+  },
+  "rateAction": {
+    "message": "レビューを書く",
+    "description": "Button: oeffnet die Store-Seite"
+  },
+  "rateLater": {
+    "message": "後で",
+    "description": "Button: verschiebt den Hinweis um 30 Tage"
+  },
+  "rateText": {
+    "message": "Tubeless は役に立っていますか。ウェブストアの短いレビューが、ほかの人が見つける助けになります。",
+    "description": "Text im Bewertungs-Hinweis"
+  },
+  "searchPlaceholder": {
+    "message": "YouTube を検索 …",
+    "description": "Platzhalter im Suchfeld des Popups"
+  },
+  "searchSubmit": {
+    "message": "検索",
+    "description": "Beschriftung des Such-Buttons (Screenreader)"
+  },
+  "statusFiltered": {
+    "message": "$TOTAL$ 件中 $COUNT$ 件の気を散らす要素を除去",
+    "description": "Zaehler in der Fusszeile des Popups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "33"
+      },
+      "total": {
+        "content": "$2",
+        "example": "38"
+      }
+    }
+  },
+  "statusPaused": {
+    "message": "一時停止中 — YouTube はそのまま",
+    "description": "Fusszeile, wenn Tubeless pausiert ist"
+  },
+  "groupBehavior": {
+    "message": "動作",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupChrome": {
+    "message": "ヘッダーとナビゲーション",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupFeeds": {
+    "message": "ホームとフィード",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupGlobal": {
+    "message": "すべてのページ",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupPlayer": {
+    "message": "プレーヤー",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupWatch": {
+    "message": "動画ページ",
+    "description": "Gruppentitel im Popup"
+  },
+  "featureAccountMenu": {
+    "message": "アカウントのアイコン",
+    "description": "Filter-Bezeichnung: accountMenu"
+  },
+  "featureAmbientMode": {
+    "message": "シアターの色演出",
+    "description": "Filter-Bezeichnung: ambientMode"
+  },
+  "featureAmbientModeHint": {
+    "message": "プレーヤー背後の色のにじみ",
+    "description": "Erklaerung zum Filter ambientMode"
+  },
+  "featureAutonavToggle": {
+    "message": "自動再生の切り替え",
+    "description": "Filter-Bezeichnung: autonavToggle"
+  },
+  "featureChannelInfo": {
+    "message": "チャンネルとチャンネル登録",
+    "description": "Filter-Bezeichnung: channelInfo"
+  },
+  "featureComments": {
+    "message": "コメント",
+    "description": "Filter-Bezeichnung: comments"
+  },
+  "featureCreateButton": {
+    "message": "作成ボタン",
+    "description": "Filter-Bezeichnung: createButton"
+  },
+  "featureDescription": {
+    "message": "動画の説明",
+    "description": "Filter-Bezeichnung: description"
+  },
+  "featureDisableAutoplay": {
+    "message": "自動再生をオフにする",
+    "description": "Filter-Bezeichnung: disableAutoplay"
+  },
+  "featureDisableAutoplayHint": {
+    "message": "「自動再生」を常にオフのままにします",
+    "description": "Erklaerung zum Filter disableAutoplay"
+  },
+  "featureEndScreen": {
+    "message": "終了画面と動画の壁",
+    "description": "Filter-Bezeichnung: endScreen"
+  },
+  "featureEndScreenHint": {
+    "message": "動画の最後に出るタイル",
+    "description": "Erklaerung zum Filter endScreen"
+  },
+  "featureEngagement": {
+    "message": "高評価 / 共有 / 保存",
+    "description": "Filter-Bezeichnung: engagement"
+  },
+  "featureFilterChips": {
+    "message": "フィルタチップ",
+    "description": "Filter-Bezeichnung: filterChips"
+  },
+  "featureFilterChipsHint": {
+    "message": "「すべて / ゲーム / 音楽 …」のバー",
+    "description": "Erklaerung zum Filter filterChips"
+  },
+  "featureHeatmap": {
+    "message": "ヒートマップ (「リプレイの多い区間」)",
+    "description": "Filter-Bezeichnung: heatmap"
+  },
+  "featureHomeFeed": {
+    "message": "ホームのフィード",
+    "description": "Filter-Bezeichnung: homeFeed"
+  },
+  "featureHomeFeedHint": {
+    "message": "youtube.com のおすすめ一覧",
+    "description": "Erklaerung zum Filter homeFeed"
+  },
+  "featureHomeNotice": {
+    "message": "空のホームに表示する案内",
+    "description": "Filter-Bezeichnung: homeNotice"
+  },
+  "featureHomeNoticeHint": {
+    "message": "フィードの代わりに静かなプレースホルダーを表示",
+    "description": "Erklaerung zum Filter homeNotice"
+  },
+  "featureHoverPreview": {
+    "message": "ホバー時のプレビュー",
+    "description": "Filter-Bezeichnung: hoverPreview"
+  },
+  "featureHoverPreviewHint": {
+    "message": "カーソルを載せると動画が再生される",
+    "description": "Erklaerung zum Filter hoverPreview"
+  },
+  "featureInfoCards": {
+    "message": "情報カードとアノテーション",
+    "description": "Filter-Bezeichnung: infoCards"
+  },
+  "featureLiveChat": {
+    "message": "ライブチャット",
+    "description": "Filter-Bezeichnung: liveChat"
+  },
+  "featureLogo": {
+    "message": "YouTube のロゴ",
+    "description": "Filter-Bezeichnung: logo"
+  },
+  "featureMasthead": {
+    "message": "ヘッダー全体",
+    "description": "Filter-Bezeichnung: masthead"
+  },
+  "featureMastheadHint": {
+    "message": "検索窓を含む上部バー全体",
+    "description": "Erklaerung zum Filter masthead"
+  },
+  "featureMerch": {
+    "message": "グッズ、チケット、寄付",
+    "description": "Filter-Bezeichnung: merch"
+  },
+  "featureMiniSidebar": {
+    "message": "ミニサイドバー",
+    "description": "Filter-Bezeichnung: miniSidebar"
+  },
+  "featureMiniSidebarHint": {
+    "message": "左端の細いアイコン列",
+    "description": "Erklaerung zum Filter miniSidebar"
+  },
+  "featureMiniplayerButton": {
+    "message": "ミニプレーヤーのボタン",
+    "description": "Filter-Bezeichnung: miniplayerButton"
+  },
+  "featureNextButton": {
+    "message": "次へボタン",
+    "description": "Filter-Bezeichnung: nextButton"
+  },
+  "featureNotificationBadges": {
+    "message": "赤いカウンター",
+    "description": "Filter-Bezeichnung: notificationBadges"
+  },
+  "featureNotifications": {
+    "message": "ベル / 通知",
+    "description": "Filter-Bezeichnung: notifications"
+  },
+  "featurePauseOverlay": {
+    "message": "一時停止時のオーバーレイ",
+    "description": "Filter-Bezeichnung: pauseOverlay"
+  },
+  "featurePauseOverlayHint": {
+    "message": "一時停止したときの「他の動画」",
+    "description": "Erklaerung zum Filter pauseOverlay"
+  },
+  "featurePlaylistPanel": {
+    "message": "再生リストのパネル",
+    "description": "Filter-Bezeichnung: playlistPanel"
+  },
+  "featureRedirectShorts": {
+    "message": "ショートをリダイレクト",
+    "description": "Filter-Bezeichnung: redirectShorts"
+  },
+  "featureRedirectShortsHint": {
+    "message": "/shorts/… を通常の動画として開く",
+    "description": "Erklaerung zum Filter redirectShorts"
+  },
+  "featureRelated": {
+    "message": "おすすめの動画",
+    "description": "Filter-Bezeichnung: related"
+  },
+  "featureRelatedHint": {
+    "message": "右側の列 / 「次の動画」",
+    "description": "Erklaerung zum Filter related"
+  },
+  "featureSearch": {
+    "message": "検索バー",
+    "description": "Filter-Bezeichnung: search"
+  },
+  "featureSearchAds": {
+    "message": "プロモーション / 広告枠",
+    "description": "Filter-Bezeichnung: searchAds"
+  },
+  "featureSearchHint": {
+    "message": "ヘッダーの検索窓",
+    "description": "Erklaerung zum Filter search"
+  },
+  "featureShorts": {
+    "message": "ショート",
+    "description": "Filter-Bezeichnung: shorts"
+  },
+  "featureShortsHint": {
+    "message": "棚、一覧のタイル、メニュー項目",
+    "description": "Erklaerung zum Filter shorts"
+  },
+  "featureSidebar": {
+    "message": "サイドバー",
+    "description": "Filter-Bezeichnung: sidebar"
+  },
+  "featureSidebarHint": {
+    "message": "登録チャンネル、履歴、探索を含むガイド",
+    "description": "Erklaerung zum Filter sidebar"
+  },
+  "featureSkipAds": {
+    "message": "広告をスキップ",
+    "description": "Filter-Bezeichnung: skipAds"
+  },
+  "featureSkipAdsHint": {
+    "message": "「スキップ」を押し、スキップできない広告は早送りします",
+    "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureThumbnails": {
+    "message": "サムネイル",
+    "description": "Filter-Bezeichnung: thumbnails"
+  },
+  "featureThumbnailsHint": {
+    "message": "サムネイルを灰色にします",
+    "description": "Erklaerung zum Filter thumbnails"
+  },
+  "featureTrending": {
+    "message": "急上昇と探索",
+    "description": "Filter-Bezeichnung: trending"
+  },
+  "featureVideoTitle": {
+    "message": "動画のタイトル",
+    "description": "Filter-Bezeichnung: videoTitle"
+  },
+  "featureViewCounts": {
+    "message": "再生回数と数字",
+    "description": "Filter-Bezeichnung: viewCounts"
+  },
+  "featureVoiceSearch": {
+    "message": "音声検索",
+    "description": "Filter-Bezeichnung: voiceSearch"
+  }
+}

@@ -1,0 +1,344 @@
+{
+  "actionTitle": {
+    "message": "Tubeless",
+    "description": "Tooltip des Toolbar-Icons"
+  },
+  "colophonBy": {
+    "message": "Een project van",
+    "description": "Prefix vor dem Herausgeber-Link im Popup-Footer"
+  },
+  "customSave": {
+    "message": "Opslaan als ‘Eigen’",
+    "description": "Button unter den Presets"
+  },
+  "customUpdate": {
+    "message": "‘Eigen’ bijwerken",
+    "description": "Derselbe Button, wenn bereits etwas gespeichert ist"
+  },
+  "extDescription": {
+    "message": "Haalt elke afleiding uit YouTube: feed, zijbalk, Shorts, aanbevelingen, reacties, eindschermen en automatisch afspelen.",
+    "description": "Kurzbeschreibung, max. 132 Zeichen"
+  },
+  "extName": {
+    "message": "Tubeless — YouTube zonder ruis",
+    "description": "Name der Extension"
+  },
+  "footerReset": {
+    "message": "Standaard",
+    "description": "Setzt auf die Auslieferungseinstellung zurueck"
+  },
+  "masterLabel": {
+    "message": "Tubeless pauzeren",
+    "description": "Beschriftung des grossen Schalters (Screenreader)"
+  },
+  "noticeSub": {
+    "message": "Tubeless heeft de feed weggehaald. Zoek waarvoor je gekomen bent.",
+    "description": "Text unter der Ueberschrift"
+  },
+  "noticeTitle": {
+    "message": "Hier valt niets te zien.",
+    "description": "Ueberschrift des Platzhalters auf der leeren Startseite"
+  },
+  "presetCustom": {
+    "message": "Eigen",
+    "description": "Preset: die selbst gespeicherte Auswahl"
+  },
+  "presetCustomEmpty": {
+    "message": "Nog geen eigen selectie opgeslagen",
+    "description": "Tooltip, solange nichts gespeichert ist"
+  },
+  "presetFocus": {
+    "message": "Focus",
+    "description": "Preset: Kopfzeile und Suche bleiben"
+  },
+  "presetNone": {
+    "message": "Niets filteren",
+    "description": "Preset: alle Filter aus"
+  },
+  "rateAction": {
+    "message": "Beoordelen",
+    "description": "Button: oeffnet die Store-Seite"
+  },
+  "rateLater": {
+    "message": "Later",
+    "description": "Button: verschiebt den Hinweis um 30 Tage"
+  },
+  "rateText": {
+    "message": "Heb je iets aan Tubeless? Een korte beoordeling in de Web Store helpt anderen het te vinden.",
+    "description": "Text im Bewertungs-Hinweis"
+  },
+  "searchPlaceholder": {
+    "message": "Zoeken op YouTube …",
+    "description": "Platzhalter im Suchfeld des Popups"
+  },
+  "searchSubmit": {
+    "message": "Zoeken",
+    "description": "Beschriftung des Such-Buttons (Screenreader)"
+  },
+  "statusFiltered": {
+    "message": "$COUNT$ van $TOTAL$ afleidingen gefilterd",
+    "description": "Zaehler in der Fusszeile des Popups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "33"
+      },
+      "total": {
+        "content": "$2",
+        "example": "38"
+      }
+    }
+  },
+  "statusPaused": {
+    "message": "Gepauzeerd — YouTube ongewijzigd",
+    "description": "Fusszeile, wenn Tubeless pausiert ist"
+  },
+  "groupBehavior": {
+    "message": "Gedrag",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupChrome": {
+    "message": "Koptekst en navigatie",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupFeeds": {
+    "message": "Startpagina en feeds",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupGlobal": {
+    "message": "Overal",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupPlayer": {
+    "message": "Speler",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupWatch": {
+    "message": "Videopagina",
+    "description": "Gruppentitel im Popup"
+  },
+  "featureAccountMenu": {
+    "message": "Accountavatar",
+    "description": "Filter-Bezeichnung: accountMenu"
+  },
+  "featureAmbientMode": {
+    "message": "Ambient-modus",
+    "description": "Filter-Bezeichnung: ambientMode"
+  },
+  "featureAmbientModeHint": {
+    "message": "Kleurgloed achter de speler",
+    "description": "Erklaerung zum Filter ambientMode"
+  },
+  "featureAutonavToggle": {
+    "message": "Schakelaar automatisch afspelen",
+    "description": "Filter-Bezeichnung: autonavToggle"
+  },
+  "featureChannelInfo": {
+    "message": "Kanaal en abonneren",
+    "description": "Filter-Bezeichnung: channelInfo"
+  },
+  "featureComments": {
+    "message": "Reacties",
+    "description": "Filter-Bezeichnung: comments"
+  },
+  "featureCreateButton": {
+    "message": "Maken-knop",
+    "description": "Filter-Bezeichnung: createButton"
+  },
+  "featureDescription": {
+    "message": "Videobeschrijving",
+    "description": "Filter-Bezeichnung: description"
+  },
+  "featureDisableAutoplay": {
+    "message": "Automatisch afspelen uitzetten",
+    "description": "Filter-Bezeichnung: disableAutoplay"
+  },
+  "featureDisableAutoplayHint": {
+    "message": "Houdt ‘Automatisch afspelen’ permanent uit",
+    "description": "Erklaerung zum Filter disableAutoplay"
+  },
+  "featureEndScreen": {
+    "message": "Eindschermen en videomuur",
+    "description": "Filter-Bezeichnung: endScreen"
+  },
+  "featureEndScreenHint": {
+    "message": "Tegels aan het eind van een video",
+    "description": "Erklaerung zum Filter endScreen"
+  },
+  "featureEngagement": {
+    "message": "Leuk / delen / opslaan",
+    "description": "Filter-Bezeichnung: engagement"
+  },
+  "featureFilterChips": {
+    "message": "Filterchips",
+    "description": "Filter-Bezeichnung: filterChips"
+  },
+  "featureFilterChipsHint": {
+    "message": "De balk ‘Alles / Gamen / Muziek …’",
+    "description": "Erklaerung zum Filter filterChips"
+  },
+  "featureHeatmap": {
+    "message": "Heatmap (‘Meest herbekeken’)",
+    "description": "Filter-Bezeichnung: heatmap"
+  },
+  "featureHomeFeed": {
+    "message": "Feed op de startpagina",
+    "description": "Filter-Bezeichnung: homeFeed"
+  },
+  "featureHomeFeedHint": {
+    "message": "Aanbevelingsraster op youtube.com",
+    "description": "Erklaerung zum Filter homeFeed"
+  },
+  "featureHomeNotice": {
+    "message": "Melding op de lege startpagina",
+    "description": "Filter-Bezeichnung: homeNotice"
+  },
+  "featureHomeNoticeHint": {
+    "message": "Toont een rustige plaatshouder in plaats van de feed",
+    "description": "Erklaerung zum Filter homeNotice"
+  },
+  "featureHoverPreview": {
+    "message": "Voorbeeld bij hover",
+    "description": "Filter-Bezeichnung: hoverPreview"
+  },
+  "featureHoverPreviewHint": {
+    "message": "Video speelt af als je eroverheen gaat",
+    "description": "Erklaerung zum Filter hoverPreview"
+  },
+  "featureInfoCards": {
+    "message": "Infokaarten en annotaties",
+    "description": "Filter-Bezeichnung: infoCards"
+  },
+  "featureLiveChat": {
+    "message": "Livechat",
+    "description": "Filter-Bezeichnung: liveChat"
+  },
+  "featureLogo": {
+    "message": "YouTube-logo",
+    "description": "Filter-Bezeichnung: logo"
+  },
+  "featureMasthead": {
+    "message": "Volledige koptekst",
+    "description": "Filter-Bezeichnung: masthead"
+  },
+  "featureMastheadHint": {
+    "message": "De hele bovenbalk, inclusief zoeken",
+    "description": "Erklaerung zum Filter masthead"
+  },
+  "featureMerch": {
+    "message": "Merchandise, tickets, donaties",
+    "description": "Filter-Bezeichnung: merch"
+  },
+  "featureMiniSidebar": {
+    "message": "Mini-zijbalk",
+    "description": "Filter-Bezeichnung: miniSidebar"
+  },
+  "featureMiniSidebarHint": {
+    "message": "De smalle pictogrammenstrook links",
+    "description": "Erklaerung zum Filter miniSidebar"
+  },
+  "featureMiniplayerButton": {
+    "message": "Miniplayer-knop",
+    "description": "Filter-Bezeichnung: miniplayerButton"
+  },
+  "featureNextButton": {
+    "message": "Volgende-knop",
+    "description": "Filter-Bezeichnung: nextButton"
+  },
+  "featureNotificationBadges": {
+    "message": "Rode tellers",
+    "description": "Filter-Bezeichnung: notificationBadges"
+  },
+  "featureNotifications": {
+    "message": "Bel / meldingen",
+    "description": "Filter-Bezeichnung: notifications"
+  },
+  "featurePauseOverlay": {
+    "message": "Pauze-overlay",
+    "description": "Filter-Bezeichnung: pauseOverlay"
+  },
+  "featurePauseOverlayHint": {
+    "message": "‘Meer video's’ als je pauzeert",
+    "description": "Erklaerung zum Filter pauseOverlay"
+  },
+  "featurePlaylistPanel": {
+    "message": "Afspeellijstpaneel",
+    "description": "Filter-Bezeichnung: playlistPanel"
+  },
+  "featureRedirectShorts": {
+    "message": "Shorts omleiden",
+    "description": "Filter-Bezeichnung: redirectShorts"
+  },
+  "featureRedirectShortsHint": {
+    "message": "/shorts/… opent als gewone video",
+    "description": "Erklaerung zum Filter redirectShorts"
+  },
+  "featureRelated": {
+    "message": "Aanbevolen video's",
+    "description": "Filter-Bezeichnung: related"
+  },
+  "featureRelatedHint": {
+    "message": "Rechterkolom / ‘Volgende’",
+    "description": "Erklaerung zum Filter related"
+  },
+  "featureSearch": {
+    "message": "Zoekbalk",
+    "description": "Filter-Bezeichnung: search"
+  },
+  "featureSearchAds": {
+    "message": "Gepromoot / advertenties",
+    "description": "Filter-Bezeichnung: searchAds"
+  },
+  "featureSearchHint": {
+    "message": "Zoekveld in de koptekst",
+    "description": "Erklaerung zum Filter search"
+  },
+  "featureShorts": {
+    "message": "Shorts",
+    "description": "Filter-Bezeichnung: shorts"
+  },
+  "featureShortsHint": {
+    "message": "Schappen, rastertegels, menu-item",
+    "description": "Erklaerung zum Filter shorts"
+  },
+  "featureSidebar": {
+    "message": "Zijbalk",
+    "description": "Filter-Bezeichnung: sidebar"
+  },
+  "featureSidebarHint": {
+    "message": "Gids met abonnementen, geschiedenis, verkennen",
+    "description": "Erklaerung zum Filter sidebar"
+  },
+  "featureSkipAds": {
+    "message": "Advertenties overslaan",
+    "description": "Filter-Bezeichnung: skipAds"
+  },
+  "featureSkipAdsHint": {
+    "message": "Klikt ‘Overslaan’ en spoelt niet-overslaanbare advertenties door",
+    "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureThumbnails": {
+    "message": "Miniaturen",
+    "description": "Filter-Bezeichnung: thumbnails"
+  },
+  "featureThumbnailsHint": {
+    "message": "Miniaturen worden neutraal grijs",
+    "description": "Erklaerung zum Filter thumbnails"
+  },
+  "featureTrending": {
+    "message": "Trending en Verkennen",
+    "description": "Filter-Bezeichnung: trending"
+  },
+  "featureVideoTitle": {
+    "message": "Videotitel",
+    "description": "Filter-Bezeichnung: videoTitle"
+  },
+  "featureViewCounts": {
+    "message": "Weergaven en cijfers",
+    "description": "Filter-Bezeichnung: viewCounts"
+  },
+  "featureVoiceSearch": {
+    "message": "Spraakgestuurd zoeken",
+    "description": "Filter-Bezeichnung: voiceSearch"
+  }
+}

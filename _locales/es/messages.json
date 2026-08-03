@@ -1,0 +1,344 @@
+{
+  "actionTitle": {
+    "message": "Tubeless",
+    "description": "Tooltip des Toolbar-Icons"
+  },
+  "colophonBy": {
+    "message": "Un proyecto de",
+    "description": "Prefix vor dem Herausgeber-Link im Popup-Footer"
+  },
+  "customSave": {
+    "message": "Guardar como «Personalizado»",
+    "description": "Button unter den Presets"
+  },
+  "customUpdate": {
+    "message": "Actualizar «Personalizado»",
+    "description": "Derselbe Button, wenn bereits etwas gespeichert ist"
+  },
+  "extDescription": {
+    "message": "Elimina las distracciones de YouTube: feed, barra lateral, Shorts, recomendaciones, comentarios y reproducción automática.",
+    "description": "Kurzbeschreibung, max. 132 Zeichen"
+  },
+  "extName": {
+    "message": "Tubeless — YouTube sin ruido",
+    "description": "Name der Extension"
+  },
+  "footerReset": {
+    "message": "Valores por defecto",
+    "description": "Setzt auf die Auslieferungseinstellung zurueck"
+  },
+  "masterLabel": {
+    "message": "Pausar Tubeless",
+    "description": "Beschriftung des grossen Schalters (Screenreader)"
+  },
+  "noticeSub": {
+    "message": "Tubeless ha quitado el feed. Busca lo que realmente venías a ver.",
+    "description": "Text unter der Ueberschrift"
+  },
+  "noticeTitle": {
+    "message": "Aquí no hay nada que ver.",
+    "description": "Ueberschrift des Platzhalters auf der leeren Startseite"
+  },
+  "presetCustom": {
+    "message": "Personalizado",
+    "description": "Preset: die selbst gespeicherte Auswahl"
+  },
+  "presetCustomEmpty": {
+    "message": "Aún no has guardado ninguna selección",
+    "description": "Tooltip, solange nichts gespeichert ist"
+  },
+  "presetFocus": {
+    "message": "Enfoque",
+    "description": "Preset: Kopfzeile und Suche bleiben"
+  },
+  "presetNone": {
+    "message": "No filtrar nada",
+    "description": "Preset: alle Filter aus"
+  },
+  "rateAction": {
+    "message": "Escribir una reseña",
+    "description": "Button: oeffnet die Store-Seite"
+  },
+  "rateLater": {
+    "message": "Más tarde",
+    "description": "Button: verschiebt den Hinweis um 30 Tage"
+  },
+  "rateText": {
+    "message": "¿Te sirve Tubeless? Una breve reseña en la Web Store ayuda a que otros lo encuentren.",
+    "description": "Text im Bewertungs-Hinweis"
+  },
+  "searchPlaceholder": {
+    "message": "Buscar en YouTube …",
+    "description": "Platzhalter im Suchfeld des Popups"
+  },
+  "searchSubmit": {
+    "message": "Buscar",
+    "description": "Beschriftung des Such-Buttons (Screenreader)"
+  },
+  "statusFiltered": {
+    "message": "$COUNT$ de $TOTAL$ distracciones filtradas",
+    "description": "Zaehler in der Fusszeile des Popups",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "33"
+      },
+      "total": {
+        "content": "$2",
+        "example": "38"
+      }
+    }
+  },
+  "statusPaused": {
+    "message": "En pausa: YouTube sin cambios",
+    "description": "Fusszeile, wenn Tubeless pausiert ist"
+  },
+  "groupBehavior": {
+    "message": "Comportamiento",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupChrome": {
+    "message": "Cabecera y navegación",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupFeeds": {
+    "message": "Inicio y feeds",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupGlobal": {
+    "message": "En todas partes",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupPlayer": {
+    "message": "Reproductor",
+    "description": "Gruppentitel im Popup"
+  },
+  "groupWatch": {
+    "message": "Página del vídeo",
+    "description": "Gruppentitel im Popup"
+  },
+  "featureAccountMenu": {
+    "message": "Avatar de la cuenta",
+    "description": "Filter-Bezeichnung: accountMenu"
+  },
+  "featureAmbientMode": {
+    "message": "Modo ambiente",
+    "description": "Filter-Bezeichnung: ambientMode"
+  },
+  "featureAmbientModeHint": {
+    "message": "Resplandor de color detrás del reproductor",
+    "description": "Erklaerung zum Filter ambientMode"
+  },
+  "featureAutonavToggle": {
+    "message": "Interruptor de reproducción automática",
+    "description": "Filter-Bezeichnung: autonavToggle"
+  },
+  "featureChannelInfo": {
+    "message": "Canal y suscripción",
+    "description": "Filter-Bezeichnung: channelInfo"
+  },
+  "featureComments": {
+    "message": "Comentarios",
+    "description": "Filter-Bezeichnung: comments"
+  },
+  "featureCreateButton": {
+    "message": "Botón de crear",
+    "description": "Filter-Bezeichnung: createButton"
+  },
+  "featureDescription": {
+    "message": "Descripción del vídeo",
+    "description": "Filter-Bezeichnung: description"
+  },
+  "featureDisableAutoplay": {
+    "message": "Desactivar la reproducción automática",
+    "description": "Filter-Bezeichnung: disableAutoplay"
+  },
+  "featureDisableAutoplayHint": {
+    "message": "Mantiene «Reproducción automática» siempre apagada",
+    "description": "Erklaerung zum Filter disableAutoplay"
+  },
+  "featureEndScreen": {
+    "message": "Tarjetas finales y muro de vídeos",
+    "description": "Filter-Bezeichnung: endScreen"
+  },
+  "featureEndScreenHint": {
+    "message": "Mosaicos al final del vídeo",
+    "description": "Erklaerung zum Filter endScreen"
+  },
+  "featureEngagement": {
+    "message": "Me gusta / compartir / guardar",
+    "description": "Filter-Bezeichnung: engagement"
+  },
+  "featureFilterChips": {
+    "message": "Chips de filtro",
+    "description": "Filter-Bezeichnung: filterChips"
+  },
+  "featureFilterChipsHint": {
+    "message": "La barra «Todo / Juegos / Música …»",
+    "description": "Erklaerung zum Filter filterChips"
+  },
+  "featureHeatmap": {
+    "message": "Mapa de calor («Más repetido»)",
+    "description": "Filter-Bezeichnung: heatmap"
+  },
+  "featureHomeFeed": {
+    "message": "Feed de inicio",
+    "description": "Filter-Bezeichnung: homeFeed"
+  },
+  "featureHomeFeedHint": {
+    "message": "Cuadrícula de recomendaciones en youtube.com",
+    "description": "Erklaerung zum Filter homeFeed"
+  },
+  "featureHomeNotice": {
+    "message": "Aviso en la página de inicio vacía",
+    "description": "Filter-Bezeichnung: homeNotice"
+  },
+  "featureHomeNoticeHint": {
+    "message": "Muestra un marcador tranquilo en lugar del feed",
+    "description": "Erklaerung zum Filter homeNotice"
+  },
+  "featureHoverPreview": {
+    "message": "Vista previa al pasar el ratón",
+    "description": "Filter-Bezeichnung: hoverPreview"
+  },
+  "featureHoverPreviewHint": {
+    "message": "Reproducción automática al pasar por encima",
+    "description": "Erklaerung zum Filter hoverPreview"
+  },
+  "featureInfoCards": {
+    "message": "Tarjetas informativas y anotaciones",
+    "description": "Filter-Bezeichnung: infoCards"
+  },
+  "featureLiveChat": {
+    "message": "Chat en directo",
+    "description": "Filter-Bezeichnung: liveChat"
+  },
+  "featureLogo": {
+    "message": "Logotipo de YouTube",
+    "description": "Filter-Bezeichnung: logo"
+  },
+  "featureMasthead": {
+    "message": "Cabecera completa",
+    "description": "Filter-Bezeichnung: masthead"
+  },
+  "featureMastheadHint": {
+    "message": "Toda la barra superior, búsqueda incluida",
+    "description": "Erklaerung zum Filter masthead"
+  },
+  "featureMerch": {
+    "message": "Merchandising, entradas, donaciones",
+    "description": "Filter-Bezeichnung: merch"
+  },
+  "featureMiniSidebar": {
+    "message": "Barra lateral mini",
+    "description": "Filter-Bezeichnung: miniSidebar"
+  },
+  "featureMiniSidebarHint": {
+    "message": "La franja estrecha de iconos de la izquierda",
+    "description": "Erklaerung zum Filter miniSidebar"
+  },
+  "featureMiniplayerButton": {
+    "message": "Botón de minirreproductor",
+    "description": "Filter-Bezeichnung: miniplayerButton"
+  },
+  "featureNextButton": {
+    "message": "Botón siguiente",
+    "description": "Filter-Bezeichnung: nextButton"
+  },
+  "featureNotificationBadges": {
+    "message": "Contadores rojos",
+    "description": "Filter-Bezeichnung: notificationBadges"
+  },
+  "featureNotifications": {
+    "message": "Campana / notificaciones",
+    "description": "Filter-Bezeichnung: notifications"
+  },
+  "featurePauseOverlay": {
+    "message": "Superposición de pausa",
+    "description": "Filter-Bezeichnung: pauseOverlay"
+  },
+  "featurePauseOverlayHint": {
+    "message": "«Más vídeos» al pausar",
+    "description": "Erklaerung zum Filter pauseOverlay"
+  },
+  "featurePlaylistPanel": {
+    "message": "Panel de la lista de reproducción",
+    "description": "Filter-Bezeichnung: playlistPanel"
+  },
+  "featureRedirectShorts": {
+    "message": "Redirigir los Shorts",
+    "description": "Filter-Bezeichnung: redirectShorts"
+  },
+  "featureRedirectShortsHint": {
+    "message": "/shorts/… se abre como un vídeo normal",
+    "description": "Erklaerung zum Filter redirectShorts"
+  },
+  "featureRelated": {
+    "message": "Vídeos recomendados",
+    "description": "Filter-Bezeichnung: related"
+  },
+  "featureRelatedHint": {
+    "message": "Columna derecha / «A continuación»",
+    "description": "Erklaerung zum Filter related"
+  },
+  "featureSearch": {
+    "message": "Barra de búsqueda",
+    "description": "Filter-Bezeichnung: search"
+  },
+  "featureSearchAds": {
+    "message": "Promocionados / anuncios",
+    "description": "Filter-Bezeichnung: searchAds"
+  },
+  "featureSearchHint": {
+    "message": "Campo de búsqueda en la cabecera",
+    "description": "Erklaerung zum Filter search"
+  },
+  "featureShorts": {
+    "message": "Shorts",
+    "description": "Filter-Bezeichnung: shorts"
+  },
+  "featureShortsHint": {
+    "message": "Estantes, miniaturas, entrada de menú",
+    "description": "Erklaerung zum Filter shorts"
+  },
+  "featureSidebar": {
+    "message": "Barra lateral",
+    "description": "Filter-Bezeichnung: sidebar"
+  },
+  "featureSidebarHint": {
+    "message": "Guía con suscripciones, historial y explorar",
+    "description": "Erklaerung zum Filter sidebar"
+  },
+  "featureSkipAds": {
+    "message": "Saltar anuncios",
+    "description": "Filter-Bezeichnung: skipAds"
+  },
+  "featureSkipAdsHint": {
+    "message": "Pulsa «Saltar» y adelanta los anuncios no saltables",
+    "description": "Erklaerung zum Filter skipAds"
+  },
+  "featureThumbnails": {
+    "message": "Miniaturas",
+    "description": "Filter-Bezeichnung: thumbnails"
+  },
+  "featureThumbnailsHint": {
+    "message": "Las miniaturas se vuelven grises",
+    "description": "Erklaerung zum Filter thumbnails"
+  },
+  "featureTrending": {
+    "message": "Tendencias y Explorar",
+    "description": "Filter-Bezeichnung: trending"
+  },
+  "featureVideoTitle": {
+    "message": "Título del vídeo",
+    "description": "Filter-Bezeichnung: videoTitle"
+  },
+  "featureViewCounts": {
+    "message": "Visualizaciones y cifras",
+    "description": "Filter-Bezeichnung: viewCounts"
+  },
+  "featureVoiceSearch": {
+    "message": "Búsqueda por voz",
+    "description": "Filter-Bezeichnung: voiceSearch"
+  }
+}

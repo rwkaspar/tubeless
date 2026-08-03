@@ -45,6 +45,9 @@ CHECKS = [
         ('Filter-Chips weg', 'ytd-feed-filter-chip-bar-renderer', 0),
         ('Platzhalter da', '.tl-notice', 1),
     ]),
+    ('https://www.youtube.com/watch?v=aqz-KE-bpKQ&t=1', [
+        ('Kein Werbe-Overlay stehengeblieben', '.ytp-ad-skip-button:not([disabled])', 0),
+    ]),
     ('https://www.youtube.com/watch?v=aqz-KE-bpKQ', [
         ('Empfehlungen weg', '#secondary, ytd-compact-video-renderer', 0),
         ('Kommentare weg', '#comments', 0),
@@ -161,6 +164,15 @@ def main():
                     fh.write(base64.b64decode(data))
                 print(f'  -> .verify-shots/{name}')
             print()
+
+        # Übersetzungen im Content-Script: der Platzhalter darf nicht den
+        # Schlüsselnamen zeigen, sonst wurde der Katalog nicht geladen.
+        cdp.send('Page.navigate', url='https://www.youtube.com/')
+        time.sleep(args.wait)
+        title = cdp.eval("(document.querySelector('.tl-notice__title')||{}).textContent||''")
+        ok = bool(title) and title != 'noticeTitle'
+        failures += 0 if ok else 1
+        print(f"{'ok  ' if ok else 'FAIL'}  Platzhalter übersetzt („{title}“)")
 
         # Shorts-Umleitung
         cdp.send('Page.navigate', url='https://www.youtube.com/shorts/aqz-KE-bpKQ')

@@ -11,7 +11,8 @@
 (() => {
   'use strict';
 
-  const { FEATURES, DEFAULTS, t } = window.TUBELESS;
+  const { FEATURES, DEFAULTS, t, ready } = window.TUBELESS;
+  let translationsReady = false;
   const CSS_KEYS = FEATURES.filter((f) => f.css !== false).map((f) => f.key);
   const CACHE_KEY = 'tubeless:settings';
   const root = document.documentElement;
@@ -89,6 +90,45 @@
     }
   }
 
+  // --- Feature: Werbung überspringen --------------------------------------
+
+  /*
+   * Hier wird nichts blockiert — es wird geklickt. Sobald der
+   * „Überspringen“-Button auftaucht, drücken wir ihn; bei unüberspringbaren
+   * Anzeigen springen wir ans Ende des Anzeigen-Clips, was YouTube genauso
+   * behandelt wie durchgesehene Werbung. Damit bleibt der Player im Reinen mit
+   * sich selbst und es gibt keinen Streit mit YouTubes Adblock-Erkennung.
+   */
+  const SKIP_BUTTONS = [
+    '.ytp-skip-ad-button',
+    '.ytp-ad-skip-button',
+    '.ytp-ad-skip-button-modern',
+    '.ytp-ad-skip-button-slot button',
+    '.ytp-ad-survey-answer-button'
+  ].join(', ');
+
+  function skipAds() {
+    if (!isEnabled('skipAds')) return;
+
+    const player = document.querySelector('.html5-video-player');
+    if (!player || !player.classList.contains('ad-showing')) return;
+
+    const button = document.querySelector(SKIP_BUTTONS);
+    if (button && button.offsetParent !== null) {
+      button.click();
+      return;
+    }
+
+    // Kein Skip-Button: ans Ende der Anzeige springen.
+    const video = player.querySelector('video');
+    if (video && Number.isFinite(video.duration) && video.duration > 0) {
+      if (video.currentTime < video.duration - 0.15) {
+        video.currentTime = video.duration;
+      }
+      if (video.paused) video.play().catch(() => {});
+    }
+  }
+
   // --- Feature: Platzhalter auf leerer Startseite -------------------------
 
   function updateHomeNotice() {
@@ -102,7 +142,8 @@
       if (existing) existing.remove();
       return;
     }
-    if (existing || !document.body) return;
+    // Ohne geladene Kataloge stünde hier der Schlüsselname — dann lieber warten.
+    if (existing || !document.body || !translationsReady) return;
 
     const notice = document.createElement('div');
     notice.className = 'tl-notice';
@@ -124,6 +165,7 @@
   function applyBehaviors() {
     if (redirectShorts()) return;
     disableAutoplay();
+    skipAds();
     updateHomeNotice();
   }
 
@@ -177,4 +219,19 @@
   const startObserving = () => observer.observe(document.body, { childList: true, subtree: false });
   if (document.body) startObserving();
   else document.addEventListener('DOMContentLoaded', startObserving, { once: true });
+
+  // Sobald die Übersetzungen da sind, den Platzhalter nachziehen.
+  ready.then(() => {
+    translationsReady = true;
+    updateHomeNotice();
+  });
+
+  /*
+   * Werbung taucht mitten in der Wiedergabe auf, ohne Navigation und ohne
+   * Änderung an <body> — davon bekommen die Handler oben nichts mit. Ein
+   * kurzer Takt ist hier ehrlicher als ein MutationObserver über den halben
+   * Player: eine Klassenabfrage alle 400 ms kostet nichts und greift auch,
+   * wenn YouTube seine Ad-Elemente wieder umbaut.
+   */
+  setInterval(skipAds, 400);
 })();

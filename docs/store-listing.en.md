@@ -44,17 +44,21 @@ Player
 • The "More videos" overlay when you pause
 • Info cards, heatmap, next button, miniplayer
 • Autoplay — off for good, not just for this session
+• Ads get skipped the moment they become skippable
 
 Header and navigation
 • The whole top bar, the sidebar, the bell, the counter badge
 
 HOW YOU TUNE IT
 
-38 filters, each one switchable on its own, plus three presets:
+39 filters, each one switchable on its own, plus three presets:
 
-• Radical — genuinely everything, down to the title, description and thumbnails
+• Custom — your saved selection, one click away at any time
 • Focus — like the default, but the header and search bar stay
 • Filter nothing — everything back on
+
+Put together exactly what you want gone, save it once as "Custom" — and get back
+to it with a single click after any detour through the other presets.
 
 A switch at the top of the popup pauses Tubeless entirely, for when you do feel
 like browsing. Changes apply immediately, without a reload, in every open tab.
@@ -72,10 +76,20 @@ WHAT YOU CAN RELY ON
 • Your settings live in your Chrome profile and travel with Chrome Sync.
 • The source is open and readable: github.com/rwkaspar/tubeless
 
-Tubeless does not block ads inside videos and is not a replacement for an ad
-blocker. It cleans up the interface.
+ABOUT ADS, HONESTLY
 
-English and German, more languages can be added.
+Tubeless skips ads, it does not block them. The moment the "Skip" button shows
+up it gets pressed; unskippable ads are fast-forwarded. That saves you the wait
+and the clicks — it does not make YouTube ad-free, and Tubeless is no
+replacement for an ad blocker.
+
+Dislike counts are deliberately not shown. They would only be available through
+a third party that would need the video ID for every video you watch. That does
+not square with the promise above.
+
+Twelve languages: English, German, Spanish, French, Italian, Japanese, Dutch,
+Polish, Portuguese, Russian, Turkish and Chinese. The language follows your
+browser settings.
 ```
 
 ## Category
@@ -86,8 +100,8 @@ Productivity
 
 ```
 Tubeless hides distracting interface elements on youtube.com — feed,
-recommendations, comments, Shorts, end cards — and turns off autoplay. That is
-the extension's only purpose.
+recommendations, comments, Shorts, end cards — turns off autoplay and skips ads
+once YouTube allows it. That is the extension's only purpose.
 ```
 
 ## Permission justifications
@@ -95,20 +109,27 @@ the extension's only purpose.
 **`storage`**
 
 ```
-Stores which of the 38 filters the user has enabled. Without it the settings
-would be gone on every tab switch. Only these switch states are stored, no usage
-data.
+Stores which of the 39 filters the user has enabled, plus the selection they
+saved themselves. Without it the settings would be gone on every tab switch.
+Only these switch states are stored, no usage data.
 ```
 
 **Host permission `*://*.youtube.com/*`**
 
 ```
 The extension needs to set CSS classes on YouTube pages to hide elements, turn
-off autoplay and redirect /shorts/ URLs to the regular player. It touches no
-other domain.
+off autoplay, press the "Skip" button on ads and redirect /shorts/ URLs to the
+regular player. It touches no other domain.
 ```
 
 ## Data usage
 
 No collection, no sharing, no selling. All three declarations in the Web Store
 form can be answered with "no".
+
+## Author & support
+
+A project by [NeoTactIQ](https://neotactiq.ai).
+
+- Ko-fi: <https://ko-fi.com/neotactiq>
+- Patreon: <https://www.patreon.com/c/neotactiq>
