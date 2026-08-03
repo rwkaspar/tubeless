@@ -112,7 +112,12 @@
       masthead: false,
       search: false,
       logo: false,
-      accountMenu: false
+      accountMenu: false,
+      // Fokus heißt auch: Sponsor-Segmente und Intros werden übersprungen.
+      // Das ist ein bewusster Klick des Nutzers, kein stilles Opt-in — die
+      // Auslieferungs-Defaults bleiben aus.
+      sponsorSkip: true,
+      sponsorIntros: true
     }),
     aus: (() => {
       const p = {};

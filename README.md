@@ -64,7 +64,7 @@ Klick aufs Tubeless-Icon in der Toolbar:
 | Schalter oben rechts | Pausiert Tubeless komplett (YouTube unverändert) |
 | Suchfeld | Ersatz für die ausgeblendete YouTube-Suchleiste |
 | **Eigene** | Die selbst gespeicherte Auswahl — grau, solange keine da ist |
-| **Fokus** | Wie Standard, aber Kopfzeile und Suche bleiben |
+| **Fokus** | Wie Standard, aber Kopfzeile und Suche bleiben; Sponsor-Segmente und Intros werden übersprungen (SponsorBlock) |
 | **Nichts filtern** | Alle Filter aus |
 | **Standard** (unten) | Zurück zur Auslieferungseinstellung |
 
