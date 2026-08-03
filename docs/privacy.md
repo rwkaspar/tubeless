@@ -24,8 +24,10 @@ Tubeless erhebt, speichert und überträgt **keine personenbezogenen Daten**.
 
 ### Optional: SponsorBlock
 
-Zwei Filter — „Sponsor-Segmente markieren“ und „Sponsor-Segmente überspringen“ —
-sind standardmäßig **ausgeschaltet**. Erst wenn du einen davon aktivierst, fragt
+Drei Filter — „Sponsor-Segmente markieren“, „Sponsor-Segmente überspringen“
+und „Auch Intros einbeziehen“ — sind standardmäßig **ausgeschaltet**. Erst wenn
+du Markieren oder Überspringen aktivierst (einzeln oder über das Preset
+„Fokus“), fragt
 Tubeless die Community-Datenbank SponsorBlock (sponsor.ajay.app) nach
 gemeldeten Sponsor-Abschnitten (optional auch Intros). Dabei werden **nicht** die Video-ID oder andere
 Daten übertragen, sondern nur die ersten vier Zeichen eines SHA-256-Hashes der
@@ -59,8 +61,9 @@ Tubeless collects, stores and transmits **no personal data**.
 
 ### Optional: SponsorBlock
 
-Two filters — “Mark sponsor segments” and “Skip sponsor segments” — are
-**off by default**. Only when you enable one of them does Tubeless query the
+Three filters — “Mark sponsor segments”, “Skip sponsor segments” and “Also
+include intros” — are **off by default**. Only when you enable marking or
+skipping (individually or via the “Focus” preset) does Tubeless query the
 community database SponsorBlock (sponsor.ajay.app) for reported sponsor
 sections (optionally intros too). This does **not** transmit the video ID or any other data — only the
 first four characters of a SHA-256 hash of the video ID (k-anonymity), from

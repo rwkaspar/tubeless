@@ -30,7 +30,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px 12px;
+  padding: 13px 16px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -63,8 +63,12 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* Master-Schalter */
+/* Master-Schalter — als Flexbox, damit keine Zeilenbox des Labels den Track
+   aus der Mitte schiebt (2px-Versatz je nach Font-Metrik) */
 .master {
+  display: flex;
+  align-items: center;
+  flex: none;
   cursor: pointer;
 }
 .master input {

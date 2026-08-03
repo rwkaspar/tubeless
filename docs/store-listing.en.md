@@ -86,7 +86,8 @@ replacement for an ad blocker.
 OPTIONAL: SPONSOR SEGMENTS (SPONSORBLOCK)
 
 Sponsorships baked into the video by creators can, on request, be marked green
-in the progress bar and skipped automatically. Both switches are OFF out of the
+in the progress bar and skipped automatically — intros included on request,
+with a brief notice after every jump. All three switches are OFF out of the
 box. Only when you enable them does Tubeless query the SponsorBlock community
 database (optionally for intros too) — anonymized: only a 4-character hash prefix is transmitted, never the
 video ID. Switched off means: no requests at all.

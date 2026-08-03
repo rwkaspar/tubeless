@@ -87,7 +87,8 @@ YouTube damit nicht, und ein Ersatz für einen Adblocker ist Tubeless nicht.
 OPTIONAL: SPONSOR-SEGMENTE (SPONSORBLOCK)
 
 Von Creators ins Video eingebaute Sponsorings kann Tubeless auf Wunsch grün in
-der Fortschrittsleiste markieren und automatisch überspringen. Beide Schalter
+der Fortschrittsleiste markieren und automatisch überspringen — auf Wunsch
+inklusive Intros, mit kurzer Einblendung nach jedem Sprung. Alle drei Schalter
 sind ab Werk AUS. Erst wenn du sie aktivierst, fragt Tubeless die
 Community-Datenbank SponsorBlock ab (optional auch für Intros) — anonymisiert: übertragen wird nur ein
 4-Zeichen-Hash-Präfix, nie die Video-ID. Ausgeschaltet heißt: keinerlei
