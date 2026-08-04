@@ -7,12 +7,14 @@
 <p align="center"><em>YouTube ohne Ablenkung.</em></p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Frwkaspar%2Ftubeless%2Fmain%2Fmanifest.json&query=%24.version&label=version&color=ff3b30">
-  <img alt="Manifest V3" src="https://img.shields.io/badge/manifest-v3-0f0f0f">
+  <a href="https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee"><img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/ibabglinmoklbdpplofmoicgbknbejee?label=web%20store&color=ff3b30"></a>
+  <img alt="Version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Frwkaspar%2Ftubeless%2Fmain%2Fmanifest.json&query=%24.version&label=repo&color=0f0f0f">
   <img alt="Chrome 105+" src="https://img.shields.io/badge/chrome-105%2B-0f0f0f">
   <img alt="12 Sprachen" src="https://img.shields.io/badge/sprachen-12-0f0f0f">
   <img alt="MIT-Lizenz" src="https://img.shields.io/badge/lizenz-MIT-0f0f0f">
 </p>
+
+<p align="center"><b><a href="https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee">Im Chrome Web Store installieren</a></b></p>
 
 <p align="center"><em>Deutsche Fassung — <a href="README.md">English version</a></em></p>
 
@@ -42,12 +44,20 @@ des Browsers. Texte für den Store liegen in [`docs/`](docs/store-listing.de.md)
 
 ## Installieren
 
+**Der einfache Weg:** [im Chrome Web Store installieren](https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee) — Updates
+kommen automatisch.
+
+**Aus dem Quelltext** (zum Entwickeln, oder wenn du lesen willst, was du
+ausführst):
+
 1. `chrome://extensions` öffnen
 2. **Entwicklermodus** oben rechts einschalten
 3. **Entpackte Erweiterung laden** → diesen Ordner auswählen
 4. YouTube neu laden
 
-Es gibt keinen Build-Schritt — der Ordner *ist* die Extension.
+Es gibt keinen Build-Schritt — der Ordner *ist* die Extension. Beachte: die
+entpackte Kopie hat eine andere Extension-ID als die Store-Version, beide
+führen also getrennte Einstellungen.
 
 ## Paketieren
 

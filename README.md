@@ -7,12 +7,14 @@
 <p align="center"><em>YouTube without the noise.</em></p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Frwkaspar%2Ftubeless%2Fmain%2Fmanifest.json&query=%24.version&label=version&color=ff3b30">
-  <img alt="Manifest V3" src="https://img.shields.io/badge/manifest-v3-0f0f0f">
+  <a href="https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee"><img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/ibabglinmoklbdpplofmoicgbknbejee?label=web%20store&color=ff3b30"></a>
+  <img alt="Version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Frwkaspar%2Ftubeless%2Fmain%2Fmanifest.json&query=%24.version&label=repo&color=0f0f0f">
   <img alt="Chrome 105+" src="https://img.shields.io/badge/chrome-105%2B-0f0f0f">
   <img alt="12 languages" src="https://img.shields.io/badge/languages-12-0f0f0f">
   <img alt="MIT license" src="https://img.shields.io/badge/license-MIT-0f0f0f">
 </p>
+
+<p align="center"><b><a href="https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee">Install from the Chrome Web Store</a></b></p>
 
 <p align="center"><em>English version — <a href="README.de.md">Deutsche Fassung</a></em></p>
 
@@ -42,12 +44,19 @@ browser's language settings. Store listing copy lives in
 
 ## Installing
 
+**The easy way:** install it [from the Chrome Web Store](https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee) — updates
+arrive automatically.
+
+**From source** (for developing or if you want to read what you run):
+
 1. Open `chrome://extensions`
 2. Enable **Developer mode** in the top right
 3. **Load unpacked** → select this folder
 4. Reload YouTube
 
-There is no build step — the folder *is* the extension.
+There is no build step — the folder *is* the extension. Note that the unpacked
+copy has a different extension ID than the store version, so the two keep
+separate settings.
 
 ## Packaging
 
