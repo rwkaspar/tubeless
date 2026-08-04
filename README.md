@@ -66,6 +66,10 @@ manifest differs — see the header of `tools/build-firefox.py`.
 
 ## Packaging
 
+**Store uploads take a plain ZIP, not the `.crx`** — build it with
+`python3 tools/build-chrome-zip.py` (creates `dist/tubeless-chrome.zip`; the
+store signs server-side and rejects `.crx` files as invalid packages).
+
 `dist/tubeless.crx` is the signed package, extension ID
 `inhgfhfdblpbmpohoocoaepcjhoghbij`. Current Chrome versions refuse to install
 `.crx` files from outside the Web Store — the file exists for archiving and

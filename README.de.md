@@ -68,6 +68,10 @@ Code, Firefox 140+; nur das Manifest unterscheidet sich — siehe Kopf von
 
 ## Paketieren
 
+**Store-Uploads brauchen ein nacktes ZIP, nicht die `.crx`** — bauen mit
+`python3 tools/build-chrome-zip.py` (erzeugt `dist/tubeless-chrome.zip`; der
+Store signiert serverseitig und lehnt `.crx`-Dateien als ungültig ab).
+
 `dist/tubeless.crx` ist das signierte Paket, Extension-ID
 `inhgfhfdblpbmpohoocoaepcjhoghbij`. Aktuelle Chrome-Versionen verweigern die
 Installation von `.crx`-Dateien außerhalb des Web Store — die Datei ist zur
