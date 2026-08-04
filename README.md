@@ -58,19 +58,30 @@ There is no build step — the folder *is* the extension. Note that the unpacked
 copy has a different extension ID than the store version, so the two keep
 separate settings.
 
-**Firefox:** build the package with `python3 tools/build-firefox.py`
-(creates `dist/tubeless-firefox.xpi`), then load it via
+**Firefox:** load `dist/tubeless-firefox-<version>.xpi` via
 `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on** (until the
 add-on is listed on addons.mozilla.org). Same code, Firefox 140+; only the
-manifest differs — see the header of `tools/build-firefox.py`.
+manifest differs — see the header of `tools/build.py`.
 
 ## Packaging
 
-**Store uploads take a plain ZIP, not the `.crx`** — build it with
-`python3 tools/build-chrome-zip.py` (creates `dist/tubeless-chrome.zip`; the
-store signs server-side and rejects `.crx` files as invalid packages).
+One command builds everything, version number in the file name:
 
-`dist/tubeless.crx` is the signed package, extension ID
+```bash
+python3 tools/build.py        # -> dist/tubeless-chrome-<v>.zip
+                              #    dist/tubeless-firefox-<v>.xpi
+                              #    dist/tubeless-<v>.crx (local only, see below)
+```
+
+A GitHub Actions workflow runs the same build on every push and commits the
+results to `dist/` — after `git pull`, the packages always match the code.
+Only the `.crx` is built locally, because it needs the private key.
+
+**Store uploads take the plain ZIP, not the `.crx`** — the Chrome Web Store
+signs server-side and rejects `.crx` files as invalid packages. Firefox/AMO
+takes the `.xpi`.
+
+`dist/tubeless-<v>.crx` is the signed archive package, extension ID
 `inhgfhfdblpbmpohoocoaepcjhoghbij`. Current Chrome versions refuse to install
 `.crx` files from outside the Web Store — the file exists for archiving and
 distribution; installation goes through the steps above.
@@ -79,23 +90,12 @@ The package contains only what is needed at runtime: `manifest.json`,
 `_locales/`, `src/`, `popup/`, `icons/`, the README and the LICENSE.
 `tools/`, `docs/` and `dist/` stay out.
 
-Rebuild via `chrome://extensions` → **Pack extension** → this directory as the
-root, the existing key as the private key. Without the same key the extension
-ID changes.
-
-On the command line:
-
-```bash
-build=$(mktemp -d /home/$USER/tubeless-build.XXXX)   # see note below
-cp -r manifest.json _locales src popup icons README.md LICENSE "$build/"
-chromium --pack-extension="$build" --pack-extension-key=~/.config/tubeless/tubeless.pem
-mv "$build.crx" dist/tubeless.crx && rm -rf "$build"
-```
-
-If Chromium runs as a snap it can reach neither `~/.config` nor `/tmp` — the
-key and the staging directory must temporarily live at a path whose first
-level under `$HOME` is not a dot-directory. The error message for this reads
-"Could not read private key".
+The `.crx` can also be rebuilt via `chrome://extensions` → **Pack
+extension** — this directory as the root, the existing key as the private
+key. Without the same key the extension ID changes. `tools/build.py` handles
+the snap quirk automatically: snap Chromium can reach neither `~/.config` nor
+`/tmp`, so key and staging temporarily live at a path whose first level under
+`$HOME` is not a dot-directory ("Could not read private key" otherwise).
 
 The key is **not in the repo** — it lives at `~/.config/tubeless/tubeless.pem`
 (mode 600). Whoever holds it can sign packages that Chrome accepts as the same
@@ -328,11 +328,11 @@ src/tubeless.css       all hiding rules, hung off tl-* classes
 src/content.js         class toggling, JS filters, SPA navigation
 src/sponsor.js         SponsorBlock: markers, skipping, toast (opt-in)
 popup/                 the UI
-dist/tubeless.crx      signed package
+dist/                  store-upload packages, versioned (built by CI + tools/build.py)
 docs/store-listing.*   Chrome Web Store copy, per language
 docs/logo.svg          the mark, same shape as icons/*.png
+tools/build.py         builds all packages into dist/
 tools/make-icons.py    generates icons/*.png (no external dependencies)
-tools/build-firefox.py builds dist/tubeless-firefox.xpi (Firefox manifest)
 tools/verify.py        selector test against the real YouTube
 ```
 

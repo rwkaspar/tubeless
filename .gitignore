@@ -3,7 +3,7 @@
 .verify-shots/
 .venv/
 *.zip
-!dist/tubeless-chrome.zip
+!dist/tubeless-chrome-*.zip
 
 # Signaturschluessel gehoert nicht ins Repo — siehe README, Abschnitt "Paketieren"
 *.pem

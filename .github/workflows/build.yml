@@ -1,0 +1,53 @@
+# Baut die Verteilpakete bei jedem Push und committet sie nach dist/.
+#
+# Das .crx wird hier NICHT gebaut — dafür braucht es den privaten
+# Signaturschlüssel, und der bleibt bewusst außerhalb von GitHub. Es entsteht
+# lokal via `python3 tools/build.py` mit.
+#
+# Schleifenschutz doppelt: der paths-Filter enthält dist/ nicht, und die
+# CI-Commits tragen [skip ci].
+name: build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - manifest.json
+      - 'src/**'
+      - 'popup/**'
+      - '_locales/**'
+      - 'icons/**'
+      - README.md
+      - LICENSE
+      - tools/build.py
+      - .github/workflows/build.yml
+
+permissions:
+  contents: write
+
+jobs:
+  dist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pakete bauen
+        run: python3 tools/build.py --no-crx
+
+      - name: AMO-Linter über das Firefox-Paket
+        run: |
+          npm install --no-save addons-linter
+          npx addons-linter dist/tubeless-firefox-*.xpi
+
+      - name: Nach dist/ committen, wenn sich etwas geändert hat
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist
+          if git diff --cached --quiet; then
+            echo "dist/ unverändert"
+          else
+            version=$(python3 -c "import json; print(json.load(open('manifest.json'))['version'])")
+            git commit -m "dist: Pakete für ${version} [skip ci]"
+            git push
+          fi

@@ -59,20 +59,32 @@ Es gibt keinen Build-Schritt — der Ordner *ist* die Extension. Beachte: die
 entpackte Kopie hat eine andere Extension-ID als die Store-Version, beide
 führen also getrennte Einstellungen.
 
-**Firefox:** Paket mit `python3 tools/build-firefox.py` bauen (erzeugt
-`dist/tubeless-firefox.xpi`), dann über
+**Firefox:** `dist/tubeless-firefox-<version>.xpi` über
 `about:debugging#/runtime/this-firefox` → **Temporäres Add-on laden**
 installieren (bis das Add-on auf addons.mozilla.org gelistet ist). Gleicher
 Code, Firefox 140+; nur das Manifest unterscheidet sich — siehe Kopf von
-`tools/build-firefox.py`.
+`tools/build.py`.
 
 ## Paketieren
 
-**Store-Uploads brauchen ein nacktes ZIP, nicht die `.crx`** — bauen mit
-`python3 tools/build-chrome-zip.py` (erzeugt `dist/tubeless-chrome.zip`; der
-Store signiert serverseitig und lehnt `.crx`-Dateien als ungültig ab).
+Ein Befehl baut alles, Versionsnummer im Dateinamen:
 
-`dist/tubeless.crx` ist das signierte Paket, Extension-ID
+```bash
+python3 tools/build.py        # -> dist/tubeless-chrome-<v>.zip
+                              #    dist/tubeless-firefox-<v>.xpi
+                              #    dist/tubeless-<v>.crx (nur lokal, s. u.)
+```
+
+Ein GitHub-Actions-Workflow führt denselben Build bei jedem Push aus und
+committet die Ergebnisse nach `dist/` — nach `git pull` passen die Pakete
+immer zum Code. Nur die `.crx` entsteht ausschließlich lokal, weil sie den
+privaten Schlüssel braucht.
+
+**Store-Uploads brauchen das nackte ZIP, nicht die `.crx`** — der Chrome Web
+Store signiert serverseitig und lehnt `.crx`-Dateien als ungültig ab. Für
+Firefox/AMO ist es das `.xpi`.
+
+`dist/tubeless-<v>.crx` ist das signierte Archiv-Paket, Extension-ID
 `inhgfhfdblpbmpohoocoaepcjhoghbij`. Aktuelle Chrome-Versionen verweigern die
 Installation von `.crx`-Dateien außerhalb des Web Store — die Datei ist zur
 Archivierung und Weitergabe da, installiert wird über den Weg oben.
@@ -81,23 +93,14 @@ Das Paket enthält nur, was zur Laufzeit gebraucht wird: `manifest.json`,
 `_locales/`, `src/`, `popup/`, `icons/`, die README und die LICENSE.
 `tools/`, `docs/` und `dist/` bleiben draußen.
 
-Neu bauen über `chrome://extensions` → **Erweiterung packen** → dieses
-Verzeichnis als Stammverzeichnis, den vorhandenen Schlüssel als Privatschlüssel.
-Ohne denselben Schlüssel ändert sich die Extension-ID.
-
-Auf der Kommandozeile:
-
-```bash
-build=$(mktemp -d /home/$USER/tubeless-build.XXXX)   # siehe Hinweis unten
-cp -r manifest.json _locales src popup icons README.md LICENSE "$build/"
-chromium --pack-extension="$build" --pack-extension-key=~/.config/tubeless/tubeless.pem
-mv "$build.crx" dist/tubeless.crx && rm -rf "$build"
-```
-
-Läuft Chromium als Snap, kommt es weder an `~/.config` noch an `/tmp` heran —
-Schlüssel und Staging-Verzeichnis müssen dann vorübergehend an einem Pfad
-liegen, dessen erste Ebene unter `$HOME` kein Punkt-Verzeichnis ist. Die
-Fehlermeldung dazu lautet „Privater Schlüssel konnte nicht gelesen werden".
+Die `.crx` lässt sich auch über `chrome://extensions` → **Erweiterung
+packen** bauen — dieses Verzeichnis als Stammverzeichnis, den vorhandenen
+Schlüssel als Privatschlüssel. Ohne denselben Schlüssel ändert sich die
+Extension-ID. `tools/build.py` umschifft die Snap-Eigenheit automatisch:
+Snap-Chromium kommt weder an `~/.config` noch an `/tmp` heran, deshalb liegen
+Schlüssel und Staging vorübergehend an einem Pfad, dessen erste Ebene unter
+`$HOME` kein Punkt-Verzeichnis ist (sonst „Privater Schlüssel konnte nicht
+gelesen werden").
 
 Der Schlüssel liegt **nicht im Repo**, sondern unter
 `~/.config/tubeless/tubeless.pem` (Modus 600). Wer ihn hat, kann Pakete
@@ -331,11 +334,11 @@ src/tubeless.css       alle Ausblende-Regeln, an tl-*-Klassen gehängt
 src/content.js         Klassen setzen, JS-Filter, SPA-Navigation
 src/sponsor.js         SponsorBlock: Marker, Überspringen, Toast (opt-in)
 popup/                 Bedienoberfläche
-dist/tubeless.crx      signiertes Paket
+dist/                  Store-Upload-Pakete, versioniert (CI + tools/build.py)
 docs/store-listing.*   Texte für den Chrome Web Store, je Sprache
 docs/logo.svg          die Marke, gleiche Form wie icons/*.png
+tools/build.py         baut alle Pakete nach dist/
 tools/make-icons.py    generiert icons/*.png (ohne externe Abhängigkeiten)
-tools/build-firefox.py baut dist/tubeless-firefox.xpi (Firefox-Manifest)
 tools/verify.py        Selektor-Test gegen das echte YouTube
 ```
 
