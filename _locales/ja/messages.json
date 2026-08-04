@@ -317,14 +317,6 @@
     "message": "登録チャンネル、履歴、探索を含むガイド",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "広告をスキップ",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "人間らしい間を置いて「スキップ」を押し、スキップできない広告はミュートで再生します",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "イントロも対象にする",
     "description": "Filter-Bezeichnung: sponsorIntros"

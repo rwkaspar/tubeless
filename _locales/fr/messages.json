@@ -317,14 +317,6 @@
     "message": "Guide avec abonnements, historique, explorer",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Passer les publicités",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "Clique sur « Ignorer » avec un délai humain ; les publicités non ignorables sont lues en sourdine",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "Inclure aussi les intros",
     "description": "Filter-Bezeichnung: sponsorIntros"

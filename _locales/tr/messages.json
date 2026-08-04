@@ -317,14 +317,6 @@
     "message": "Abonelikler, geçmiş ve keşfet menüsü",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Reklamları atla",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "“Atla”ya insansı bir gecikmeyle basar; atlanamayan reklamlar sessiz oynatılır",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "İntroları da dahil et",
     "description": "Filter-Bezeichnung: sponsorIntros"

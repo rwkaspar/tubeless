@@ -317,14 +317,6 @@
     "message": "Guia com inscrições, histórico, explorar",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Pular anúncios",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "Clica em “Pular” com atraso humano; anúncios não puláveis tocam sem som",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "Incluir também as intros",
     "description": "Filter-Bezeichnung: sponsorIntros"

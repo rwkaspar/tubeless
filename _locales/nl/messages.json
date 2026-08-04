@@ -317,14 +317,6 @@
     "message": "Gids met abonnementen, geschiedenis, verkennen",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Advertenties overslaan",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "Klikt ‘Overslaan’ met menselijke vertraging; niet-overslaanbare advertenties spelen gedempt af",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "Ook intro’s meenemen",
     "description": "Filter-Bezeichnung: sponsorIntros"

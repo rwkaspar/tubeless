@@ -317,14 +317,6 @@
     "message": "Guía con suscripciones, historial y explorar",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Saltar anuncios",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "Pulsa «Saltar» con un retardo humano; los anuncios no saltables se reproducen en silencio",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "Incluir también las intros",
     "description": "Filter-Bezeichnung: sponsorIntros"

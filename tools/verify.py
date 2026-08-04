@@ -45,9 +45,6 @@ CHECKS = [
         ('Filter-Chips weg', 'ytd-feed-filter-chip-bar-renderer', 0),
         ('Platzhalter da', '.tl-notice', 1),
     ]),
-    ('https://www.youtube.com/watch?v=aqz-KE-bpKQ&t=1', [
-        ('Kein Werbe-Overlay stehengeblieben', '.ytp-ad-skip-button:not([disabled])', 0),
-    ]),
     ('https://www.youtube.com/watch?v=aqz-KE-bpKQ', [
         ('Empfehlungen weg', '#secondary, ytd-compact-video-renderer', 0),
         ('Kommentare weg', '#comments', 0),

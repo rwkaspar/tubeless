@@ -45,14 +45,13 @@ Player
 • Das „Weitere Videos"-Overlay beim Pausieren
 • Infokarten, Heatmap, Weiter-Button, Miniplayer
 • Autoplay — dauerhaft aus, nicht nur für diese Sitzung
-• Werbung wird übersprungen, sobald sie sich überspringen lässt; der Rest läuft stumm
 
 Kopfzeile und Navigation
 • Die gesamte obere Leiste, die Seitenleiste, die Glocke, den Zähler-Badge
 
 WIE DU ES EINSTELLST
 
-42 Filter, jeder einzeln schaltbar, dazu drei Presets:
+41 Filter, jeder einzeln schaltbar, dazu drei Presets:
 
 • Eigene — deine gespeicherte Auswahl, jederzeit mit einem Klick zurück
 • Fokus — Kopfzeile und Suchleiste bleiben, Sponsor-Segmente und Intros werden markiert und übersprungen
@@ -79,10 +78,10 @@ WORAUF DU DICH VERLASSEN KANNST
 
 ZUR WERBUNG, EHRLICH GESAGT
 
-Tubeless überspringt Werbung, es blockiert sie nicht. Sobald der
-„Überspringen"-Button erscheint, wird er gedrückt; unüberspringbare Anzeigen
-laufen stummgeschaltet durch. Das erspart dir die Klicks und den Lärm — werbefrei ist
-YouTube damit nicht, und ein Ersatz für einen Adblocker ist Tubeless nicht.
+Tubeless blockiert keine Werbung und greift nicht in die Werbewiedergabe ein —
+es blendet lediglich Promoted-Kacheln in Feed und Suche aus. Wer werbefrei
+schauen will, braucht YouTube Premium oder einen Werbeblocker; Tubeless ist
+keiner und will keiner sein.
 
 OPTIONAL: SPONSOR-SEGMENTE (SPONSORBLOCK)
 
@@ -111,9 +110,8 @@ Produktivität
 
 ```
 Tubeless blendet ablenkende Oberflächenelemente auf youtube.com aus — Feed,
-Empfehlungen, Kommentare, Shorts, Endcards — schaltet Autoplay ab und
-überspringt Anzeigen, sobald YouTube das zulässt. Das ist der einzige Zweck der
-Erweiterung.
+Empfehlungen, Kommentare, Shorts, Endcards — und schaltet Autoplay ab. Das ist
+der einzige Zweck der Erweiterung.
 ```
 
 ## Begründung der Berechtigungen
@@ -121,7 +119,7 @@ Erweiterung.
 **`storage`**
 
 ```
-Speichert, welche der 42 Filter der Nutzer aktiviert hat, dazu dessen selbst
+Speichert, welche der 41 Filter der Nutzer aktiviert hat, dazu dessen selbst
 gesicherte Auswahl. Ohne diese Berechtigung
 wären die Einstellungen nach jedem Tab-Wechsel wieder weg. Es werden ausschließlich
 diese Schalterzustände gespeichert, keine Nutzungsdaten.
@@ -131,8 +129,8 @@ diese Schalterzustände gespeichert, keine Nutzungsdaten.
 
 ```
 Die Erweiterung muss auf YouTube-Seiten CSS-Klassen setzen, um Elemente
-auszublenden, Autoplay abzuschalten, den „Überspringen"-Button für Anzeigen zu
-betätigen und /shorts/-URLs auf den normalen Player umzuleiten. Sie greift auf
+auszublenden, Autoplay abzuschalten und /shorts/-URLs auf den normalen Player
+umzuleiten. Sie greift auf
 keine andere Domain zu.
 ```
 

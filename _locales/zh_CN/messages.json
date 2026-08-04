@@ -317,14 +317,6 @@
     "message": "含订阅内容、历史记录和探索的导航栏",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "跳过广告",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "以人类般的延迟点击“跳过”；无法跳过的广告将静音播放",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "同时包含片头",
     "description": "Filter-Bezeichnung: sponsorIntros"

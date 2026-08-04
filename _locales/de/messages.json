@@ -317,14 +317,6 @@
     "message": "Guide inkl. Abos, Verlauf, Explore",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Werbung überspringen",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "Klickt „Überspringen“ mit menschlicher Verzögerung; nicht überspringbare Werbung läuft stummgeschaltet",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "Auch Intros einbeziehen",
     "description": "Filter-Bezeichnung: sponsorIntros"

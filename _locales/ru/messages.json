@@ -317,14 +317,6 @@
     "message": "Меню с подписками, историей и разделом «Навигатор»",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Пропускать рекламу",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "Нажимает «Пропустить» с человеческой задержкой; реклама без пропуска идёт без звука",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "Также учитывать интро",
     "description": "Filter-Bezeichnung: sponsorIntros"

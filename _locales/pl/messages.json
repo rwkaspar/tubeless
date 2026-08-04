@@ -317,14 +317,6 @@
     "message": "Menu z subskrypcjami, historią i eksploracją",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Pomijaj reklamy",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "Klika „Pomiń” z ludzkim opóźnieniem; reklamy bez pominięcia są odtwarzane wyciszone",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "Uwzględniaj także intra",
     "description": "Filter-Bezeichnung: sponsorIntros"

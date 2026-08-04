@@ -317,14 +317,6 @@
     "message": "Guide with subscriptions, history, explore",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Skip ads",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "Clicks “Skip” with a human-like delay; unskippable ads play muted",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "Also include intros",
     "description": "Filter-Bezeichnung: sponsorIntros"

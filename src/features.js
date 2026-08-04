@@ -71,7 +71,6 @@
 
     // --- Verhalten (JS) ----------------------------------------------------
     { key: 'disableAutoplay', group: 'behavior', default: true, css: false },
-    { key: 'skipAds', group: 'behavior', default: true, css: false },
     { key: 'redirectShorts', group: 'behavior', default: true, css: false },
     { key: 'homeNotice', group: 'behavior', default: true, css: false },
     // Opt-in: einzige Features mit Netzwerkzugriff (SponsorBlock, anonymisiert)

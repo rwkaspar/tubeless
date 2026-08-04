@@ -97,71 +97,6 @@
     }
   }
 
-  // --- Feature: Werbung überspringen --------------------------------------
-
-  /*
-   * Hier wird nichts blockiert — es wird geklickt, und zwar wie ein Mensch.
-   *
-   * Zwei Dinge tun wir bewusst NICHT mehr (beides fütterte YouTubes
-   * Werbeblocker-Erkennung, bis hin zu „Videowiedergabe ist blockiert“):
-   * - den Skip-Button im selben Takt drücken, in dem er auftaucht — kein
-   *   Mensch klickt in unter 400 ms; stattdessen kurze zufällige Verzögerung
-   * - unüberspringbare Anzeigen ans Ende spulen — serverseitig wirkt das wie
-   *   eine nach einem Sekundenbruchteil „fertig geschaute“ Anzeige, eine klar
-   *   anomale Ad-Completion; stattdessen läuft sie stummgeschaltet durch
-   */
-  /*
-   * Bewusst NICHT dabei: .ytp-ad-survey-answer-button. Den zu klicken würde
-   * die Umfrage nicht überspringen, sondern im Namen des Nutzers beantworten.
-   */
-  const SKIP_BUTTONS = [
-    '.ytp-skip-ad-button',
-    '.ytp-ad-skip-button',
-    '.ytp-ad-skip-button-modern',
-    '.ytp-ad-skip-button-slot button'
-  ].join(', ');
-
-  let skipClickDueAt = 0;      // geplanter Klickzeitpunkt (menschliche Latenz)
-  let mutedByTubeless = false; // nur die eigene Stummschaltung wieder aufheben
-  let adMuteHandled = false;   // pro Anzeige nur einmal eingreifen
-
-  function skipAds() {
-    const player = document.querySelector('.html5-video-player');
-    const adShowing = !!(player && player.classList.contains('ad-showing'));
-    const video = player && player.querySelector('video');
-
-    if (!adShowing || !isEnabled('skipAds')) {
-      skipClickDueAt = 0;
-      adMuteHandled = false;
-      if (mutedByTubeless && video) video.muted = false;
-      mutedByTubeless = false;
-      return;
-    }
-
-    // Anzeige läuft: einmalig stummschalten. Macht der Nutzer sie danach
-    // selbst wieder laut, respektieren wir das.
-    if (!adMuteHandled) {
-      adMuteHandled = true;
-      if (video && !video.muted) {
-        video.muted = true;
-        mutedByTubeless = true;
-      }
-    }
-
-    const button = document.querySelector(SKIP_BUTTONS);
-    if (button && button.offsetParent !== null) {
-      const now = Date.now();
-      if (!skipClickDueAt) {
-        skipClickDueAt = now + 600 + Math.random() * 900;
-      } else if (now >= skipClickDueAt) {
-        button.click();
-        skipClickDueAt = 0;
-      }
-    } else {
-      skipClickDueAt = 0;
-    }
-  }
-
   // --- Feature: Platzhalter auf leerer Startseite -------------------------
 
   function updateHomeNotice() {
@@ -206,7 +141,6 @@
   function applyBehaviors() {
     if (redirectShorts()) return;
     disableAutoplay();
-    skipAds();
     sponsorTick();
     updateHomeNotice();
   }
@@ -269,14 +203,9 @@
   });
 
   /*
-   * Werbung taucht mitten in der Wiedergabe auf, ohne Navigation und ohne
-   * Änderung an <body> — davon bekommen die Handler oben nichts mit. Ein
-   * kurzer Takt ist hier ehrlicher als ein MutationObserver über den halben
-   * Player: eine Klassenabfrage alle 400 ms kostet nichts und greift auch,
-   * wenn YouTube seine Ad-Elemente wieder umbaut.
+   * Sponsor-Segmente brauchen einen Takt: Wiedergabefortschritt erzeugt weder
+   * Navigation noch DOM-Änderungen an <body>. Eine Abfrage alle 400 ms kostet
+   * praktisch nichts.
    */
-  setInterval(() => {
-    skipAds();
-    sponsorTick();
-  }, 400);
+  setInterval(sponsorTick, 400);
 })();

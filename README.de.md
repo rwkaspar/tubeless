@@ -24,7 +24,7 @@ Chrome-Extension, die YouTube auf das reduziert, weswegen du hingegangen bist:
 das Video. Kein Feed, keine Empfehlungen, keine Shorts, keine Kommentare, keine
 Endcards, kein Autoplay.
 
-42 einzeln schaltbare Filter, drei Presets, davon eines selbst belegbar.
+41 einzeln schaltbare Filter, drei Presets, davon eines selbst belegbar.
 Standardmäßig ist alles aus, was ablenkt — sichtbar bleiben nur Player, Titel,
 Kanal und Beschreibung.
 
@@ -164,9 +164,9 @@ Autoplay-Schalter, Weiter-Button, Miniplayer-Button, Ambient-Modus
 
 **Überall** — rote Zähler-Badges, Vorschaubilder\*, Aufrufzahlen\*, Hover-Vorschau
 
-**Verhalten** — Autoplay dauerhaft aus, Werbung überspringen, `/shorts/…` öffnet
-als normales Video, ruhiger Platzhalter statt Feed, Sponsor-Segmente markieren
-und überspringen — optional auch Intros (SponsorBlock, opt-in)\*
+**Verhalten** — Autoplay dauerhaft aus, `/shorts/…` öffnet als normales Video,
+ruhiger Platzhalter statt Feed, Sponsor-Segmente markieren und überspringen —
+optional auch Intros (SponsorBlock, opt-in)\*
 
 \* standardmäßig aus, einzeln dazuschaltbar
 
@@ -178,27 +178,22 @@ diese Klassen. Damit ist alles schon versteckt, bevor YouTube den ersten Pixel
 rendert. Die letzte bekannte Einstellung liegt zusätzlich im `localStorage`, weil
 `chrome.storage` nur asynchron antwortet — sonst blitzt der Feed kurz auf.
 
-Sieben Filter brauchen JavaScript statt CSS: Autoplay (setzt YouTubes eigenen
-`yt-player-autonavstate` und legt notfalls den Schalter um), das Überspringen
-von Werbung, die drei Sponsor-Filter, die Shorts-Umleitung und der Platzhalter
-auf der leeren Startseite. Die laufen bei jeder SPA-Navigation neu
+Sechs Filter brauchen JavaScript statt CSS: Autoplay (setzt YouTubes eigenen
+`yt-player-autonavstate` und legt notfalls den Schalter um), die drei
+Sponsor-Filter, die Shorts-Umleitung und der Platzhalter auf der leeren
+Startseite. Die laufen bei jeder SPA-Navigation neu
 (`yt-navigate-finish` & Co.).
 
-### Werbung
+### Werbung — bewusst nicht angefasst
 
-Hier wird nichts blockiert, sondern geklickt — mit kurzer, zufälliger
-Verzögerung, wie ein Mensch. Unüberspringbare Anzeigen laufen stummgeschaltet
-durch statt vorgespult zu werden: Das frühere Vorspulen sah serverseitig wie
-eine anomal „fertig geschaute" Anzeige aus und hat YouTubes
-Werbeblocker-Erkennung ausgelöst („Videowiedergabe ist blockiert"). Werbefrei
-macht das YouTube nicht — es erspart Klicks und Lärm. Unter MV3 dürfte eine Extension Requests nur über statische
-`declarativeNetRequest`-Regeln blocken, und Ads kommen aus derselben Domain und
-teils im selben Stream wie das Video; sauber trennen lässt sich das nicht.
-
-Werbung taucht mitten in der Wiedergabe auf, ohne Navigation und ohne Änderung an
-`<body>` — davon bekommen die Navigations-Handler nichts mit. Deshalb prüft ein
-Intervall alle 400 ms eine Klasse am Player. Das ist ehrlicher als ein
-MutationObserver über den halben Player und kostet praktisch nichts.
+Tubeless hatte kurzzeitig einen Ad-Skip (Klick auf „Überspringen", Vorspulen
+unüberspringbarer Anzeigen). Das Vorspulen erzeugte serverseitig anomal
+„fertig geschaute" Anzeigen und löste YouTubes Werbeblocker-Erkennung aus
+(„Videowiedergabe ist blockiert") — deshalb ist das Feature wieder
+ausgebaut. Tubeless greift nicht mehr in die Werbewiedergabe ein; einzig
+Promoted-Kacheln in Feed und Suche werden kosmetisch ausgeblendet
+(`searchAds`-Filter). Wer Anzeigen loswerden will, braucht YouTube Premium
+oder einen echten Werbeblocker — mit dessen bekanntem Katz-und-Maus-Risiko.
 
 ### Sponsor-Segmente (SponsorBlock, opt-in)
 

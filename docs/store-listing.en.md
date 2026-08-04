@@ -44,14 +44,13 @@ Player
 • The "More videos" overlay when you pause
 • Info cards, heatmap, next button, miniplayer
 • Autoplay — off for good, not just for this session
-• Ads get skipped the moment they become skippable; the rest plays muted
 
 Header and navigation
 • The whole top bar, the sidebar, the bell, the counter badge
 
 HOW YOU TUNE IT
 
-42 filters, each one switchable on its own, plus three presets:
+41 filters, each one switchable on its own, plus three presets:
 
 • Custom — your saved selection, one click away at any time
 • Focus — the header and search bar stay, sponsor segments and intros get marked and skipped
@@ -78,10 +77,10 @@ WHAT YOU CAN RELY ON
 
 ABOUT ADS, HONESTLY
 
-Tubeless skips ads, it does not block them. The moment the "Skip" button shows
-up it gets pressed; unskippable ads play through muted. That saves you the
-clicks and the noise — it does not make YouTube ad-free, and Tubeless is no
-replacement for an ad blocker.
+Tubeless does not block ads and does not touch ad playback — it merely hides
+promoted tiles in feed and search. If you want to watch ad-free, that takes
+YouTube Premium or an ad blocker; Tubeless is not one and does not want to be
+one.
 
 OPTIONAL: SPONSOR SEGMENTS (SPONSORBLOCK)
 
@@ -109,8 +108,8 @@ Productivity
 
 ```
 Tubeless hides distracting interface elements on youtube.com — feed,
-recommendations, comments, Shorts, end cards — turns off autoplay and skips ads
-once YouTube allows it. That is the extension's only purpose.
+recommendations, comments, Shorts, end cards — and turns off autoplay. That is
+the extension's only purpose.
 ```
 
 ## Permission justifications
@@ -118,7 +117,7 @@ once YouTube allows it. That is the extension's only purpose.
 **`storage`**
 
 ```
-Stores which of the 42 filters the user has enabled, plus the selection they
+Stores which of the 41 filters the user has enabled, plus the selection they
 saved themselves. Without it the settings would be gone on every tab switch.
 Only these switch states are stored, no usage data.
 ```
@@ -127,8 +126,7 @@ Only these switch states are stored, no usage data.
 
 ```
 The extension needs to set CSS classes on YouTube pages to hide elements, turn
-off autoplay, press the "Skip" button on ads and redirect /shorts/ URLs to the
-regular player. It touches no other domain.
+off autoplay and redirect /shorts/ URLs to the regular player. It touches no other domain.
 ```
 
 ## Data usage

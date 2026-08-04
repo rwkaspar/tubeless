@@ -317,14 +317,6 @@
     "message": "Guida con iscrizioni, cronologia, esplora",
     "description": "Erklaerung zum Filter sidebar"
   },
-  "featureSkipAds": {
-    "message": "Salta gli annunci",
-    "description": "Filter-Bezeichnung: skipAds"
-  },
-  "featureSkipAdsHint": {
-    "message": "Preme «Salta» con un ritardo umano; gli annunci non saltabili scorrono in silenzio",
-    "description": "Erklaerung zum Filter skipAds"
-  },
   "featureSponsorIntros": {
     "message": "Includi anche le intro",
     "description": "Filter-Bezeichnung: sponsorIntros"

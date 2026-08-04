@@ -9,15 +9,15 @@ vermeidet Rückfragen. Deutsche Fassungen der Texte stehen in
 
 ```
 Tubeless hides distracting interface elements on youtube.com — feed,
-recommendations, comments, Shorts, end cards — turns off autoplay and skips
-ads and (opt-in) community-marked sponsor segments once YouTube allows it.
-That is the extension's only purpose.
+recommendations, comments, Shorts, end cards — turns off autoplay and
+(opt-in) skips community-marked sponsor segments. That is the extension's
+only purpose.
 ```
 
 ## Begründung: Berechtigung `storage`
 
 ```
-Stores which of the 42 filters the user has enabled, the selection they saved
+Stores which of the 41 filters the user has enabled, the selection they saved
 themselves, and when the review prompt was last shown. Without this permission
 the settings would be lost on every tab switch. Only these switch states are
 stored — no usage data, no browsing data.
@@ -27,9 +27,9 @@ stored — no usage data, no browsing data.
 
 ```
 The extension needs to run a content script on YouTube pages to set CSS
-classes that hide interface elements, turn off autoplay, press the "Skip"
-button on ads, mark/skip community-reported sponsor segments (opt-in), and
-redirect /shorts/ URLs to the regular player. It touches no other domain.
+classes that hide interface elements, turn off autoplay, mark/skip
+community-reported sponsor segments (opt-in), and redirect /shorts/ URLs to
+the regular player. It touches no other domain.
 ```
 
 ## Remote-Code

@@ -23,7 +23,7 @@
 A Chrome extension that reduces YouTube to the thing you came for: the video.
 No feed, no recommendations, no Shorts, no comments, no end cards, no autoplay.
 
-42 individually switchable filters, three presets, one of them yours to define.
+41 individually switchable filters, three presets, one of them yours to define.
 By default everything distracting is gone — what remains is the player, title,
 channel and description.
 
@@ -161,9 +161,9 @@ autoplay toggle, next button, miniplayer button, ambient mode
 
 **Everywhere** — red counter badges, thumbnails\*, view counts\*, hover preview
 
-**Behavior** — autoplay permanently off, ad skipping, `/shorts/…` opens as a
-regular video, calm placeholder instead of the feed, marking and skipping
-sponsor segments — optionally intros too (SponsorBlock, opt-in)\*
+**Behavior** — autoplay permanently off, `/shorts/…` opens as a regular
+video, calm placeholder instead of the feed, marking and skipping sponsor
+segments — optionally intros too (SponsorBlock, opt-in)\*
 
 \* off by default, individually switchable
 
@@ -176,27 +176,22 @@ The last known settings are additionally kept in `localStorage`, because
 `chrome.storage` only answers asynchronously — without it the feed flashes
 briefly.
 
-Seven filters need JavaScript instead of CSS: autoplay (sets YouTube's own
-`yt-player-autonavstate` and flips the visible toggle if needed), ad skipping,
-the three sponsor filters, the Shorts redirect and the placeholder on the
-empty home page. These re-run on every SPA navigation
+Six filters need JavaScript instead of CSS: autoplay (sets YouTube's own
+`yt-player-autonavstate` and flips the visible toggle if needed), the three
+sponsor filters, the Shorts redirect and the placeholder on the empty home
+page. These re-run on every SPA navigation
 (`yt-navigate-finish` & co.).
 
-### Ads
+### Ads — deliberately left alone
 
-Nothing is blocked here — things get clicked, with a short randomized delay,
-like a human. Unskippable ads play through muted instead of being
-fast-forwarded: the old seeking looked like an anomalously "completed" ad
+Tubeless briefly shipped an ad skipper (clicking "Skip", fast-forwarding
+unskippable ads). The fast-forwarding produced anomalously "completed" ads
 server-side and triggered YouTube's adblock detection ("playback is
-blocked"). This does not make YouTube ad-free — it saves you the clicks and
-the noise. Under MV3 an extension may only block requests through static
-`declarativeNetRequest` rules, and ads come from the same domain and partly in
-the same stream as the video; there is no clean way to separate them.
-
-Ads appear mid-playback, without navigation and without any change to
-`<body>` — the navigation handlers never hear about them. That is why an
-interval checks a class on the player every 400 ms. That is more honest than a
-MutationObserver over half the player, and it costs practically nothing.
+blocked") — so the feature was removed again. Tubeless no longer touches ad
+playback; the only ad-related thing left is cosmetically hiding promoted
+tiles in feed and search (the `searchAds` filter). If you want ads gone, that
+takes YouTube Premium or a real ad blocker — with its well-known
+cat-and-mouse risk.
 
 ### Sponsor segments (SponsorBlock, opt-in)
 
