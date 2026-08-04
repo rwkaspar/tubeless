@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "Preme «Salta» e manda avanti gli annunci non saltabili",
+    "message": "Preme «Salta» con un ritardo umano; gli annunci non saltabili scorrono in silenzio",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

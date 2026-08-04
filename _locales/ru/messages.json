@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "Нажимает «Пропустить» и перематывает непропускаемую рекламу",
+    "message": "Нажимает «Пропустить» с человеческой задержкой; реклама без пропуска идёт без звука",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

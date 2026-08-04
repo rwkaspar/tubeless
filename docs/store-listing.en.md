@@ -44,7 +44,7 @@ Player
 • The "More videos" overlay when you pause
 • Info cards, heatmap, next button, miniplayer
 • Autoplay — off for good, not just for this session
-• Ads get skipped the moment they become skippable
+• Ads get skipped the moment they become skippable; the rest plays muted
 
 Header and navigation
 • The whole top bar, the sidebar, the bell, the counter badge
@@ -79,8 +79,8 @@ WHAT YOU CAN RELY ON
 ABOUT ADS, HONESTLY
 
 Tubeless skips ads, it does not block them. The moment the "Skip" button shows
-up it gets pressed; unskippable ads are fast-forwarded. That saves you the wait
-and the clicks — it does not make YouTube ad-free, and Tubeless is no
+up it gets pressed; unskippable ads play through muted. That saves you the
+clicks and the noise — it does not make YouTube ad-free, and Tubeless is no
 replacement for an ad blocker.
 
 OPTIONAL: SPONSOR SEGMENTS (SPONSORBLOCK)

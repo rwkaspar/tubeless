@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "Klickt „Überspringen“ und spult unüberspringbare Anzeigen vor",
+    "message": "Klickt „Überspringen“ mit menschlicher Verzögerung; nicht überspringbare Werbung läuft stummgeschaltet",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

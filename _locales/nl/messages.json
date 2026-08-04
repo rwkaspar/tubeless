@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "Klikt ‘Overslaan’ en spoelt niet-overslaanbare advertenties door",
+    "message": "Klikt ‘Overslaan’ met menselijke vertraging; niet-overslaanbare advertenties spelen gedempt af",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

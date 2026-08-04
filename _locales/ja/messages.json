@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "「スキップ」を押し、スキップできない広告は早送りします",
+    "message": "人間らしい間を置いて「スキップ」を押し、スキップできない広告はミュートで再生します",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "Clique sur « Ignorer » et avance les publicités non ignorables",
+    "message": "Clique sur « Ignorer » avec un délai humain ; les publicités non ignorables sont lues en sourdine",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

@@ -184,11 +184,12 @@ empty home page. These re-run on every SPA navigation
 
 ### Ads
 
-Nothing is blocked here — things get clicked. As soon as the "Skip" button
-shows up, Tubeless presses it; for unskippable ads it jumps to the end of the
-ad clip. YouTube treats that like an ad watched to the end, so there is no
-quarrel with the adblock detection — but it also does not make YouTube
-ad-free. Under MV3 an extension may only block requests through static
+Nothing is blocked here — things get clicked, with a short randomized delay,
+like a human. Unskippable ads play through muted instead of being
+fast-forwarded: the old seeking looked like an anomalously "completed" ad
+server-side and triggered YouTube's adblock detection ("playback is
+blocked"). This does not make YouTube ad-free — it saves you the clicks and
+the noise. Under MV3 an extension may only block requests through static
 `declarativeNetRequest` rules, and ads come from the same domain and partly in
 the same stream as the video; there is no clean way to separate them.
 

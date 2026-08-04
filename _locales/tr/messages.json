@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "“Atla”ya basar, atlanamayan reklamları ileri sarar",
+    "message": "“Atla”ya insansı bir gecikmeyle basar; atlanamayan reklamlar sessiz oynatılır",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

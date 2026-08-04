@@ -45,7 +45,7 @@ Player
 • Das „Weitere Videos"-Overlay beim Pausieren
 • Infokarten, Heatmap, Weiter-Button, Miniplayer
 • Autoplay — dauerhaft aus, nicht nur für diese Sitzung
-• Werbung wird übersprungen, sobald sie sich überspringen lässt
+• Werbung wird übersprungen, sobald sie sich überspringen lässt; der Rest läuft stumm
 
 Kopfzeile und Navigation
 • Die gesamte obere Leiste, die Seitenleiste, die Glocke, den Zähler-Badge
@@ -81,7 +81,7 @@ ZUR WERBUNG, EHRLICH GESAGT
 
 Tubeless überspringt Werbung, es blockiert sie nicht. Sobald der
 „Überspringen"-Button erscheint, wird er gedrückt; unüberspringbare Anzeigen
-werden vorgespult. Das erspart dir das Warten und die Klicks — werbefrei ist
+laufen stummgeschaltet durch. Das erspart dir die Klicks und den Lärm — werbefrei ist
 YouTube damit nicht, und ein Ersatz für einen Adblocker ist Tubeless nicht.
 
 OPTIONAL: SPONSOR-SEGMENTE (SPONSORBLOCK)

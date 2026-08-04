@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "Clicks “Skip” and fast-forwards unskippable ads",
+    "message": "Clicks “Skip” with a human-like delay; unskippable ads play muted",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

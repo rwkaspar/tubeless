@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "Clica em “Pular” e adianta anúncios não puláveis",
+    "message": "Clica em “Pular” com atraso humano; anúncios não puláveis tocam sem som",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

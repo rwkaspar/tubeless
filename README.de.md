@@ -186,11 +186,12 @@ auf der leeren Startseite. Die laufen bei jeder SPA-Navigation neu
 
 ### Werbung
 
-Hier wird nichts blockiert, sondern geklickt: Sobald der „Überspringen"-Button
-auftaucht, drückt Tubeless ihn; bei unüberspringbaren Anzeigen springt es ans
-Ende des Anzeigen-Clips. YouTube behandelt das wie durchgesehene Werbung, also
-gibt es keinen Streit mit der Adblock-Erkennung — aber es macht YouTube auch
-nicht werbefrei. Unter MV3 dürfte eine Extension Requests nur über statische
+Hier wird nichts blockiert, sondern geklickt — mit kurzer, zufälliger
+Verzögerung, wie ein Mensch. Unüberspringbare Anzeigen laufen stummgeschaltet
+durch statt vorgespult zu werden: Das frühere Vorspulen sah serverseitig wie
+eine anomal „fertig geschaute" Anzeige aus und hat YouTubes
+Werbeblocker-Erkennung ausgelöst („Videowiedergabe ist blockiert"). Werbefrei
+macht das YouTube nicht — es erspart Klicks und Lärm. Unter MV3 dürfte eine Extension Requests nur über statische
 `declarativeNetRequest`-Regeln blocken, und Ads kommen aus derselben Domain und
 teils im selben Stream wie das Video; sauber trennen lässt sich das nicht.
 

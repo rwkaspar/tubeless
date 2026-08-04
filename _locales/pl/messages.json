@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "Klika „Pomiń” i przewija reklamy bez pominięcia",
+    "message": "Klika „Pomiń” z ludzkim opóźnieniem; reklamy bez pominięcia są odtwarzane wyciszone",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {

@@ -322,7 +322,7 @@
     "description": "Filter-Bezeichnung: skipAds"
   },
   "featureSkipAdsHint": {
-    "message": "自动点击“跳过”，并快进无法跳过的广告",
+    "message": "以人类般的延迟点击“跳过”；无法跳过的广告将静音播放",
     "description": "Erklaerung zum Filter skipAds"
   },
   "featureSponsorIntros": {
