@@ -143,10 +143,14 @@ def main():
     version = chrome_manifest()['version']
     os.makedirs(DIST, exist_ok=True)
 
-    # Alte Staende ersetzen — auch die unversionierten Namen von frueher
-    for pattern in ('tubeless-chrome-*.zip', 'tubeless-firefox-*.xpi',
-                    'tubeless-*.crx', 'tubeless-chrome.zip',
-                    'tubeless-firefox.xpi', 'tubeless.crx'):
+    # Alte Staende ersetzen — auch die unversionierten Namen von frueher.
+    # Die .crx nur anfassen, wenn sie auch neu gebaut wird: mit --no-crx (CI)
+    # wuerde sie sonst geloescht und nie ersetzt.
+    patterns = ['tubeless-chrome-*.zip', 'tubeless-firefox-*.xpi',
+                'tubeless-chrome.zip', 'tubeless-firefox.xpi']
+    if not args.no_crx:
+        patterns += ['tubeless-*.crx', 'tubeless.crx']
+    for pattern in patterns:
         for stale in glob.glob(os.path.join(DIST, pattern)):
             os.remove(stale)
 
