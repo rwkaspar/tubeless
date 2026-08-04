@@ -65,20 +65,31 @@ def firefox_manifest():
 
 
 def write_package(target, manifest_override=None):
-    with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED) as z:
+    """Byte-deterministisch: fester Zeitstempel und stabile Reihenfolge für
+    alle Einträge — sonst erzeugt jeder CI-Checkout (neue mtimes) andere
+    ZIP-Bytes und der Workflow committet Pakete ohne inhaltliche Änderung."""
+    def add(z, arcname, data):
+        info = zipfile.ZipInfo(arcname, date_time=(2026, 1, 1, 0, 0, 0))
+        info.external_attr = 0o644 << 16
+        z.writestr(info, data, zipfile.ZIP_DEFLATED)
+
+    with zipfile.ZipFile(target, 'w') as z:
         for entry in PAYLOAD:
             path = os.path.join(ROOT, entry)
             if entry == 'manifest.json' and manifest_override is not None:
-                z.writestr('manifest.json',
-                           json.dumps(manifest_override, indent=2,
-                                      ensure_ascii=False) + '\n')
+                add(z, 'manifest.json',
+                    json.dumps(manifest_override, indent=2,
+                               ensure_ascii=False) + '\n')
             elif os.path.isdir(path):
-                for base, _dirs, files in os.walk(path):
+                for base, dirs, files in os.walk(path):
+                    dirs.sort()
                     for name in sorted(files):
                         full = os.path.join(base, name)
-                        z.write(full, os.path.relpath(full, ROOT))
+                        with open(full, 'rb') as fh:
+                            add(z, os.path.relpath(full, ROOT), fh.read())
             else:
-                z.write(path, entry)
+                with open(path, 'rb') as fh:
+                    add(z, entry, fh.read())
     return target
 
 
