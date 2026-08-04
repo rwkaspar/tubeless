@@ -38,8 +38,12 @@
    * wird nicht wieder gefragt, auch wenn er den Store gleich wieder zumacht.
    */
   const RATE_INTERVAL = 30 * 24 * 60 * 60 * 1000;
+  // Firefox-Build erkennt man am Protokoll der eigenen Ressourcen; der
+  // AMO-Slug „tubeless“ ist bei der Einreichung entsprechend zu wählen.
   const reviewUrl = () =>
-    'https://chromewebstore.google.com/detail/' + chrome.runtime.id + '/reviews';
+    chrome.runtime.getURL('').startsWith('moz-extension:')
+      ? 'https://addons.mozilla.org/firefox/addon/tubeless/reviews/'
+      : 'https://chromewebstore.google.com/detail/' + chrome.runtime.id + '/reviews';
 
   // --- Aufbau -------------------------------------------------------------
 

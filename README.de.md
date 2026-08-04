@@ -59,6 +59,13 @@ Es gibt keinen Build-Schritt — der Ordner *ist* die Extension. Beachte: die
 entpackte Kopie hat eine andere Extension-ID als die Store-Version, beide
 führen also getrennte Einstellungen.
 
+**Firefox:** Paket mit `python3 tools/build-firefox.py` bauen (erzeugt
+`dist/tubeless-firefox.xpi`), dann über
+`about:debugging#/runtime/this-firefox` → **Temporäres Add-on laden**
+installieren (bis das Add-on auf addons.mozilla.org gelistet ist). Gleicher
+Code, Firefox 140+; nur das Manifest unterscheidet sich — siehe Kopf von
+`tools/build-firefox.py`.
+
 ## Paketieren
 
 `dist/tubeless.crx` ist das signierte Paket, Extension-ID
@@ -324,6 +331,7 @@ dist/tubeless.crx      signiertes Paket
 docs/store-listing.*   Texte für den Chrome Web Store, je Sprache
 docs/logo.svg          die Marke, gleiche Form wie icons/*.png
 tools/make-icons.py    generiert icons/*.png (ohne externe Abhängigkeiten)
+tools/build-firefox.py baut dist/tubeless-firefox.xpi (Firefox-Manifest)
 tools/verify.py        Selektor-Test gegen das echte YouTube
 ```
 
