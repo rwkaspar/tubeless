@@ -97,9 +97,8 @@ Dislike-Zahlen zeigt Tubeless bewusst nicht an. Die wären nur über einen
 Drittanbieter zu bekommen, an den für jedes Video die Video-ID gehen müsste. Das
 verträgt sich nicht mit dem Versprechen oben.
 
-Zwölf Sprachen: Deutsch, Englisch, Spanisch, Französisch, Italienisch,
-Japanisch, Niederländisch, Polnisch, Portugiesisch, Russisch, Türkisch und
-Chinesisch. Die Sprache richtet sich nach deinen Browser-Einstellungen.
+Die Oberfläche ist in zwölf Sprachen übersetzt und richtet sich automatisch
+nach deinen Browser-Einstellungen.
 ```
 
 ## Kategorie

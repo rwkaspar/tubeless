@@ -95,9 +95,8 @@ Dislike counts are deliberately not shown. They would only be available through
 a third party that would need the video ID for every video you watch. That does
 not square with the promise above.
 
-Twelve languages: English, German, Spanish, French, Italian, Japanese, Dutch,
-Polish, Portuguese, Russian, Turkish and Chinese. The language follows your
-browser settings.
+The interface is translated into twelve languages and follows your browser
+settings automatically.
 ```
 
 ## Category
