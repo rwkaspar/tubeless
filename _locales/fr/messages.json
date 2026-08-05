@@ -23,6 +23,10 @@
     "message": "Tubeless — YouTube sans le bruit",
     "description": "Name der Extension"
   },
+  "footerRate": {
+    "message": "Évaluer",
+    "description": "Fußzeilen-Link zur Store-Bewertungsseite (Chrome Web Store bzw. AMO im Firefox-Build)"
+  },
   "footerReset": {
     "message": "Par défaut",
     "description": "Setzt auf die Auslieferungseinstellung zurueck"

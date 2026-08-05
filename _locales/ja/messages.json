@@ -23,6 +23,10 @@
     "message": "Tubeless — 雑音のない YouTube",
     "description": "Name der Extension"
   },
+  "footerRate": {
+    "message": "評価する",
+    "description": "Fußzeilen-Link zur Store-Bewertungsseite (Chrome Web Store bzw. AMO im Firefox-Build)"
+  },
   "footerReset": {
     "message": "既定値",
     "description": "Setzt auf die Auslieferungseinstellung zurueck"

@@ -179,6 +179,16 @@
       save({ [RATE_KEY]: { rated: false, nextAt: Date.now() + RATE_INTERVAL } });
     });
 
+    // Fußzeilen-Link: gleicher Effekt wie der „Bewerten“-Button im Hinweis —
+    // Store-Seite öffnen und den 30-Tage-Hinweis dauerhaft abschalten.
+    document.getElementById('rate-link').addEventListener('click', (event) => {
+      event.preventDefault();
+      save({ [RATE_KEY]: { rated: true, nextAt: 0 } });
+      if (chrome.tabs && chrome.tabs.create) chrome.tabs.create({ url: reviewUrl() });
+      else window.open(reviewUrl(), '_blank');
+      window.close();
+    });
+
     for (const button of document.querySelectorAll('.presets button')) {
       button.addEventListener('click', () => {
         const name = button.dataset.preset;

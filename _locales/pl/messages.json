@@ -23,6 +23,10 @@
     "message": "Tubeless — YouTube bez hałasu",
     "description": "Name der Extension"
   },
+  "footerRate": {
+    "message": "Oceń",
+    "description": "Fußzeilen-Link zur Store-Bewertungsseite (Chrome Web Store bzw. AMO im Firefox-Build)"
+  },
   "footerReset": {
     "message": "Domyślne",
     "description": "Setzt auf die Auslieferungseinstellung zurueck"
