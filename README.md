@@ -8,13 +8,14 @@
 
 <p align="center">
   <a href="https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee"><img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/ibabglinmoklbdpplofmoicgbknbejee?label=web%20store&color=ff3b30"></a>
+  <a href="https://addons.mozilla.org/firefox/addon/tubeless-distractionfree-yt/"><img alt="Firefox Add-ons" src="https://img.shields.io/amo/v/tubeless-distractionfree-yt?label=firefox&color=ff3b30"></a>
   <img alt="Version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Frwkaspar%2Ftubeless%2Fmain%2Fmanifest.json&query=%24.version&label=repo&color=0f0f0f">
   <img alt="Chrome 105+" src="https://img.shields.io/badge/chrome-105%2B-0f0f0f">
   <img alt="12 languages" src="https://img.shields.io/badge/languages-12-0f0f0f">
   <img alt="MIT license" src="https://img.shields.io/badge/license-MIT-0f0f0f">
 </p>
 
-<p align="center"><b><a href="https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee">Install from the Chrome Web Store</a></b></p>
+<p align="center"><b><a href="https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee">Install for Chrome</a> · <a href="https://addons.mozilla.org/firefox/addon/tubeless-distractionfree-yt/">Install for Firefox</a></b></p>
 
 <p align="center"><em>English version — <a href="README.de.md">Deutsche Fassung</a></em></p>
 
@@ -58,10 +59,10 @@ There is no build step — the folder *is* the extension. Note that the unpacked
 copy has a different extension ID than the store version, so the two keep
 separate settings.
 
-**Firefox:** load `dist/tubeless-firefox-<version>.xpi` via
-`about:debugging#/runtime/this-firefox` → **Load Temporary Add-on** (until the
-add-on is listed on addons.mozilla.org). Same code, Firefox 140+; only the
-manifest differs — see the header of `tools/build.py`.
+**Firefox:** install it [from addons.mozilla.org](https://addons.mozilla.org/firefox/addon/tubeless-distractionfree-yt/) — same code, Firefox
+140+, only the manifest differs (see the header of `tools/build.py`). To run
+an unsigned build instead, load `dist/tubeless-firefox-<version>.xpi` via
+`about:debugging#/runtime/this-firefox` → **Load Temporary Add-on**.
 
 ## Packaging
 

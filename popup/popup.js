@@ -38,14 +38,15 @@
    * wird nicht wieder gefragt, auch wenn er den Store gleich wieder zumacht.
    */
   const RATE_INTERVAL = 30 * 24 * 60 * 60 * 1000;
-  // Firefox-Build erkennt man am Protokoll der eigenen Ressourcen; der
-  // AMO-Slug „tubeless“ ist bei der Einreichung entsprechend zu wählen.
+  // Firefox-Build erkennt man am Protokoll der eigenen Ressourcen. Der
+  // AMO-Slug ist NICHT „tubeless“ — den hat ein fremdes Add-on
+  // (tubeless@steve.scot); AMO hat uns tubeless-distractionfree-yt vergeben.
   // Die Chrome-Store-ID ist fest verdrahtet: chrome.runtime.id stimmt nur für
   // die Store-Installation — entpackte Kopien und das signierte .crx haben
   // eigene IDs und liefen damit auf eine leere Store-Seite.
   const reviewUrl = () =>
     chrome.runtime.getURL('').startsWith('moz-extension:')
-      ? 'https://addons.mozilla.org/firefox/addon/tubeless/reviews/'
+      ? 'https://addons.mozilla.org/firefox/addon/tubeless-distractionfree-yt/reviews/'
       : 'https://chromewebstore.google.com/detail/ibabglinmoklbdpplofmoicgbknbejee/reviews';
 
   // --- Aufbau -------------------------------------------------------------
