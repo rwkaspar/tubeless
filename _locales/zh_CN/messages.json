@@ -3,6 +3,42 @@
     "message": "Tubeless",
     "description": "Tooltip des Toolbar-Icons"
   },
+  "breakCustom": {
+    "message": "自定",
+    "description": "Platzhalter im Feld für eine eigene Pausendauer"
+  },
+  "breakCustomLabel": {
+    "message": "自定义时长（分钟）",
+    "description": "Screenreader-Beschriftung des Feldes für eine eigene Dauer"
+  },
+  "breakEnd": {
+    "message": "结束",
+    "description": "Button: laufende Pause sofort beenden"
+  },
+  "breakLabel": {
+    "message": "短暂休息",
+    "description": "Beschriftung der Kurzpausen-Zeile im Popup"
+  },
+  "breakMinutes": {
+    "message": "$N$ 分钟",
+    "description": "Beschriftung eines Pausen-Knopfs, $N$ ist die Minutenzahl",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "breakRunning": {
+    "message": "休息中 — 剩余 $TIME$",
+    "description": "Restzeit der laufenden Pause, $TIME$ ist mm:ss",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "12:34"
+      }
+    }
+  },
   "colophonBy": {
     "message": "项目作者：",
     "description": "Prefix vor dem Herausgeber-Link im Popup-Footer"
@@ -71,6 +107,18 @@
     "message": "Tubeless 帮到你了吗？在应用商店留下简短评价，能帮助别人找到它。",
     "description": "Text im Bewertungs-Hinweis"
   },
+  "scheduleEnd": {
+    "message": "专注时段结束",
+    "description": "Screenreader-Beschriftung: Ende der Fokuszeit"
+  },
+  "scheduleLabel": {
+    "message": "仅在此时段过滤",
+    "description": "Beschriftung des Fokuszeit-Schalters"
+  },
+  "scheduleStart": {
+    "message": "专注时段开始",
+    "description": "Screenreader-Beschriftung: Beginn der Fokuszeit"
+  },
   "searchPlaceholder": {
     "message": "在 YouTube 上搜索 …",
     "description": "Platzhalter im Suchfeld des Popups"
@@ -78,6 +126,10 @@
   "searchSubmit": {
     "message": "搜索",
     "description": "Beschriftung des Such-Buttons (Screenreader)"
+  },
+  "statusBreak": {
+    "message": "休息中 — YouTube 保持原样",
+    "description": "Fusszeile, wenn eine Kurzpause laeuft"
   },
   "statusFiltered": {
     "message": "已过滤 $TOTAL$ 项干扰中的 $COUNT$ 项",
@@ -92,6 +144,10 @@
         "example": "38"
       }
     }
+  },
+  "statusOutsideSchedule": {
+    "message": "不在专注时段",
+    "description": "Fusszeile ausserhalb der Fokuszeit"
   },
   "statusPaused": {
     "message": "已暂停 — YouTube 保持原样",

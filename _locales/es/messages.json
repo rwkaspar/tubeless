@@ -3,6 +3,42 @@
     "message": "Tubeless",
     "description": "Tooltip des Toolbar-Icons"
   },
+  "breakCustom": {
+    "message": "otra",
+    "description": "Platzhalter im Feld für eine eigene Pausendauer"
+  },
+  "breakCustomLabel": {
+    "message": "Duración propia en minutos",
+    "description": "Screenreader-Beschriftung des Feldes für eine eigene Dauer"
+  },
+  "breakEnd": {
+    "message": "Terminar",
+    "description": "Button: laufende Pause sofort beenden"
+  },
+  "breakLabel": {
+    "message": "Pausa corta",
+    "description": "Beschriftung der Kurzpausen-Zeile im Popup"
+  },
+  "breakMinutes": {
+    "message": "$N$ min",
+    "description": "Beschriftung eines Pausen-Knopfs, $N$ ist die Minutenzahl",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "breakRunning": {
+    "message": "Pausa — quedan $TIME$",
+    "description": "Restzeit der laufenden Pause, $TIME$ ist mm:ss",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "12:34"
+      }
+    }
+  },
   "colophonBy": {
     "message": "Un proyecto de",
     "description": "Prefix vor dem Herausgeber-Link im Popup-Footer"
@@ -71,6 +107,18 @@
     "message": "¿Te sirve Tubeless? Una breve reseña en la Web Store ayuda a que otros lo encuentren.",
     "description": "Text im Bewertungs-Hinweis"
   },
+  "scheduleEnd": {
+    "message": "Fin del tiempo de enfoque",
+    "description": "Screenreader-Beschriftung: Ende der Fokuszeit"
+  },
+  "scheduleLabel": {
+    "message": "Filtrar solo entre",
+    "description": "Beschriftung des Fokuszeit-Schalters"
+  },
+  "scheduleStart": {
+    "message": "Inicio del tiempo de enfoque",
+    "description": "Screenreader-Beschriftung: Beginn der Fokuszeit"
+  },
   "searchPlaceholder": {
     "message": "Buscar en YouTube …",
     "description": "Platzhalter im Suchfeld des Popups"
@@ -78,6 +126,10 @@
   "searchSubmit": {
     "message": "Buscar",
     "description": "Beschriftung des Such-Buttons (Screenreader)"
+  },
+  "statusBreak": {
+    "message": "En pausa — YouTube sin cambios",
+    "description": "Fusszeile, wenn eine Kurzpause laeuft"
   },
   "statusFiltered": {
     "message": "$COUNT$ de $TOTAL$ distracciones filtradas",
@@ -92,6 +144,10 @@
         "example": "38"
       }
     }
+  },
+  "statusOutsideSchedule": {
+    "message": "Fuera del tiempo de enfoque",
+    "description": "Fusszeile ausserhalb der Fokuszeit"
   },
   "statusPaused": {
     "message": "En pausa: YouTube sin cambios",

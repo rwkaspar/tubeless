@@ -63,6 +63,16 @@ komm nach jedem Ausflug in die anderen Presets mit einem Klick dorthin zurück.
 Ein Schalter oben im Popup pausiert Tubeless komplett, wenn du doch mal stöbern
 willst. Änderungen greifen sofort, ohne Neuladen, in allen offenen Tabs.
 
+KURZE PAUSE UND FOKUSZEIT
+
+Ein Klick auf 5, 15 oder 30 Minuten (oder eine eigene Dauer) setzt Tubeless
+vorübergehend aus — danach filtert es von selbst weiter. Kein Vergessen, kein
+manuelles Wiedereinschalten.
+
+Und wenn du willst, filtert Tubeless nur zu bestimmten Zeiten: Fokuszeit
+einschalten, Start und Ende setzen, fertig. Außerhalb des Fensters ist YouTube
+unverändert. Zeiten über Mitternacht funktionieren auch.
+
 Standardmäßig ist auch die Kopfzeile weg und damit YouTubes Suchfeld — dort
 fängt der Sog sonst wieder an. Gesucht wird über das Feld im Popup. Wer die
 Kopfzeile behalten will, nimmt das Preset „Fokus".

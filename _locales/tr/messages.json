@@ -3,6 +3,42 @@
     "message": "Tubeless",
     "description": "Tooltip des Toolbar-Icons"
   },
+  "breakCustom": {
+    "message": "diğer",
+    "description": "Platzhalter im Feld für eine eigene Pausendauer"
+  },
+  "breakCustomLabel": {
+    "message": "Dakika cinsinden özel süre",
+    "description": "Screenreader-Beschriftung des Feldes für eine eigene Dauer"
+  },
+  "breakEnd": {
+    "message": "Bitir",
+    "description": "Button: laufende Pause sofort beenden"
+  },
+  "breakLabel": {
+    "message": "Kısa mola",
+    "description": "Beschriftung der Kurzpausen-Zeile im Popup"
+  },
+  "breakMinutes": {
+    "message": "$N$ dk",
+    "description": "Beschriftung eines Pausen-Knopfs, $N$ ist die Minutenzahl",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "breakRunning": {
+    "message": "Mola — $TIME$ kaldı",
+    "description": "Restzeit der laufenden Pause, $TIME$ ist mm:ss",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "12:34"
+      }
+    }
+  },
   "colophonBy": {
     "message": "Geliştiren:",
     "description": "Prefix vor dem Herausgeber-Link im Popup-Footer"
@@ -71,6 +107,18 @@
     "message": "Tubeless işine yarıyor mu? Web Store'da kısa bir değerlendirme başkalarının bulmasına yardım eder.",
     "description": "Text im Bewertungs-Hinweis"
   },
+  "scheduleEnd": {
+    "message": "Odak zamanının bitişi",
+    "description": "Screenreader-Beschriftung: Ende der Fokuszeit"
+  },
+  "scheduleLabel": {
+    "message": "Yalnızca şu saatler arası",
+    "description": "Beschriftung des Fokuszeit-Schalters"
+  },
+  "scheduleStart": {
+    "message": "Odak zamanının başlangıcı",
+    "description": "Screenreader-Beschriftung: Beginn der Fokuszeit"
+  },
   "searchPlaceholder": {
     "message": "YouTube'da ara …",
     "description": "Platzhalter im Suchfeld des Popups"
@@ -78,6 +126,10 @@
   "searchSubmit": {
     "message": "Ara",
     "description": "Beschriftung des Such-Buttons (Screenreader)"
+  },
+  "statusBreak": {
+    "message": "Molada — YouTube olduğu gibi",
+    "description": "Fusszeile, wenn eine Kurzpause laeuft"
   },
   "statusFiltered": {
     "message": "$TOTAL$ dikkat dağıtıcıdan $COUNT$ tanesi filtrelendi",
@@ -92,6 +144,10 @@
         "example": "38"
       }
     }
+  },
+  "statusOutsideSchedule": {
+    "message": "Odak zamanı dışında",
+    "description": "Fusszeile ausserhalb der Fokuszeit"
   },
   "statusPaused": {
     "message": "Duraklatıldı — YouTube olduğu gibi",

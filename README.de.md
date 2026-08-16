@@ -116,6 +116,8 @@ Klick aufs Tubeless-Icon in der Toolbar:
 | Element | Wirkung |
 |---|---|
 | Schalter oben rechts | Pausiert Tubeless komplett (YouTube unverändert) |
+| **Kurze Pause** | Setzt alles für 5/15/30 Minuten oder eine eigene Dauer aus |
+| **Nur filtern zwischen** | Fokuszeit: außerhalb des Fensters filtert Tubeless nicht |
 | Suchfeld | Ersatz für die ausgeblendete YouTube-Suchleiste |
 | **Eigene** | Die selbst gespeicherte Auswahl — grau, solange keine da ist |
 | **Fokus** | Wie Standard, aber Kopfzeile und Suche bleiben; Sponsor-Segmente und Intros werden markiert und übersprungen (SponsorBlock) |
@@ -133,6 +135,32 @@ zurück — auch nachdem zwischendurch **Fokus** oder **Nichts filtern** aktiv w
 
 Die gespeicherte Auswahl liegt unter `_custom` und überlebt **Standard**; nur
 erneutes Speichern überschreibt sie.
+
+### Kurze Pause
+
+Drei Knöpfe (5, 15, 30 Minuten) und ein Feld für eine eigene Dauer setzen
+Tubeless vorübergehend komplett aus — wie der Schalter oben rechts, nur mit
+Wecker. Danach filtert es von selbst weiter; „Beenden" bricht früher ab.
+
+Die Restzeit läuft im Popup sichtbar herunter. Sie überlebt das Schließen des
+Popups und den Neustart des Browsers, weil nur der Ablaufzeitpunkt gespeichert
+wird (`_break`) und jede Seite ihn selbst mit der Uhr vergleicht.
+
+### Fokuszeit
+
+Ist die Fokuszeit aktiv, filtert Tubeless **nur** zwischen Start und Ende —
+außerhalb ist YouTube unverändert. Fenster über Mitternacht (22:00–02:00)
+funktionieren. Start gleich Ende bedeutet „ganzer Tag", damit ein Vertipper
+die Fokuszeit nicht versehentlich abschaltet.
+
+Der Zeitplan liegt unter `_schedule` und überlebt **Standard**; eine laufende
+Pause nicht — nach einem Reset sollen die Filter greifen.
+
+Vorrang, wenn sich mehreres überlagert: der Schalter oben rechts schlägt
+alles, eine laufende Pause schlägt die Fokuszeit. Wer den Schalter wieder
+einschaltet, beendet damit auch eine laufende Pause — sonst bliebe er „an",
+ohne dass etwas gefiltert wird. Die Fußzeile des Popups nennt immer den
+Grund, wenn gerade nicht gefiltert wird.
 
 ### Bewertungs-Hinweis
 
@@ -242,6 +270,13 @@ python3 -m venv .venv && .venv/bin/pip install websocket-client
 
 Jedes `FAIL` ist ein Selektor in `src/tubeless.css`, der nachgezogen werden muss.
 
+Das Gegenstück prüft das Popup selbst — Sprachauswahl, Presets, Kurzpause und
+Fokuszeit, jeweils bis hin zur Wirkung auf YouTube:
+
+```bash
+.venv/bin/python tools/verify-popup.py
+```
+
 ## Sprachen
 
 Deutsch, Englisch, Spanisch, Französisch, Italienisch, Japanisch,
@@ -337,6 +372,7 @@ docs/logo.svg          die Marke, gleiche Form wie icons/*.png
 tools/build.py         baut alle Pakete nach dist/
 tools/make-icons.py    generiert icons/*.png (ohne externe Abhängigkeiten)
 tools/verify.py        Selektor-Test gegen das echte YouTube
+tools/verify-popup.py  Popup-Test: Sprachen, Presets, Pause, Fokuszeit
 ```
 
 Einen Filter ergänzen: Eintrag in `src/features.js` anlegen, CSS-Regeln unter

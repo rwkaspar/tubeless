@@ -111,6 +111,8 @@ Click the Tubeless icon in the toolbar:
 | Element | Effect |
 |---|---|
 | Switch in the top right | Pauses Tubeless entirely (YouTube untouched) |
+| **Short break** | Suspends everything for 5/15/30 minutes or your own duration |
+| **Only filter between** | Focus time: outside the window Tubeless does not filter |
 | Search field | Replacement for the hidden YouTube search bar |
 | **Custom** | Your saved selection — greyed out until one exists |
 | **Focus** | Like the default, but header and search stay; sponsor segments and intros get marked and skipped (SponsorBlock) |
@@ -128,6 +130,31 @@ time — even after a detour through **Focus** or **Filter nothing**.
 
 The saved selection lives under `_custom` and survives **Defaults**; only
 saving again overwrites it.
+
+### Short break
+
+Three buttons (5, 15, 30 minutes) plus a field for your own duration suspend
+Tubeless entirely for a while — like the switch in the top right, but with an
+alarm clock. Afterwards it resumes on its own; "End" stops it early.
+
+The remaining time counts down in the popup. It survives closing the popup and
+restarting the browser, because only the expiry timestamp is stored
+(`_break`) and every page compares it against the clock itself.
+
+### Focus time
+
+With focus time on, Tubeless filters **only** between start and end —
+outside that window YouTube is untouched. Windows across midnight
+(22:00–02:00) work. Start equal to end means "all day", so a typo does not
+silently switch the focus time off.
+
+The schedule lives under `_schedule` and survives **Defaults**; a running
+break does not — after a reset the filters should bite.
+
+Precedence when several things overlap: the switch in the top right beats
+everything, a running break beats focus time. Turning that switch back on also
+ends a running break — otherwise it would read "on" while nothing is being
+filtered. The popup footer always names the reason when nothing is filtered.
 
 ### Review prompt
 
@@ -238,6 +265,13 @@ python3 -m venv .venv && .venv/bin/pip install websocket-client
 
 Every `FAIL` is a selector in `src/tubeless.css` that needs updating.
 
+Its counterpart checks the popup itself — language pick, presets, short break
+and focus time, each down to the effect on YouTube:
+
+```bash
+.venv/bin/python tools/verify-popup.py
+```
+
 ## Languages
 
 German, English, Spanish, French, Italian, Japanese, Dutch, Polish,
@@ -331,6 +365,7 @@ docs/logo.svg          the mark, same shape as icons/*.png
 tools/build.py         builds all packages into dist/
 tools/make-icons.py    generates icons/*.png (no external dependencies)
 tools/verify.py        selector test against the real YouTube
+tools/verify-popup.py  popup test: languages, presets, break, focus time
 ```
 
 Adding a filter: create an entry in `src/features.js`, write CSS rules under

@@ -3,6 +3,42 @@
     "message": "Tubeless",
     "description": "Tooltip des Toolbar-Icons"
   },
+  "breakCustom": {
+    "message": "altra",
+    "description": "Platzhalter im Feld für eine eigene Pausendauer"
+  },
+  "breakCustomLabel": {
+    "message": "Durata personalizzata in minuti",
+    "description": "Screenreader-Beschriftung des Feldes für eine eigene Dauer"
+  },
+  "breakEnd": {
+    "message": "Termina",
+    "description": "Button: laufende Pause sofort beenden"
+  },
+  "breakLabel": {
+    "message": "Breve pausa",
+    "description": "Beschriftung der Kurzpausen-Zeile im Popup"
+  },
+  "breakMinutes": {
+    "message": "$N$ min",
+    "description": "Beschriftung eines Pausen-Knopfs, $N$ ist die Minutenzahl",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "breakRunning": {
+    "message": "Pausa — restano $TIME$",
+    "description": "Restzeit der laufenden Pause, $TIME$ ist mm:ss",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "12:34"
+      }
+    }
+  },
   "colophonBy": {
     "message": "Un progetto di",
     "description": "Prefix vor dem Herausgeber-Link im Popup-Footer"
@@ -71,6 +107,18 @@
     "message": "Tubeless ti è utile? Una breve recensione sul Web Store aiuta gli altri a trovarlo.",
     "description": "Text im Bewertungs-Hinweis"
   },
+  "scheduleEnd": {
+    "message": "Fine del tempo di concentrazione",
+    "description": "Screenreader-Beschriftung: Ende der Fokuszeit"
+  },
+  "scheduleLabel": {
+    "message": "Filtra solo tra",
+    "description": "Beschriftung des Fokuszeit-Schalters"
+  },
+  "scheduleStart": {
+    "message": "Inizio del tempo di concentrazione",
+    "description": "Screenreader-Beschriftung: Beginn der Fokuszeit"
+  },
   "searchPlaceholder": {
     "message": "Cerca su YouTube …",
     "description": "Platzhalter im Suchfeld des Popups"
@@ -78,6 +126,10 @@
   "searchSubmit": {
     "message": "Cerca",
     "description": "Beschriftung des Such-Buttons (Screenreader)"
+  },
+  "statusBreak": {
+    "message": "In pausa — YouTube intatto",
+    "description": "Fusszeile, wenn eine Kurzpause laeuft"
   },
   "statusFiltered": {
     "message": "$COUNT$ distrazioni filtrate su $TOTAL$",
@@ -92,6 +144,10 @@
         "example": "38"
       }
     }
+  },
+  "statusOutsideSchedule": {
+    "message": "Fuori dal tempo di concentrazione",
+    "description": "Fusszeile ausserhalb der Fokuszeit"
   },
   "statusPaused": {
     "message": "In pausa — YouTube intatto",

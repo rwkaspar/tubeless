@@ -8,8 +8,9 @@
   'use strict';
 
   const {
-    GROUPS, FEATURES, DEFAULTS, PRESETS, CUSTOM_KEY, RATE_KEY,
-    selectionOf, sameSelection, resetPatch,
+    GROUPS, FEATURES, DEFAULTS, PRESETS,
+    CUSTOM_KEY, RATE_KEY, BREAK_KEY, SCHEDULE_KEY,
+    selectionOf, sameSelection, resetPatch, isActive, inactiveReason, parseTime,
     ready, t, label, hint, groupLabel
   } = window.TUBELESS;
 
@@ -23,7 +24,15 @@
     rateYes: document.getElementById('rate-yes'),
     rateLater: document.getElementById('rate-later'),
     searchForm: document.getElementById('search-form'),
-    searchInput: document.getElementById('search-input')
+    searchInput: document.getElementById('search-input'),
+    breakIdle: document.getElementById('break-idle'),
+    breakRunning: document.getElementById('break-running'),
+    breakRemaining: document.getElementById('break-remaining'),
+    breakEnd: document.getElementById('break-end'),
+    breakCustom: document.getElementById('break-custom'),
+    scheduleEnabled: document.getElementById('schedule-enabled'),
+    scheduleStart: document.getElementById('schedule-start'),
+    scheduleEnd: document.getElementById('schedule-end')
   };
 
   let settings = Object.assign({}, DEFAULTS);
@@ -60,6 +69,12 @@
       for (const el of document.querySelectorAll('[' + attribute + ']')) {
         apply(el, t(el.getAttribute(attribute)));
       }
+    }
+  }
+
+  function labelBreakButtons() {
+    for (const button of document.querySelectorAll('.break-btn')) {
+      button.textContent = t('breakMinutes', [button.dataset.minutes]);
     }
   }
 
@@ -114,10 +129,41 @@
 
   // --- Zustand ------------------------------------------------------------
 
+  /** mm:ss für die Restzeit der Pause. */
+  function formatRemaining(ms) {
+    const total = Math.max(0, Math.ceil(ms / 1000));
+    const minutes = Math.floor(total / 60);
+    const seconds = total % 60;
+    return minutes + ':' + String(seconds).padStart(2, '0');
+  }
+
+  function renderTiming() {
+    const state = settings[BREAK_KEY];
+    const left = state && typeof state.until === 'number' ? state.until - Date.now() : 0;
+    const running = left > 0;
+
+    els.breakIdle.hidden = running;
+    els.breakRunning.hidden = !running;
+    if (running) {
+      els.breakRemaining.textContent = t('breakRunning', [formatRemaining(left)]);
+    }
+
+    const schedule = settings[SCHEDULE_KEY] || DEFAULTS[SCHEDULE_KEY];
+    els.scheduleEnabled.checked = schedule.enabled === true;
+    // Nicht überschreiben, während der Nutzer gerade tippt
+    if (document.activeElement !== els.scheduleStart) els.scheduleStart.value = schedule.start;
+    if (document.activeElement !== els.scheduleEnd) els.scheduleEnd.value = schedule.end;
+  }
+
   function render() {
     const on = settings._enabled !== false;
+    const active = isActive(settings);
     els.master.checked = on;
     document.body.dataset.off = String(!on);
+    // Pause oder Fokuszeit machen die Filter genauso wirkungslos wie der
+    // Master-Schalter — das muss man dem Popup ansehen.
+    document.body.dataset.idle = String(!active);
+    renderTiming();
 
     let hidden = 0;
     for (const feature of FEATURES) {
@@ -126,9 +172,12 @@
       if (input.checked) hidden++;
     }
 
-    els.count.textContent = on
-      ? t('statusFiltered', [String(hidden), String(FEATURES.length)])
-      : t('statusPaused');
+    const reason = inactiveReason(settings);
+    els.count.textContent =
+      reason === 'paused' ? t('statusPaused')
+      : reason === 'break' ? t('statusBreak')
+      : reason === 'schedule' ? t('statusOutsideSchedule')
+      : t('statusFiltered', [String(hidden), String(FEATURES.length)]);
 
     const custom = settings[CUSTOM_KEY];
     const current = selectionOf(settings);
@@ -145,7 +194,7 @@
     }
 
     // Speichern anbieten, solange die aktuelle Auswahl nicht die gespeicherte ist.
-    const savable = on && !sameSelection(current, custom);
+    const savable = active && !sameSelection(current, custom);
     els.customSave.hidden = !savable;
     els.customSave.textContent = custom ? t('customUpdate') : t('customSave');
 
@@ -163,7 +212,11 @@
 
   function wire() {
     els.master.addEventListener('change', () => {
-      save({ _enabled: els.master.checked });
+      const patch = { _enabled: els.master.checked };
+      // Einschalten heißt: jetzt wieder filtern. Eine noch laufende Pause
+      // würde das sonst stillschweigend aushebeln.
+      if (els.master.checked) patch[BREAK_KEY] = null;
+      save(patch);
     });
 
     els.reset.addEventListener('click', () => save(resetPatch()));
@@ -201,6 +254,48 @@
       });
     }
 
+    // --- Kurzpause --------------------------------------------------------
+    function startBreak(minutes) {
+      const value = Math.min(720, Math.max(1, Math.round(minutes)));
+      if (!Number.isFinite(value)) return;
+      save({ [BREAK_KEY]: { until: Date.now() + value * 60000 } });
+    }
+
+    for (const button of document.querySelectorAll('.break-btn')) {
+      button.addEventListener('click', () => startBreak(Number(button.dataset.minutes)));
+    }
+
+    els.breakCustom.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter') return;
+      const minutes = Number(els.breakCustom.value);
+      if (!minutes) return;
+      els.breakCustom.value = '';
+      startBreak(minutes);
+    });
+
+    els.breakEnd.addEventListener('click', () => save({ [BREAK_KEY]: null }));
+
+    // --- Fokuszeit ---------------------------------------------------------
+    function saveSchedule(patch) {
+      const current = settings[SCHEDULE_KEY] || DEFAULTS[SCHEDULE_KEY];
+      save({ [SCHEDULE_KEY]: Object.assign({}, current, patch) });
+    }
+
+    els.scheduleEnabled.addEventListener('change', () => {
+      saveSchedule({ enabled: els.scheduleEnabled.checked });
+    });
+    for (const [el, key] of [[els.scheduleStart, 'start'], [els.scheduleEnd, 'end']]) {
+      el.addEventListener('change', () => {
+        // Leere oder unsinnige Eingabe nicht speichern — sonst stünde die
+        // Fokuszeit auf einem Wert, den isActive() ignorieren muss.
+        if (parseTime(el.value) === null) {
+          renderTiming();
+          return;
+        }
+        saveSchedule({ [key]: el.value });
+      });
+    }
+
     els.searchForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const query = els.searchInput.value.trim();
@@ -215,8 +310,23 @@
 
   // --- Start --------------------------------------------------------------
 
+  /*
+   * Solange eine Pause läuft, tickt die Restzeit — und beim Ablauf wechselt
+   * der Wirkzustand, ohne dass jemand klickt. Ein Sekundentakt reicht; er
+   * läuft nur, solange das Popup offen ist.
+   */
+  function startTicker() {
+    setInterval(() => {
+      const state = settings[BREAK_KEY];
+      if (state && typeof state.until === 'number' && state.until > Date.now() - 1500) {
+        render();
+      }
+    }, 1000);
+  }
+
   ready.then(() => {
     translateStatic();
+    labelBreakButtons();
     buildRows();
     wire();
     chrome.storage.sync.get(DEFAULTS, (stored) => {
@@ -224,9 +334,10 @@
       // Erster Start: die Frist läuft ab jetzt, nicht ab dem ersten Popup-Klick.
       if (!settings[RATE_KEY]) {
         save({ [RATE_KEY]: { rated: false, nextAt: Date.now() + RATE_INTERVAL } });
-        return;
+      } else {
+        render();
       }
-      render();
+      startTicker();
     });
   });
 })();

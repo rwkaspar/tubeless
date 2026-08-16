@@ -202,6 +202,150 @@ body {
   display: none;
 }
 
+/* --- Kurzpause & Fokuszeit ------------------------------------------------ */
+
+.timing {
+  margin: 0 16px 12px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  font-size: 11.5px;
+  color: var(--dim);
+}
+/* Beschriftung oben, Bedienelemente darunter in voller Breite — nebeneinander
+   wird es im 340px-Popup zu eng und die Zeitfelder werden abgeschnitten. */
+.timing__row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+/* Allgemeiner Geschwister-Selektor (~) statt +: zwischen zwei sichtbaren
+   Zeilen kann eine ausgeblendete stehen. Mit + bekäme entweder die
+   Pausen-Zeile eine verwaiste Linie oder die Fokuszeit-Zeile gar keine. */
+.timing__row:not([hidden]) ~ .timing__row:not([hidden]) {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+.timing__row[hidden] {
+  display: none;
+}
+.timing__row--running {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.timing__controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.timing__toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+.timing__toggle input {
+  appearance: none;
+  flex: none;
+  width: 15px;
+  height: 15px;
+  border: 1.5px solid #5a5a5a;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.timing__toggle input:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.timing__toggle input:checked::after {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 8px;
+  margin: 0 auto;
+  border: solid #0f0f0f;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.timing__dash {
+  flex: none;
+}
+
+.break-btn,
+.break-custom {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 4px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--dim);
+  font: 500 11px/1.2 inherit;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.break-btn:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+.break-custom {
+  color: var(--fg);
+  cursor: text;
+}
+.break-custom::-webkit-inner-spin-button,
+.break-custom::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+.break-custom {
+  appearance: textfield;
+}
+
+#schedule-start,
+#schedule-end {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 500 11.5px/1.2 inherit;
+}
+
+.timing__running {
+  color: var(--accent);
+  font-weight: 600;
+}
+#break-end {
+  flex: none;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--dim);
+  font: 500 11px/1.2 inherit;
+  cursor: pointer;
+}
+#break-end:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+
+/* Läuft eine Pause oder ist die Fokuszeit vorbei, sind die Filter wirkungslos
+   — dann auch sichtbar ausgrauen, wie beim Master-Schalter. */
+body[data-idle="true"] .groups,
+body[data-idle="true"] .custom-save,
+body[data-idle="true"] .presets {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 /* --- Bewertungs-Hinweis --------------------------------------------------- */
 
 .rate {

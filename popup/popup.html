@@ -36,6 +36,45 @@
 
     <button type="button" id="custom-save" class="custom-save" hidden></button>
 
+    <section class="timing">
+      <!-- Kurzpause: setzt alles aus, läuft von selbst ab -->
+      <div class="timing__row" id="break-idle">
+        <span class="timing__label" data-i18n="breakLabel"></span>
+        <div class="timing__controls">
+          <button type="button" class="break-btn" data-minutes="5"></button>
+          <button type="button" class="break-btn" data-minutes="15"></button>
+          <button type="button" class="break-btn" data-minutes="30"></button>
+          <input
+            type="number"
+            id="break-custom"
+            class="break-custom"
+            min="1"
+            max="720"
+            inputmode="numeric"
+            data-i18n-placeholder="breakCustom"
+            data-i18n-aria-label="breakCustomLabel"
+          />
+        </div>
+      </div>
+      <div class="timing__row timing__row--running" id="break-running" hidden>
+        <span id="break-remaining" class="timing__running"></span>
+        <button type="button" id="break-end" data-i18n="breakEnd"></button>
+      </div>
+
+      <!-- Fokuszeit: außerhalb des Fensters filtert Tubeless nicht -->
+      <div class="timing__row">
+        <label class="timing__toggle">
+          <input type="checkbox" id="schedule-enabled" />
+          <span data-i18n="scheduleLabel"></span>
+        </label>
+        <div class="timing__controls">
+          <input type="time" id="schedule-start" data-i18n-aria-label="scheduleStart" />
+          <span class="timing__dash" aria-hidden="true">–</span>
+          <input type="time" id="schedule-end" data-i18n-aria-label="scheduleEnd" />
+        </div>
+      </div>
+    </section>
+
     <section id="rate" class="rate" hidden>
       <p class="rate__text" data-i18n="rateText"></p>
       <div class="rate__actions">

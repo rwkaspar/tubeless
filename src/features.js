@@ -83,15 +83,27 @@
   const CUSTOM_KEY = '_custom';
   /** Storage-Key des Bewertungs-Hinweises (siehe popup.js). */
   const RATE_KEY = '_rate';
+  /** Laufende Kurzpause: { until: <Zeitstempel ms> }. */
+  const BREAK_KEY = '_break';
+  /** Fokuszeit: { enabled: bool, start: 'HH:MM', end: 'HH:MM' }. */
+  const SCHEDULE_KEY = '_schedule';
   /**
-   * Was „Standard“ nicht anfassen darf. Beides sind Gedächtnis, keine
-   * Einstellung: die eigene Auswahl soll einen Reset überleben, und der
-   * Bewertungs-Zähler darf sich nicht durch einen Klick auf „Standard“
-   * zurücksetzen lassen — sonst fragt die Extension wieder von vorn.
+   * Was „Standard“ nicht anfassen darf. Das ist Gedächtnis, keine
+   * Filtereinstellung: die eigene Auswahl und die Fokuszeit sollen einen Reset
+   * überleben, und der Bewertungs-Zähler darf sich nicht durch einen Klick auf
+   * „Standard“ zurücksetzen lassen — sonst fragt die Extension wieder von vorn.
+   * Eine laufende Kurzpause steht bewusst NICHT hier: „Standard“ heißt, dass
+   * die Filter wieder greifen.
    */
-  const KEEP_ON_RESET = [CUSTOM_KEY, RATE_KEY];
+  const KEEP_ON_RESET = [CUSTOM_KEY, RATE_KEY, SCHEDULE_KEY];
 
-  const DEFAULTS = { _enabled: true, [CUSTOM_KEY]: null, [RATE_KEY]: null };
+  const DEFAULTS = {
+    _enabled: true,
+    [CUSTOM_KEY]: null,
+    [RATE_KEY]: null,
+    [BREAK_KEY]: null,
+    [SCHEDULE_KEY]: { enabled: false, start: '09:00', end: '17:00' }
+  };
   for (const f of FEATURES) DEFAULTS[f.key] = f.default;
 
   /*
@@ -125,6 +137,69 @@
       return p;
     })()
   };
+
+  /* ---------------------------------------------------------------------
+   * Wirkzustand: Master-Schalter, Kurzpause und Fokuszeit ergeben zusammen
+   * EINE Antwort auf „filtert Tubeless gerade?“. Popup und Content-Script
+   * rechnen beide hiermit — sonst zeigt das eine an, was das andere nicht tut.
+   * ------------------------------------------------------------------- */
+
+  /** 'HH:MM' -> Minuten seit Mitternacht, oder null bei Unsinn. */
+  function parseTime(value) {
+    const match = /^(\d{1,2}):(\d{2})$/.exec(String(value || ''));
+    if (!match) return null;
+    const hours = Number(match[1]);
+    const minutes = Number(match[2]);
+    if (hours > 23 || minutes > 59) return null;
+    return hours * 60 + minutes;
+  }
+
+  /** Liegt `minute` im Fenster? Fenster über Mitternacht inklusive. */
+  function withinWindow(start, end, minute) {
+    // start === end deckt den ganzen Tag ab — wer beide gleich setzt, wollte
+    // die Fokuszeit nicht versehentlich abschalten.
+    if (start === end) return true;
+    return start < end
+      ? minute >= start && minute < end
+      : minute >= start || minute < end;
+  }
+
+  /** Läuft gerade eine Kurzpause? */
+  function breakActive(settings, now) {
+    const state = settings && settings[BREAK_KEY];
+    return !!(state && typeof state.until === 'number' && state.until > now);
+  }
+
+  /** Ist die aktuelle Uhrzeit innerhalb der Fokuszeit (oder ist keine gesetzt)? */
+  function withinSchedule(settings, now) {
+    const schedule = settings && settings[SCHEDULE_KEY];
+    if (!schedule || !schedule.enabled) return true;
+    const start = parseTime(schedule.start);
+    const end = parseTime(schedule.end);
+    if (start === null || end === null) return true; // kaputt = nicht sperren
+    const date = new Date(now);
+    return withinWindow(start, end, date.getHours() * 60 + date.getMinutes());
+  }
+
+  /**
+   * Filtert Tubeless gerade? Reihenfolge ist Absicht: der Master-Schalter
+   * schlägt alles, eine laufende Pause schlägt die Fokuszeit.
+   */
+  function isActive(settings, now) {
+    const moment = typeof now === 'number' ? now : Date.now();
+    if (!settings || settings._enabled === false) return false;
+    if (breakActive(settings, moment)) return false;
+    return withinSchedule(settings, moment);
+  }
+
+  /** Warum ist Tubeless gerade untätig? Für die Anzeige im Popup. */
+  function inactiveReason(settings, now) {
+    const moment = typeof now === 'number' ? now : Date.now();
+    if (!settings || settings._enabled === false) return 'paused';
+    if (breakActive(settings, moment)) return 'break';
+    if (!withinSchedule(settings, moment)) return 'schedule';
+    return null;
+  }
 
   /** Nur die Filterwerte — ohne _enabled, _custom und sonstige Metaschlüssel. */
   function selectionOf(settings) {
@@ -163,8 +238,10 @@
   }
 
   root.TUBELESS = {
-    GROUPS, FEATURES, DEFAULTS, PRESETS, CUSTOM_KEY, RATE_KEY,
+    GROUPS, FEATURES, DEFAULTS, PRESETS,
+    CUSTOM_KEY, RATE_KEY, BREAK_KEY, SCHEDULE_KEY,
     selectionOf, sameSelection, resetPatch,
+    isActive, inactiveReason, parseTime,
     t, ready, label, hint, groupLabel
   };
 })(typeof window !== 'undefined' ? window : globalThis);

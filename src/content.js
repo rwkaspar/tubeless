@@ -11,7 +11,9 @@
 (() => {
   'use strict';
 
-  const { FEATURES, DEFAULTS, t, ready } = window.TUBELESS;
+  const {
+    FEATURES, DEFAULTS, BREAK_KEY, SCHEDULE_KEY, isActive, t, ready
+  } = window.TUBELESS;
   let translationsReady = false;
   const CSS_KEYS = FEATURES.filter((f) => f.css !== false).map((f) => f.key);
   const CACHE_KEY = 'tubeless:settings';
@@ -31,12 +33,17 @@
   }
 
   /*
-   * In den Cache wandert nur, was dieses Script braucht: _enabled und die
-   * Filterwerte. localStorage von youtube.com ist für jedes Seitenskript
-   * lesbar — _custom und _rate gehen YouTube nichts an.
+   * In den Cache wandert nur, was dieses Script braucht: der Wirkzustand
+   * (Master-Schalter, laufende Pause, Fokuszeit) und die Filterwerte. Ohne
+   * Pause und Fokuszeit liesse sich bei document_start nicht entscheiden, ob
+   * gefiltert wird — es gaebe bei jedem Seitenaufbau ein Aufblitzen.
+   * localStorage von youtube.com ist fuer jedes Seitenskript lesbar, deshalb
+   * bleiben _custom und _rate draussen; die gehen YouTube nichts an.
    */
   function writeCache(value) {
     const slim = { _enabled: value._enabled !== false };
+    slim[BREAK_KEY] = value[BREAK_KEY] || null;
+    slim[SCHEDULE_KEY] = value[SCHEDULE_KEY] || null;
     for (const f of FEATURES) slim[f.key] = value[f.key] === true;
     try {
       localStorage.setItem(CACHE_KEY, JSON.stringify(slim));
@@ -48,7 +55,8 @@
   // --- Anwenden -----------------------------------------------------------
 
   function applyClasses() {
-    const on = settings._enabled !== false;
+    const on = isActive(settings);
+    lastActive = on;
     root.classList.toggle('tl-active', on);
     for (const key of CSS_KEYS) {
       root.classList.toggle('tl-' + key, on && settings[key] === true);
@@ -56,7 +64,19 @@
   }
 
   function isEnabled(key) {
-    return settings._enabled !== false && settings[key] === true;
+    return isActive(settings) && settings[key] === true;
+  }
+
+  /*
+   * Pause und Fokuszeit laufen ohne Zutun ab: die Uhr tickt weiter, waehrend
+   * die Seite offen ist. Ein Vergleich pro Takt genuegt — nur beim Wechsel
+   * wird tatsaechlich neu angewandt.
+   */
+  let lastActive = null;
+  function refreshActiveState() {
+    if (isActive(settings) === lastActive) return;
+    applyClasses();
+    applyBehaviors();
   }
 
   // --- Feature: Shorts umleiten ------------------------------------------
@@ -207,5 +227,8 @@
    * Navigation noch DOM-Änderungen an <body>. Eine Abfrage alle 400 ms kostet
    * praktisch nichts.
    */
-  setInterval(sponsorTick, 400);
+  setInterval(() => {
+    refreshActiveState();
+    sponsorTick();
+  }, 400);
 })();

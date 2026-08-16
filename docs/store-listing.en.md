@@ -62,6 +62,16 @@ to it with a single click after any detour through the other presets.
 A switch at the top of the popup pauses Tubeless entirely, for when you do feel
 like browsing. Changes apply immediately, without a reload, in every open tab.
 
+SHORT BREAK AND FOCUS TIME
+
+One click on 5, 15 or 30 minutes (or your own duration) suspends Tubeless for
+a while — afterwards it resumes by itself. Nothing to remember, nothing to
+switch back on.
+
+And if you like, Tubeless only filters at certain times: turn on focus time,
+set start and end, done. Outside that window YouTube is untouched. Windows
+across midnight work too.
+
 By default the header is gone, and with it YouTube's search field — that is
 where the pull usually starts again. You search from the field in the popup. If
 you would rather keep the header, pick the "Focus" preset.
