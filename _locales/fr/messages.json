@@ -51,6 +51,30 @@
     "message": "Mettre à jour « Perso »",
     "description": "Derselbe Button, wenn bereits etwas gespeichert ist"
   },
+  "durationHours": {
+    "message": "$H$ h $M$ min",
+    "description": "Dauer ab einer Stunde, $H$ Stunden und $M$ Minuten",
+    "placeholders": {
+      "h": {
+        "content": "$1",
+        "example": "1"
+      },
+      "m": {
+        "content": "$2",
+        "example": "20"
+      }
+    }
+  },
+  "durationMinutes": {
+    "message": "$N$ min",
+    "description": "Dauer in Minuten, $N$ ist die Zahl",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "40"
+      }
+    }
+  },
   "extDescription": {
     "message": "Supprime les distractions de YouTube : fil, barre latérale, Shorts, recommandations, commentaires et lecture automatique.",
     "description": "Kurzbeschreibung, max. 132 Zeichen"
@@ -107,6 +131,28 @@
     "message": "Tubeless te sert ? Un court avis sur le Web Store aide les autres à le trouver.",
     "description": "Text im Bewertungs-Hinweis"
   },
+  "reportClean": {
+    "message": "Pendant ta concentration, tu n’as pas passé une minute sans filtre sur YouTube.",
+    "description": "Bilanz, wenn keine ungefilterte Zeit angefallen ist"
+  },
+  "reportDismiss": {
+    "message": "Fermer",
+    "description": "Screenreader-Beschriftung des Schliessen-Knopfs"
+  },
+  "reportSpent": {
+    "message": "Pendant ta période de concentration, tu as passé $TIME$ sur YouTube sans filtre.",
+    "description": "Bilanz mit Zeit, $TIME$ ist z. B. „40 Min.\"",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "40 Min."
+      }
+    }
+  },
+  "reportTitle": {
+    "message": "Période de concentration terminée",
+    "description": "Ueberschrift der Bilanz-Karte nach Ende der Fokuszeit"
+  },
   "scheduleEnd": {
     "message": "Fin de la période de concentration",
     "description": "Screenreader-Beschriftung: Ende der Fokuszeit"
@@ -160,6 +206,14 @@
   "toastSkippedSponsor": {
     "message": "Sponsor passé",
     "description": "Toast im Player nach automatischem Sprung über ein Sponsor-Segment"
+  },
+  "usageHint": {
+    "message": "Temps sur YouTube pendant la concentration, Tubeless en pause",
+    "description": "Erklaerung unter der Zaehler-Zeile"
+  },
+  "usageLabel": {
+    "message": "Non filtré aujourd’hui",
+    "description": "Beschriftung der Zaehler-Zeile im Popup"
   },
   "groupBehavior": {
     "message": "Comportement",

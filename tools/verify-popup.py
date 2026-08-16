@@ -16,6 +16,7 @@ YouTube prueft. Beide zusammen decken ab, was beim Umbauen kaputtgehen kann.
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -52,7 +53,11 @@ def find_chrome():
 
 class Chrome:
     def __init__(self, port, accept_lang='de-DE,de', width=1280, height=900):
-        self.profile = os.path.join(EXT, f'.popup-profile-{port}')
+        # Eindeutig pro Lauf: bleibt ein Profil liegen (Chromium haelt beim
+        # Beenden kurz Dateien offen), serviert dessen V8-Code-Cache beim
+        # naechsten Mal die ALTE Fassung der Scripts — der Test prueft dann
+        # stillschweigend Code, der nicht mehr existiert.
+        self.profile = os.path.join(EXT, f'.popup-profile-{os.getpid()}-{port}')
         self.proc = subprocess.Popen([
             find_chrome(), '--headless=new', '--disable-gpu', '--no-sandbox',
             f'--remote-debugging-port={port}', f'--user-data-dir={self.profile}',
@@ -72,8 +77,12 @@ class Chrome:
             sys.exit('Chromium hat den Debug-Port nicht geoeffnet.')
         self.ws = websocket.create_connection(page['webSocketDebuggerUrl'], timeout=90)
         self.n = 0
+        self.contexts = []
         for domain in ('Page', 'Runtime', 'Network'):
             self.send(domain + '.enable')
+        # Headless hat keinen Fensterfokus. Der Zaehler verlangt ihn (oder ein
+        # laufendes Video) — ohne Emulation misst der Test am Feature vorbei.
+        self.send('Emulation.setFocusEmulationEnabled', enabled=True)
         # Consent-Dialog (EU) ueberspringen
         for domain in ('.youtube.com', '.google.com'):
             self.send('Network.setCookie', name='SOCS', domain=domain, path='/',
@@ -84,6 +93,7 @@ class Chrome:
         self.ws.send(json.dumps({'id': self.n, 'method': method, 'params': params}))
         while True:
             msg = json.loads(self.ws.recv())
+            self.note(msg)
             if msg.get('id') == self.n:
                 return msg.get('result', {})
 
@@ -94,14 +104,45 @@ class Chrome:
             return {'JSERROR': str(r['exceptionDetails'])[:200]}
         return r.get('result', {}).get('value')
 
-    def go(self, url, wait=2.5):
+    def go(self, url, seconds=2.5):
         self.send('Page.navigate', url=url)
-        time.sleep(wait)
+        self.wait(seconds)
+
+    def wait(self, seconds):
+        """Warten UND dabei die CDP-Ereignisse abholen.
+
+        Mit einem blossen time.sleep() laeuft der Ereignispuffer voll und der
+        Renderer stockt — zeitabhaengige Messungen ergeben dann null, ohne dass
+        etwas kaputt waere."""
+        self.ws.settimeout(0.4)
+        end = time.time() + seconds
+        while time.time() < end:
+            try:
+                self.note(json.loads(self.ws.recv()))
+            except Exception:
+                pass
+        self.ws.settimeout(90)
+
+    def note(self, message):
+        if message.get('method') == 'Runtime.executionContextCreated':
+            self.contexts.append(message['params']['context'])
+
+    def iso_eval(self, expr):
+        """Im isolierten Kontext des Content-Scripts auswerten — chrome.storage
+        und die TUBELESS-Helfer gibt es nur dort, nicht im Seitenkontext."""
+        for c in [x for x in self.contexts
+                  if x.get('auxData', {}).get('isDefault') is False]:
+            r = self.send('Runtime.evaluate', contextId=c['id'], expression=expr,
+                          returnByValue=True, awaitPromise=True)
+            value = r.get('result', {}).get('value')
+            if value is not None:
+                return value
+        return None
 
     def close(self):
         self.proc.terminate()
-        time.sleep(0.5)
-        subprocess.run(['rm', '-rf', self.profile], check=False)
+        time.sleep(1)
+        shutil.rmtree(self.profile, ignore_errors=True)
 
 
 # --- 1. Sprachauswahl -------------------------------------------------------
@@ -262,6 +303,87 @@ time.sleep(0.5)
 c.go(WATCH, 11)
 check('Innerhalb der Fokuszeit: Filter greifen',
       c.ev("document.documentElement.classList.contains('tl-active')") is True)
+
+
+# --- 6. Zaehler fuer ungefilterte Zeit --------------------------------------
+print('\nZaehler (ungefilterte Zeit in der Fokuszeit)')
+c.go(POPUP, 3)
+# Fokuszeit aufs Jetzt legen und Tubeless per Pause aussetzen: genau der Fall,
+# den der Zaehler misst.
+c.ev("""new Promise(res => {
+  const pad = n => String(n).padStart(2, '0');
+  const at = m => { const x = new Date(Date.now() + m*60000);
+                    return pad(x.getHours()) + ':' + pad(x.getMinutes()); };
+  chrome.storage.local.remove('usage', () => chrome.storage.sync.set({
+    _schedule: { enabled: true, start: at(-60), end: at(60) },
+    _break: { until: Date.now() + 15*60000 }
+  }, res));
+})""")
+c.go(WATCH, 6)
+lauf = c.iso_eval("""
+  (typeof window.TL_USAGE === 'undefined') ? null :
+  new Promise(r => chrome.storage.sync.get(null, s => r({
+    fixGeladen: window.TUBELESS.withinSchedule.toString().includes('moment(now)'),
+    inFokuszeit: window.TUBELESS.withinSchedule(s),
+    filtert: window.TUBELESS.isActive(s)
+  })))""")
+check('Content-Script laedt den aktuellen Code', bool(lauf) and lauf['fixGeladen'] is True, lauf)
+check('Fokuszeit laeuft, Filter sind ausgesetzt',
+      bool(lauf) and lauf['inFokuszeit'] is True and lauf['filtert'] is False, lauf)
+
+c.wait(16)
+gemessen = c.iso_eval("new Promise(r => chrome.storage.local.get('usage', v => r(v.usage || 'leer')))")
+check('Zaehler laeuft', isinstance(gemessen, dict) and gemessen.get('seconds', 0) >= 10, gemessen)
+check('Nur der laufende Tag gespeichert',
+      isinstance(gemessen, dict) and set(gemessen) <= {'date', 'seconds', 'wasInside', 'reported'},
+      isinstance(gemessen, dict) and sorted(gemessen))
+gezaehlt = gemessen.get('seconds', 0) if isinstance(gemessen, dict) else 0
+
+# Gegenprobe: mit greifenden Filtern darf nichts dazukommen
+c.go(POPUP, 2.5)
+c.ev("new Promise(r => chrome.storage.sync.set({_break: null}, r))")
+c.go(WATCH, 6)
+check('Filter greifen wieder',
+      c.ev("document.documentElement.classList.contains('tl-active')") is True)
+c.wait(12)
+danach = c.iso_eval("new Promise(r => chrome.storage.local.get('usage', v => r((v.usage||{}).seconds)))")
+# Bis zu 2 s Schlupf: das Abschalten der Pause braucht einen Takt, bis es im
+# Content-Script ankommt, und angefangene Sekunden werden beim Flush gerundet.
+# Entscheidend ist, dass nichts WEITERlaeuft (sonst waeren es ~12 s mehr).
+check('Gefilterte Zeit zaehlt nicht mit',
+      isinstance(danach, int) and danach - gezaehlt <= 2,
+      f'vorher {gezaehlt}, jetzt {danach}')
+
+# Fokuszeit beenden -> Bilanz-Karte auf der Seite
+c.go(POPUP, 2.5)
+c.ev("""new Promise(res => {
+  const pad = n => String(n).padStart(2, '0');
+  const at = m => { const x = new Date(Date.now() + m*60000);
+                    return pad(x.getHours()) + ':' + pad(x.getMinutes()); };
+  chrome.storage.sync.set({ _schedule: { enabled: true, start: at(60), end: at(120) } }, res);
+})""")
+c.go(WATCH, 9)
+karte = c.ev("""(() => {
+  const k = document.querySelector('.tl-report');
+  if (!k) return null;
+  const r = k.getBoundingClientRect();
+  return { titel: k.querySelector('.tl-report__title').textContent,
+           text: k.querySelector('.tl-report__text').textContent,
+           sichtbar: r.width > 0 && r.height > 0 };
+})()""")
+check('Bilanz-Karte erscheint nach Fokusende', bool(karte) and karte['sichtbar'] is True, karte)
+check('Bilanz ist uebersetzt und nennt die Zeit',
+      bool(karte) and karte['titel'] == 'Fokuszeit vorbei' and 'ungefiltert' in karte['text'],
+      karte and karte['text'])
+c.go(WATCH, 9)
+check('Erscheint kein zweites Mal am selben Tag',
+      c.ev("!!document.querySelector('.tl-report')") is False)
+
+c.go(POPUP, 3)
+zeile = c.ev("""({ sichtbar: !document.getElementById('usage-row').hidden,
+                   wert: document.getElementById('usage-value').textContent })""")
+check('Popup zeigt den Zaehler',
+      zeile['sichtbar'] is True and zeile['wert'].strip() != '', zeile)
 
 c.close()
 print(f"\n{'Alles gruen.' if not failures else str(len(failures)) + ' FAIL: ' + str(failures)}")

@@ -11,6 +11,7 @@
     GROUPS, FEATURES, DEFAULTS, PRESETS,
     CUSTOM_KEY, RATE_KEY, BREAK_KEY, SCHEDULE_KEY,
     selectionOf, sameSelection, resetPatch, isActive, inactiveReason, parseTime,
+    formatDuration,
     ready, t, label, hint, groupLabel
   } = window.TUBELESS;
 
@@ -30,12 +31,17 @@
     breakRemaining: document.getElementById('break-remaining'),
     breakEnd: document.getElementById('break-end'),
     breakCustom: document.getElementById('break-custom'),
+    usageRow: document.getElementById('usage-row'),
+    usageValue: document.getElementById('usage-value'),
     scheduleEnabled: document.getElementById('schedule-enabled'),
     scheduleStart: document.getElementById('schedule-start'),
     scheduleEnd: document.getElementById('schedule-end')
   };
 
   let settings = Object.assign({}, DEFAULTS);
+  /* Der Zaehler liegt in storage.local, nicht in sync: er gehoert zu diesem
+     Geraet und soll keine Nutzungshistorie auf andere Geraete tragen. */
+  let usage = null;
   const inputs = new Map();
 
   /*
@@ -149,6 +155,10 @@
     }
 
     const schedule = settings[SCHEDULE_KEY] || DEFAULTS[SCHEDULE_KEY];
+    // Ohne Fokuszeit gibt es kein Fenster, gegen das sich der Zaehler abgrenzt
+    const showUsage = schedule.enabled === true && usage;
+    els.usageRow.hidden = !showUsage;
+    if (showUsage) els.usageValue.textContent = formatDuration(usage.seconds || 0);
     els.scheduleEnabled.checked = schedule.enabled === true;
     // Nicht überschreiben, während der Nutzer gerade tippt
     if (document.activeElement !== els.scheduleStart) els.scheduleStart.value = schedule.start;
@@ -329,6 +339,16 @@
     labelBreakButtons();
     buildRows();
     wire();
+    chrome.storage.local.get('usage', (data) => {
+      const today = new Date();
+      const stamp = today.getFullYear() + '-' +
+        String(today.getMonth() + 1).padStart(2, '0') + '-' +
+        String(today.getDate()).padStart(2, '0');
+      const stored = data && data.usage;
+      // Zaehler von gestern nicht als heutigen ausgeben
+      usage = stored && stored.date === stamp ? stored : { date: stamp, seconds: 0 };
+      if (settings) render();
+    });
     chrome.storage.sync.get(DEFAULTS, (stored) => {
       settings = Object.assign({}, DEFAULTS, stored);
       // Erster Start: die Frist läuft ab jetzt, nicht ab dem ersten Popup-Klick.

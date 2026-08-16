@@ -73,14 +73,19 @@ Und wenn du willst, filtert Tubeless nur zu bestimmten Zeiten: Fokuszeit
 einschalten, Start und Ende setzen, fertig. Außerhalb des Fensters ist YouTube
 unverändert. Zeiten über Mitternacht funktionieren auch.
 
+Dazu ein ehrlicher Zähler: Tubeless misst mit, wie lange du in deiner
+Fokuszeit auf YouTube warst, während die Filter ausgesetzt waren. Nach
+Fokusende siehst du die Bilanz. Der Wert bleibt auf deinem Gerät — nur der
+heutige Tag, kein Verlauf, nichts wird übertragen.
+
 Standardmäßig ist auch die Kopfzeile weg und damit YouTubes Suchfeld — dort
 fängt der Sog sonst wieder an. Gesucht wird über das Feld im Popup. Wer die
 Kopfzeile behalten will, nimmt das Preset „Fokus".
 
 WORAUF DU DICH VERLASSEN KANNST
 
-• Nichts wird geladen, gemessen oder übertragen. Kein Analytics, keine Konten,
-  keine externen Server.
+• Nichts wird übertragen. Kein Analytics, keine Konten, keine externen Server.
+  Der Fokuszeit-Zähler bleibt gerätelokal und speichert nur den heutigen Tag.
 • Die einzigen Berechtigungen sind „storage" für deine Einstellungen und Zugriff
   auf youtube.com. Sonst nichts.
 • Deine Einstellungen liegen in deinem Chrome-Profil und wandern per Sync mit.

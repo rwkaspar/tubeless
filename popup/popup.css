@@ -274,6 +274,14 @@ body {
 .timing__dash {
   flex: none;
 }
+.timing__usage b {
+  color: var(--fg);
+}
+.timing__hint {
+  font-size: 10.5px;
+  line-height: 1.35;
+  opacity: 0.75;
+}
 
 .break-btn,
 .break-custom {

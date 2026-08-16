@@ -409,6 +409,56 @@ html.tl-hoverPreview yt-inline-player-preview-view-model {
   100% { opacity: 0; }
 }
 
+/* Bilanz nach Ende der Fokuszeit — ruhige Karte unten rechts, wegklickbar */
+.tl-report {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2100;
+  max-width: 300px;
+  padding: 14px 34px 14px 16px;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  background: rgba(15, 15, 15, 0.96);
+  color: #f1f1f1;
+  font-family: "YouTube Sans", Roboto, system-ui, sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  animation: tl-report-in 0.25s ease;
+}
+@keyframes tl-report-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.tl-report__title {
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.tl-report__text {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #b8b8b8;
+}
+.tl-report__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  background: none;
+  color: #909090;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+.tl-report__close:hover {
+  background: #272727;
+  color: #f1f1f1;
+}
+
 .tl-notice {
   position: fixed;
   inset: 0;

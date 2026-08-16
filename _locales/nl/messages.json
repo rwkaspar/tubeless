@@ -51,6 +51,30 @@
     "message": "‘Eigen’ bijwerken",
     "description": "Derselbe Button, wenn bereits etwas gespeichert ist"
   },
+  "durationHours": {
+    "message": "$H$ u $M$ min",
+    "description": "Dauer ab einer Stunde, $H$ Stunden und $M$ Minuten",
+    "placeholders": {
+      "h": {
+        "content": "$1",
+        "example": "1"
+      },
+      "m": {
+        "content": "$2",
+        "example": "20"
+      }
+    }
+  },
+  "durationMinutes": {
+    "message": "$N$ min",
+    "description": "Dauer in Minuten, $N$ ist die Zahl",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "40"
+      }
+    }
+  },
   "extDescription": {
     "message": "Haalt elke afleiding uit YouTube: feed, zijbalk, Shorts, aanbevelingen, reacties, eindschermen en automatisch afspelen.",
     "description": "Kurzbeschreibung, max. 132 Zeichen"
@@ -107,6 +131,28 @@
     "message": "Heb je iets aan Tubeless? Een korte beoordeling in de Web Store helpt anderen het te vinden.",
     "description": "Text im Bewertungs-Hinweis"
   },
+  "reportClean": {
+    "message": "Tijdens je focustijd was je vandaag geen minuut ongefilterd op YouTube.",
+    "description": "Bilanz, wenn keine ungefilterte Zeit angefallen ist"
+  },
+  "reportDismiss": {
+    "message": "Sluiten",
+    "description": "Screenreader-Beschriftung des Schliessen-Knopfs"
+  },
+  "reportSpent": {
+    "message": "Tijdens je focustijd was je vandaag $TIME$ ongefilterd op YouTube.",
+    "description": "Bilanz mit Zeit, $TIME$ ist z. B. „40 Min.\"",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "40 Min."
+      }
+    }
+  },
+  "reportTitle": {
+    "message": "Focustijd voorbij",
+    "description": "Ueberschrift der Bilanz-Karte nach Ende der Fokuszeit"
+  },
   "scheduleEnd": {
     "message": "Einde van de focustijd",
     "description": "Screenreader-Beschriftung: Ende der Fokuszeit"
@@ -160,6 +206,14 @@
   "toastSkippedSponsor": {
     "message": "Sponsor overgeslagen",
     "description": "Toast im Player nach automatischem Sprung über ein Sponsor-Segment"
+  },
+  "usageHint": {
+    "message": "Tijd op YouTube tijdens de focustijd terwijl Tubeless gepauzeerd was",
+    "description": "Erklaerung unter der Zaehler-Zeile"
+  },
+  "usageLabel": {
+    "message": "Vandaag ongefilterd",
+    "description": "Beschriftung der Zaehler-Zeile im Popup"
   },
   "groupBehavior": {
     "message": "Gedrag",

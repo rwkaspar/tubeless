@@ -12,7 +12,8 @@
   'use strict';
 
   const {
-    FEATURES, DEFAULTS, BREAK_KEY, SCHEDULE_KEY, isActive, t, ready
+    FEATURES, DEFAULTS, BREAK_KEY, SCHEDULE_KEY,
+    isActive, withinSchedule, t, ready
   } = window.TUBELESS;
   let translationsReady = false;
   const CSS_KEYS = FEATURES.filter((f) => f.css !== false).map((f) => f.key);
@@ -230,5 +231,11 @@
   setInterval(() => {
     refreshActiveState();
     sponsorTick();
+    // Zähler nur bei eingeschalteter Fokuszeit — ohne sie gibt es kein
+    // Fenster, gegen das sich „ungefiltert" abgrenzen liesse.
+    const schedule = settings[SCHEDULE_KEY];
+    if (schedule && schedule.enabled) {
+      window.TL_USAGE.tick(withinSchedule(settings), isActive(settings));
+    }
   }, 400);
 })();

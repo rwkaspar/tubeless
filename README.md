@@ -156,6 +156,25 @@ everything, a running break beats focus time. Turning that switch back on also
 ends a running break — otherwise it would read "on" while nothing is being
 filtered. The popup footer always names the reason when nothing is filtered.
 
+### Counter for unfiltered time
+
+When a focus time is set, Tubeless keeps track of how long you were on
+YouTube inside that window **while the filters were suspended** — during a
+short break or with the master switch off. Normal, filtered use does not
+count; otherwise this would be a usage log rather than a piece of feedback.
+
+It only counts while the tab is visible **and** either the window has focus or
+a video is playing. A tab left open in a side window therefore does not pile
+up hours, while a video playing alongside your work still registers. Gaps
+longer than five seconds (standby, tab away for a while) are discarded.
+
+Once focus time is over, a calm card appears on the YouTube page once a day
+with the tally — and the popup shows the running value.
+
+Only the current day is stored (`usage` in `chrome.storage.local`): a number
+of seconds and a date, device-local, no history. Details in
+[`docs/privacy.md`](docs/privacy.md).
+
 ### Review prompt
 
 At the earliest 30 days after installation, a small block appears in the popup
@@ -357,6 +376,7 @@ src/i18n.js            language pick from navigator.languages, loads catalogs
 src/features.js        feature table (keys, groups, defaults, presets, i18n helpers)
 src/tubeless.css       all hiding rules, hung off tl-* classes
 src/content.js         class toggling, JS filters, SPA navigation
+src/usage.js           counter for unfiltered time + tally card
 src/sponsor.js         SponsorBlock: markers, skipping, toast (opt-in)
 popup/                 the UI
 dist/                  store-upload packages, versioned (built by CI + tools/build.py)
@@ -365,7 +385,7 @@ docs/logo.svg          the mark, same shape as icons/*.png
 tools/build.py         builds all packages into dist/
 tools/make-icons.py    generates icons/*.png (no external dependencies)
 tools/verify.py        selector test against the real YouTube
-tools/verify-popup.py  popup test: languages, presets, break, focus time
+tools/verify-popup.py  popup test: languages, presets, break, focus time, counter
 ```
 
 Adding a filter: create an entry in `src/features.js`, write CSS rules under

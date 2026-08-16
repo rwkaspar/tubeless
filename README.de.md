@@ -162,6 +162,26 @@ einschaltet, beendet damit auch eine laufende Pause — sonst bliebe er „an",
 ohne dass etwas gefiltert wird. Die Fußzeile des Popups nennt immer den
 Grund, wenn gerade nicht gefiltert wird.
 
+### Zähler für ungefilterte Zeit
+
+Ist eine Fokuszeit gesetzt, zählt Tubeless mit, wie lange du innerhalb des
+Fensters auf YouTube warst, **während die Filter ausgesetzt waren** — also
+während einer Kurzpause oder bei abgeschaltetem Master-Schalter. Normale,
+gefilterte Nutzung zählt nicht; sonst wäre es ein Nutzungsprotokoll statt
+einer Rückmeldung.
+
+Gezählt wird nur, wenn der Tab sichtbar ist **und** entweder das Fenster den
+Fokus hat oder ein Video läuft. Ein offen gelassener Tab im Nebenfenster
+sammelt also keine Stunden an, ein nebenher laufendes Video wird trotzdem
+erfasst. Lücken über fünf Sekunden (Standby, Tab lange weg) werden verworfen.
+
+Nach Ende der Fokuszeit erscheint einmal am Tag eine ruhige Karte auf der
+YouTube-Seite mit der Bilanz — und im Popup steht der laufende Wert.
+
+Gespeichert wird ausschließlich der heutige Tag (`usage` in
+`chrome.storage.local`): eine Sekundenzahl und ein Datum, gerätelokal, ohne
+Verlauf. Details in [`docs/privacy.md`](docs/privacy.md).
+
 ### Bewertungs-Hinweis
 
 Im Popup taucht frühestens 30 Tage nach der Installation ein kleiner Block auf,
@@ -364,6 +384,7 @@ src/i18n.js            Sprachwahl aus navigator.languages, lädt die Kataloge
 src/features.js        Feature-Tabelle (Keys, Gruppen, Defaults, Presets, i18n-Helfer)
 src/tubeless.css       alle Ausblende-Regeln, an tl-*-Klassen gehängt
 src/content.js         Klassen setzen, JS-Filter, SPA-Navigation
+src/usage.js           Zähler für ungefilterte Zeit + Bilanz-Karte
 src/sponsor.js         SponsorBlock: Marker, Überspringen, Toast (opt-in)
 popup/                 Bedienoberfläche
 dist/                  Store-Upload-Pakete, versioniert (CI + tools/build.py)
@@ -372,7 +393,7 @@ docs/logo.svg          die Marke, gleiche Form wie icons/*.png
 tools/build.py         baut alle Pakete nach dist/
 tools/make-icons.py    generiert icons/*.png (ohne externe Abhängigkeiten)
 tools/verify.py        Selektor-Test gegen das echte YouTube
-tools/verify-popup.py  Popup-Test: Sprachen, Presets, Pause, Fokuszeit
+tools/verify-popup.py  Popup-Test: Sprachen, Presets, Pause, Fokuszeit, Zähler
 ```
 
 Einen Filter ergänzen: Eintrag in `src/features.js` anlegen, CSS-Regeln unter

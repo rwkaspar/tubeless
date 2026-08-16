@@ -51,6 +51,30 @@
     "message": "更新“自定义”",
     "description": "Derselbe Button, wenn bereits etwas gespeichert ist"
   },
+  "durationHours": {
+    "message": "$H$ 小时 $M$ 分钟",
+    "description": "Dauer ab einer Stunde, $H$ Stunden und $M$ Minuten",
+    "placeholders": {
+      "h": {
+        "content": "$1",
+        "example": "1"
+      },
+      "m": {
+        "content": "$2",
+        "example": "20"
+      }
+    }
+  },
+  "durationMinutes": {
+    "message": "$N$ 分钟",
+    "description": "Dauer in Minuten, $N$ ist die Zahl",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "40"
+      }
+    }
+  },
   "extDescription": {
     "message": "移除 YouTube 上的所有干扰：信息流、侧边栏、Shorts、推荐视频、评论、片尾画面和自动播放。",
     "description": "Kurzbeschreibung, max. 132 Zeichen"
@@ -107,6 +131,28 @@
     "message": "Tubeless 帮到你了吗？在应用商店留下简短评价，能帮助别人找到它。",
     "description": "Text im Bewertungs-Hinweis"
   },
+  "reportClean": {
+    "message": "今天在专注时段，你没有一分钟处于未过滤状态。",
+    "description": "Bilanz, wenn keine ungefilterte Zeit angefallen ist"
+  },
+  "reportDismiss": {
+    "message": "关闭",
+    "description": "Screenreader-Beschriftung des Schliessen-Knopfs"
+  },
+  "reportSpent": {
+    "message": "今天在专注时段，你有 $TIME$ 在未过滤的 YouTube 上。",
+    "description": "Bilanz mit Zeit, $TIME$ ist z. B. „40 Min.\"",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "40 Min."
+      }
+    }
+  },
+  "reportTitle": {
+    "message": "专注时段结束",
+    "description": "Ueberschrift der Bilanz-Karte nach Ende der Fokuszeit"
+  },
   "scheduleEnd": {
     "message": "专注时段结束",
     "description": "Screenreader-Beschriftung: Ende der Fokuszeit"
@@ -160,6 +206,14 @@
   "toastSkippedSponsor": {
     "message": "已跳过赞助",
     "description": "Toast im Player nach automatischem Sprung über ein Sponsor-Segment"
+  },
+  "usageHint": {
+    "message": "专注时段内 Tubeless 暂停期间在 YouTube 上的时间",
+    "description": "Erklaerung unter der Zaehler-Zeile"
+  },
+  "usageLabel": {
+    "message": "今天未过滤",
+    "description": "Beschriftung der Zaehler-Zeile im Popup"
   },
   "groupBehavior": {
     "message": "行为",

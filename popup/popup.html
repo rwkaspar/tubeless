@@ -61,6 +61,15 @@
         <button type="button" id="break-end" data-i18n="breakEnd"></button>
       </div>
 
+      <!-- Bilanz: nur sinnvoll, solange eine Fokuszeit gesetzt ist -->
+      <div class="timing__row timing__usage" id="usage-row" hidden>
+        <span class="timing__label">
+          <span data-i18n="usageLabel"></span>:
+          <b id="usage-value"></b>
+        </span>
+        <span class="timing__hint" data-i18n="usageHint"></span>
+      </div>
+
       <!-- Fokuszeit: außerhalb des Fensters filtert Tubeless nicht -->
       <div class="timing__row">
         <label class="timing__toggle">

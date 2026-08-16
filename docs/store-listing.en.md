@@ -72,14 +72,19 @@ And if you like, Tubeless only filters at certain times: turn on focus time,
 set start and end, done. Outside that window YouTube is untouched. Windows
 across midnight work too.
 
+Plus an honest counter: Tubeless measures how long you were on YouTube during
+your focus time while the filters were suspended. When focus time ends, you
+get the tally. The value stays on your device — today only, no history,
+nothing transmitted.
+
 By default the header is gone, and with it YouTube's search field — that is
 where the pull usually starts again. You search from the field in the popup. If
 you would rather keep the header, pick the "Focus" preset.
 
 WHAT YOU CAN RELY ON
 
-• Nothing is fetched, measured or transmitted. No analytics, no accounts, no
-  external servers.
+• Nothing is transmitted. No analytics, no accounts, no external servers. The
+  focus-time counter stays on your device and stores today only.
 • The only permissions are "storage" for your settings and access to
   youtube.com. Nothing else.
 • Your settings live in your Chrome profile and travel with Chrome Sync.

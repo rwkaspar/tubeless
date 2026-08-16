@@ -164,10 +164,15 @@
       : minute >= start || minute < end;
   }
 
+  /* `now` ist überall optional. Ohne diese Absicherung wird aus einem
+     vergessenen Argument `new Date(undefined)` → Invalid Date → NaN, und der
+     Vergleich liefert stumm immer „nein" statt zu scheitern. */
+  const moment = (now) => (typeof now === 'number' ? now : Date.now());
+
   /** Läuft gerade eine Kurzpause? */
   function breakActive(settings, now) {
     const state = settings && settings[BREAK_KEY];
-    return !!(state && typeof state.until === 'number' && state.until > now);
+    return !!(state && typeof state.until === 'number' && state.until > moment(now));
   }
 
   /** Ist die aktuelle Uhrzeit innerhalb der Fokuszeit (oder ist keine gesetzt)? */
@@ -177,7 +182,7 @@
     const start = parseTime(schedule.start);
     const end = parseTime(schedule.end);
     if (start === null || end === null) return true; // kaputt = nicht sperren
-    const date = new Date(now);
+    const date = new Date(moment(now));
     return withinWindow(start, end, date.getHours() * 60 + date.getMinutes());
   }
 
@@ -186,19 +191,26 @@
    * schlägt alles, eine laufende Pause schlägt die Fokuszeit.
    */
   function isActive(settings, now) {
-    const moment = typeof now === 'number' ? now : Date.now();
+    const at = moment(now);
     if (!settings || settings._enabled === false) return false;
-    if (breakActive(settings, moment)) return false;
-    return withinSchedule(settings, moment);
+    if (breakActive(settings, at)) return false;
+    return withinSchedule(settings, at);
   }
 
   /** Warum ist Tubeless gerade untätig? Für die Anzeige im Popup. */
   function inactiveReason(settings, now) {
-    const moment = typeof now === 'number' ? now : Date.now();
+    const at = moment(now);
     if (!settings || settings._enabled === false) return 'paused';
-    if (breakActive(settings, moment)) return 'break';
-    if (!withinSchedule(settings, moment)) return 'schedule';
+    if (breakActive(settings, at)) return 'break';
+    if (!withinSchedule(settings, at)) return 'schedule';
     return null;
+  }
+
+  /** Sekunden als „40 Min." bzw. „1 Std. 20 Min." in der Browsersprache. */
+  function formatDuration(seconds) {
+    const minutes = Math.max(0, Math.round(seconds / 60));
+    if (minutes < 60) return t('durationMinutes', [String(minutes)]);
+    return t('durationHours', [String(Math.floor(minutes / 60)), String(minutes % 60)]);
   }
 
   /** Nur die Filterwerte — ohne _enabled, _custom und sonstige Metaschlüssel. */
@@ -241,7 +253,7 @@
     GROUPS, FEATURES, DEFAULTS, PRESETS,
     CUSTOM_KEY, RATE_KEY, BREAK_KEY, SCHEDULE_KEY,
     selectionOf, sameSelection, resetPatch,
-    isActive, inactiveReason, parseTime,
+    isActive, inactiveReason, parseTime, withinSchedule, formatDuration,
     t, ready, label, hint, groupLabel
   };
 })(typeof window !== 'undefined' ? window : globalThis);

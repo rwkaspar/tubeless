@@ -1,6 +1,6 @@
 # Tubeless — Datenschutzerklärung / Privacy Policy
 
-*Stand / last updated: 2026-08-03*
+*Stand / last updated: 2026-08-16*
 
 ## Deutsch
 
@@ -21,6 +21,20 @@ Tubeless erhebt, speichert und überträgt **keine personenbezogenen Daten**.
   Watch-History, keine Suchanfragen, keine Kontodaten.
 - **Keine Weitergabe.** Es gibt nichts, was weitergegeben werden könnte, und
   keinen Dritten, an den etwas ginge.
+
+### Zähler für ungefilterte Zeit
+
+Ist eine Fokuszeit gesetzt, misst Tubeless, wie lange du innerhalb dieses
+Fensters auf YouTube warst, **während die Filter ausgesetzt waren** (Kurzpause
+oder Schalter aus). Das ist die einzige Nutzungsangabe, die Tubeless
+speichert. Sie besteht aus einer Sekundenzahl und dem heutigen Datum — keine
+Video-IDs, keine URLs, kein Verlauf. Beim Datumswechsel beginnt sie bei null.
+
+Der Wert liegt in `chrome.storage.local`, also nur auf diesem Gerät: keine
+Website kann ihn lesen, er wird **nicht** zwischen Geräten synchronisiert und
+verlässt den Browser nie. Bewusst nicht in einem Cookie oder im localStorage
+von youtube.com — beides wäre für YouTube lesbar. Ohne gesetzte Fokuszeit wird
+gar nicht gemessen.
 
 ### Optional: SponsorBlock
 
@@ -58,6 +72,20 @@ Tubeless collects, stores and transmits **no personal data**.
   interface elements — no watch history, no search queries, no account data.
 - **No sharing.** There is nothing that could be shared and no third party to
   share it with.
+
+### Counter for unfiltered time
+
+When a focus time is set, Tubeless measures how long you were on YouTube
+inside that window **while the filters were suspended** (short break or the
+switch turned off). This is the only usage figure Tubeless stores. It consists
+of a number of seconds and today's date — no video IDs, no URLs, no history.
+It starts at zero when the date changes.
+
+The value lives in `chrome.storage.local`, i.e. on this device only: no
+website can read it, it is **not** synchronised between devices and never
+leaves the browser. Deliberately not in a cookie or in youtube.com's
+localStorage — YouTube could read both. Without a focus time set, nothing is
+measured at all.
 
 ### Optional: SponsorBlock
 
