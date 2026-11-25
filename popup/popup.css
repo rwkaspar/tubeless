@@ -15,7 +15,8 @@
 
 body {
   width: 340px;
-  max-height: 580px;
+  /* 600px ist das Maximum, das Chrome und Firefox einem Popup geben */
+  max-height: 600px;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -403,12 +404,23 @@ body[data-idle="true"] .presets {
 
 /* --- Feature-Liste ------------------------------------------------------- */
 
-.groups {
+/* Ein gemeinsamer Scrollbereich: scrollte nur die Liste, bliebe ihr unter
+   Suche, Presets und Fokuszeit kaum Höhe. */
+.scroll {
   flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
-  padding: 0 16px 8px;
   scrollbar-width: thin;
   scrollbar-color: #3a3a3a transparent;
+}
+.scroll > * {
+  flex-shrink: 0;
+}
+
+.groups {
+  padding: 0 16px 8px;
 }
 
 .group + .group {

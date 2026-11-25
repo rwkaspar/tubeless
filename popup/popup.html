@@ -17,21 +17,23 @@
       </label>
     </header>
 
-    <form class="search" id="search-form">
-      <input
-        type="search"
-        id="search-input"
-        data-i18n-placeholder="searchPlaceholder"
-        autocomplete="off"
-        spellcheck="false"
-      />
-      <button type="submit" data-i18n-aria-label="searchSubmit">↵</button>
-    </form>
+    <!-- Alles zwischen Kopf und Fuß scrollt gemeinsam -->
+    <div id="scroll" class="scroll">
+      <form class="search" id="search-form">
+        <input
+          type="search"
+          id="search-input"
+          data-i18n-placeholder="searchPlaceholder"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button type="submit" data-i18n-aria-label="searchSubmit">↵</button>
+      </form>
 
-    <div class="presets">
-      <button type="button" data-preset="custom" data-i18n="presetCustom"></button>
-      <button type="button" data-preset="fokus" data-i18n="presetFocus"></button>
-      <button type="button" data-preset="aus" data-i18n="presetNone"></button>
+      <div class="presets">
+        <button type="button" data-preset="custom" data-i18n="presetCustom"></button>
+        <button type="button" data-preset="fokus" data-i18n="presetFocus"></button>
+        <button type="button" data-preset="aus" data-i18n="presetNone"></button>
     </div>
 
     <button type="button" id="custom-save" class="custom-save" hidden></button>
@@ -93,6 +95,7 @@
     </section>
 
     <main id="groups" class="groups"></main>
+    </div>
 
     <footer class="foot">
       <span id="count">–</span>
